@@ -23,7 +23,7 @@ SubmitButton.defaultProps = {
 
 const styles = {
   margin: "0",
-  padding: "0 5px",
+  padding: "0",
   height: "inherit",
   width: "4em",
   border: "5px solid",
@@ -32,7 +32,7 @@ const styles = {
   backgroundSize: "contain",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
-  position: "absolute"
+  flexGrow: 1
 }
 
 export default SubmitButton

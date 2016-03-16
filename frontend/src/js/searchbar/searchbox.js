@@ -25,12 +25,14 @@ SearchBox.defaultProps = {
 
 const styles = {
   margin: "0",
-  padding: "0 0 0 10px",
+  padding: "0 0 0 1em",
   width: "90%",
   height: "100%",
+  lineHeight: "1em",
   border: "none",
   borderRadius: "5px 0px 0px 5px",
-  outline: "unset"
+  outline: "unset",
+  flexGrow: 8
 }
 
 export default SearchBox

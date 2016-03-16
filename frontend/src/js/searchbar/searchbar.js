@@ -51,7 +51,9 @@ SearchBar.defaultProps = {
 }
 
 const styles = {
-  margin: 'auto'
+  margin: 'auto',
+  display: 'flex',
+  flexWrap: 'nowrap'
 }
 
 export default SearchBar
