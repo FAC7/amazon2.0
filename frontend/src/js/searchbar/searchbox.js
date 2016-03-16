@@ -1,31 +1,36 @@
 import React from 'react'
-// require('./style.css')
 
 class SearchBox extends React.Component {
   render () {
-    searchBoxStyle.backgroundColor = this.props.inputColor
-    if (this.props.roundRight) {
-        searchBoxStyle.borderRadius = '5px'
-        searchBoxStyle.width = '100%'
-    }
+    styles.backgroundColor = this.props.inputColor
+    styles.borderRadius    = (this.props.roundRight) ? '5px' : styles.borderRadius
+    styles.width           = (this.props.roundRight) ? '5px' : styles.width
     return (
-      <input type="text" placeholder={this.props.defaultValue} style={searchBoxStyle}/>
+      <input type="text" placeholder={this.props.defaultValue} style={styles}/>
     )
   }
 }
 
 SearchBox.propTypes = {
   defaultValue: React.PropTypes.string,
-  inputColor: React.PropTypes.string
+  inputColor: React.PropTypes.string,
+  roundRight: React.PropTypes.bool
 }
 
-var searchBoxStyle = {
+SearchBox.defaultProps = {
+  defaultValue: '',
+  inputColor: '#EEE',
+  roundRight: false
+}
+
+const styles = {
   margin: "0",
   padding: "0 0 0 10px",
   width: "90%",
   height: "100%",
   border: "none",
-  borderRadius: "5px 0px 0px 5px"
+  borderRadius: "5px 0px 0px 5px",
+  outline: "unset"
 }
 
 export default SearchBox
