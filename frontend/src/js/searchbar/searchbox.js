@@ -4,7 +4,7 @@ class SearchBox extends React.Component {
   render () {
     styles.backgroundColor = this.props.inputColor
     styles.borderRadius    = (this.props.roundRight) ? '5px' : styles.borderRadius
-    styles.width           = (this.props.roundRight) ? '5px' : styles.width
+    styles.width           = (this.props.roundRight) ? '100%' : styles.width
     return (
       <input type="text" placeholder={this.props.defaultValue} style={styles}/>
     )
