@@ -1,0 +1,27 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Back-end repo of the Re-creation of Amazon by FAC7",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+      "start": "node ./lib/server.js",
+      "nodemon": "nodemon ./lib/server.js",
+      "test": "tape tests/runner.js"
+  },
+  "keywords": [],
+  "author": "FAC7",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^13.2.1",
+    "inert": "^3.2.0"
+  },
+  "devDependencies": {
+    "codecov.io": "^0.1.6",
+    "istanbul": "^0.4.2",
+    "nodemon": "^1.9.1",
+    "tape": "^4.5.1"
+  }
+}
