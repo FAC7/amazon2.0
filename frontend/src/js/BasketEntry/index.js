@@ -1,5 +1,5 @@
 import React from 'react'
-import BasketComponents from './BasketComponents/'
+import BasketContainer from './BasketContainer/'
 
 const shoppingBasket = {
   items: [{
@@ -22,7 +22,7 @@ const shoppingBasket = {
 class BasketEntry extends React.Component {
   render () {
     return (
-      <BasketComponents shoppingBasket={shoppingBasket} />
+      <BasketContainer shoppingBasket={shoppingBasket} />
     )
   }
 }
