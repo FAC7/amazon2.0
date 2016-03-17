@@ -9,4 +9,5 @@ client.select( DB_NUM , function(){
   console.log('Connected to Redis database num ',DB_NUM,' on ','DB_URL');
 });
 
+
 module.exports = client;
