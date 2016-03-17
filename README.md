@@ -22,6 +22,7 @@ We split on groups of four peopole, each team in on charge on a different compon
 * @JackTierney
 * @oturnermajor
 
+
 Set up badges, file structure, travis build and have final say of what is merged to master and what is not
 
 ## POs
