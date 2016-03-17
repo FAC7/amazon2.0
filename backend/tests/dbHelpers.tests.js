@@ -93,7 +93,6 @@ test('testing dbHelper getProductsByCategories',function(t){
     dbHelpers.addProduct(testProductObj2, function(err2, testProductId2){
       dbHelpers.addProduct(testProductObj3, function(err3, testProductId3){
         dbHelpers.getProductsByCategories(['sports'],function(err4,sportsReply){
-          console.log(sportsReply);
           t.plan(13);
           t.ok(sportsReply instanceof Array,'successfull reply to sports getProductsByCategories is an array');
           t.equal(sportsReply.length, 1, 'one item only found in sports category');
