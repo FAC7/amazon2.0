@@ -7,16 +7,17 @@
     "test": "tests"
   },
   "scripts": {
-      "start": "node ./lib/server.js",
-      "nodemon": "nodemon ./lib/server.js",
-      "test": "tape tests/runner.js"
+    "start": "node ./lib/server.js",
+    "nodemon": "nodemon ./lib/server.js",
+    "test": "tape tests/runner.js"
   },
   "keywords": [],
   "author": "FAC7",
   "license": "ISC",
   "dependencies": {
     "hapi": "^13.2.1",
-    "inert": "^3.2.0"
+    "inert": "^3.2.0",
+    "stripe": "^4.5.0"
   },
   "devDependencies": {
     "codecov.io": "^0.1.6",
