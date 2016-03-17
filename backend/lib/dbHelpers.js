@@ -38,8 +38,13 @@ module.exports = function(client){
         cb(null,reply);
       });
     },
-    getProductsByCategories: function(categoriesArr){
-      client.SINTER(...categoriesArr);
+    getProductsByCategories: function(categoriesArr, cb){
+      client.SINTER(...categoriesArr, function(err,reply){
+        if(err){
+          console.log(err);
+        }
+        cb(null,reply);
+      });
     }
   }
 }
