@@ -3,7 +3,7 @@ const Guid = require('guid');
 module.exports = function(client){
   return {
     addProduct: function( productObj, cb ){
-      const productId = Guid.create();
+      const productId = Guid.create().value;
       productObj.id   = productId;
       Object.keys( productObj ).forEach( key => {
         const value = typeof productObj[key] === "object" ?
@@ -26,6 +26,7 @@ module.exports = function(client){
           console.log('successfully added product ',productId,' to category ', category);
         })
       })
+      cb(null,productId);
     },
     getProductById: function(id, cb){
       client.hgetall( id, function(err, reply){
