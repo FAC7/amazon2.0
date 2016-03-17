@@ -4,7 +4,6 @@
 
 ## Code Reviewers
 
-* Owen
 * Francesco
 * Jacket
 
