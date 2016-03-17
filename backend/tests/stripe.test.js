@@ -21,7 +21,11 @@ const stripeTests = () => {
         "exp_year": 2017,
         "cvc": '123'
       }
+
+    },{
+      idempotency_key: 'ghjvcsdhvk'
     }, (err, token) => {
+      console.log('token---->', token.id);
       if (err) {
         console.log(err)
       } else {
