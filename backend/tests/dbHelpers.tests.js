@@ -2,9 +2,7 @@
 var tape    = require('wrapping-tape');
 var redis   = require('redis');
 var client, test  = {};
-// local modules
-var dbHelpers = require('./../lib/dbHelpers.js');
-
+var dbHelpers;
 // env variables
 var dbUrl = process.env.REDIS_URL || 'redis://localhost:6379';
 var dbNum = process.env.REDIS_TEST_DB  || 16
@@ -12,7 +10,7 @@ var dbNum = process.env.REDIS_TEST_DB  || 16
 test = tape({
   setup:function(t){
     client = redis.createClient(dbUrl)
-    dbHelpers = dbHelpers(client);
+    dbHelpers = require('./../lib/dbHelpers.js')(client);
     client.select(dbNum, function(){
       console.log("connected to database number " + dbNum + 'on url '+dbUrl)
     });
@@ -46,8 +44,20 @@ test('testing db Helper addProduct',function(t){
     "quantity": 1,
     "productDetails":"{ 'size':'250x140cm', 'weight':'150kg', 'other':'stuff' }",
     "average-rating": 3,
-    "reviews":"[ { 'author': 'nickname', 'text':   'this product sucks!', 'rating': 1, 'date':   1458218917974 }, { 'author':'this product is awesome!', 'text':   'this product sucks!', 'rating':5, 'date': 1458218918000 } ]",
-    "categories":"['sports','tech']"
+    "reviews":'[{"author":"nickname","text":"this product sucks!","rating":1,"date":1458218917974},{"author":"this product is awesome!","text":"this product sucks!","rating":5,"date":1458218918000}]',
+    "categories":'["sports","tech"]'
   };
-  // dbHelpers.addProduct(testProductObj,function(err,))
+  dbHelpers.addProduct(testProductObj,function(err,testProductId){
+    t.plan(6);
+    dbHelpers.getProductById(testProductId,function(err,reply){
+      // reply = JSON.parse(reply);
+      console.log(reply);
+      t.ok( !err,'no error in retrieving product by guid with getProductById');
+      t.equal( typeof reply, 'object', 'parsed reply is an object');
+      t.equal( typeof reply.id, 'string', 'productid is a string (and not undefined)');
+      t.equal( reply.price, '345','product price is correct')
+      t.equal( reply.description, 'give us your moneeeey!!','product description is correct');
+      t.equal( typeof JSON.parse(reply.reviews), 'object', 'product.reviews is a stringified object');
+    })
+  })
 });
