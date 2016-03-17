@@ -2,6 +2,8 @@ const tape = require('tape')
 const stripe = require('stripe')
 const https = require('https')
 const Hapi = require('hapi')
+const server = require('../lib/server.js')
+const payPlugin = require('../lib/payPlugin.js')
 
 const stripeTests = () => {
   tape('test test', (t) => {
@@ -12,10 +14,10 @@ const stripeTests = () => {
   tape('server test', (t) => {
     const options = {
       method: 'GET',
-      url: 'api.stripe.com'
+      url: '/pay'
     }
     server.inject(options, (response) => {
-      t.equal(reponse.statusCode, 200, 'server acknowledges API')
+      t.equal(response.statusCode, 200, 'server acknowledges API')
       t.end()
     })
   })
