@@ -1,5 +1,5 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-
+[![travis-build](https://travis-ci.org/FAC7/amazon2.0.svg?branch=master)](https://travis-ci.org/FAC7/amazon2.0)
 # Roles
 
 ## Code Reviewers
