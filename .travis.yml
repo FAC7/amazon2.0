@@ -1,8 +1,8 @@
 language: node_js
 node_js:
   - "5.5"
-# services:
-#   - redis-server
+services:
+  - redis-server
 addons:
   apt:
     sources:
