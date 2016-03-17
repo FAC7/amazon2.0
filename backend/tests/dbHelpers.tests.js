@@ -23,6 +23,44 @@ test = tape({
   }
 });
 
+var testProductObj = {
+  "price": 345,
+  "vendor":"brand1",
+  "imageUrl":"https://img.com",
+  "title":"this product is not very descriptive, so you won't find it",
+  "description":"give us your moneeeey!!",
+  "quantity": 1,
+  "productDetails":"{ 'size':'250x140cm', 'weight':'150kg', 'other':'stuff' }",
+  "average-rating": 3,
+  "reviews":'[{"author":"nickname","text":"this product sucks!","rating":1,"date":1458218917974},{"author":"this product is awesome!","text":"this product sucks!","rating":5,"date":1458218918000}]',
+  "categories":'["sports","tech"]'
+};
+var testProductObj2 = {
+  "price": 200,
+  "vendor":"brand2",
+  "imageUrl":"https://img2.com",
+  "title":"expensive stuff, don't buy this.",
+  "description":"ripping you off...",
+  "quantity": 2,
+  "productDetails":"{ 'size':'250x140cm', 'weight':'150kg', 'other':'stuff' }",
+  "average-rating": 1,
+  "reviews":'[{"author":"nickname","text":"this product sucks!","rating":1,"date":1458218917974},{"author":"this product is awesome!","text":"this product sucks!","rating":5,"date":1458218918000}]',
+  "categories":'["tech"]'
+};
+
+var testProductObj3 = {
+  "price": 10,
+  "vendor":"brand3",
+  "imageUrl":"https://img3.com",
+  "title":"i don't know what this is",
+  "description":"meh...",
+  "quantity": 3,
+  "productDetails":"{ 'size':'250x140cm', 'weight':'150kg', 'other':'stuff' }",
+  "average-rating": 1,
+  "reviews":'[{"author":"nickname","text":"this product sucks!","rating":1,"date":1458218917974},{"author":"this product is awesome!","text":"this product sucks!","rating":5,"date":1458218918000}]',
+  "categories":'["cars"]'
+};
+
 test('testing db Helper getProductById with manual input',function(t){
   t.plan(4);
   client.hmset('h12345','title','test product new! 500kg','price',500,'average-rating',4,function(err,reply){
@@ -35,18 +73,6 @@ test('testing db Helper getProductById with manual input',function(t){
   });
 });
 test('testing db Helper addProduct',function(t){
-  var testProductObj = {
-    "price": 345,
-    "vendor":"brand1",
-    "imageUrl":"https://img.com",
-    "title":"this product is not very descriptive, so you won't find it",
-    "description":"give us your moneeeey!!",
-    "quantity": 1,
-    "productDetails":"{ 'size':'250x140cm', 'weight':'150kg', 'other':'stuff' }",
-    "average-rating": 3,
-    "reviews":'[{"author":"nickname","text":"this product sucks!","rating":1,"date":1458218917974},{"author":"this product is awesome!","text":"this product sucks!","rating":5,"date":1458218918000}]',
-    "categories":'["sports","tech"]'
-  };
   dbHelpers.addProduct(testProductObj,function(err,testProductId){
     t.plan(6);
     dbHelpers.getProductById(testProductId,function(err,reply){
@@ -60,4 +86,41 @@ test('testing db Helper addProduct',function(t){
       t.equal( typeof JSON.parse(reply.reviews), 'object', 'product.reviews is a stringified object');
     })
   })
+});
+test('testing dbHelper getProductsByCategories',function(t){
+
+  dbHelpers.addProduct(testProductObj, function(err, testProductId){
+    dbHelpers.addProduct(testProductObj2, function(err2, testProductId2){
+      dbHelpers.addProduct(testProductObj3, function(err3, testProductId3){
+        dbHelpers.getProductsByCategories(['sports'],function(err4,sportsReply){
+          console.log(sportsReply);
+          t.plan(13);
+          t.ok(sportsReply instanceof Array,'successfull reply to sports getProductsByCategories is an array');
+          t.equal(sportsReply.length, 1, 'one item only found in sports category');
+          t.equal(sportsReply[0],testProductId,'correct product id found in sports category');
+        });
+        dbHelpers.getProductsByCategories(['tech'],function(err5,techReply){
+          t.ok(techReply instanceof Array,'successfull reply to tech getProductsByCategories is an array');
+          t.equal(techReply.length, 2, 'two items only found in tech category');
+          var trythis1 = techReply[0] == testProductId || techReply[0] == testProductId2;
+          var trythis2 = techReply[1] == testProductId || techReply[1] == testProductId2;
+          t.ok(trythis1 && trythis2,'correct product ids found in tech category');
+        });
+        dbHelpers.getProductsByCategories(['cars'],function(err6,carsReply){
+          t.ok(carsReply instanceof Array,'successfull reply to cars getProductsByCategories is an array');
+          t.equal(carsReply.length, 1, 'one item only found in cars category');
+          t.equal(carsReply[0],testProductId3,'correct product id found in cars category');
+        });
+        dbHelpers.getProductsByCategories(['sports','tech'],function(err7,sportsNtechReply){
+          t.ok(sportsNtechReply instanceof Array,'successfull reply to sports & tech getProductsByCategories is an array');
+          t.equal(sportsNtechReply.length, 1, 'one item only found in both sports & tech categories');
+          t.equal(sportsNtechReply[0],testProductId,'correct product id found in tech category');
+        });
+        dbHelpers.getProductsByCategories('bluah',function(err8,bluahReply){
+          t.ok(!err8,'error in retrieving products in unknown category');
+        });
+
+      });
+    });
+  });
 });
