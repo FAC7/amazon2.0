@@ -2,46 +2,47 @@
 
 const stripe = require('stripe')('sk_test_oZSgSdlwFlYGjZVkTDNUneLX')
 
+const makeIdemKey = () => {
+  let text = ''
+  const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+
+  for (let i = 0; i < 5; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length))
+  }
+  return text
+}
+
 exports.register = (server, options, next) => {
   server.route({
-    method: 'GET',
+    method: 'POST',
     path: '/pay',
     config: {
       handler: (request, reply) => {
-        stripe.tokens.create({
-          card: {
-            "number": 4012888888881881,
-            "exp_month": 12,
-            "exp_year": 2017,
-            "cvc": '123'
-          }
-        }, (err, token) => {
-            if (err) {
-              console.log(err);
+        // TODO: check with Elias
+        stripe.charges.create({
+          amount: request.payload.amount,
+          currency: request.payload.currency,
+          source: request.payload.token, // obtained with Stripe.js
+          description: request.payload.description
+        }, {
+          idempotency_key: makeIdemKey()
+        }, (err, charge) => {
+          if (err) {
+            let resp = {
+              success: false,
+              error: err
             }
-            console.log(token);
-            stripe.charges.create({
-              amount: 400,
-              currency: 'usd',
-              source: token.id, // obtained with Stripe.js
-              description: 'Charge for test@example.com'
-            }, {
-              idempotency_key: 'sdjgsdkj'
-            }, (err, charge) => {
-              if (err) {
-                let resp = {
-                  success: false,
-                  error: err
-                }
-                reply(JSON.stringify(resp))
-              } else {
-                let resp = {
-                  success: true,
-                  error: null
-                }
-                reply(JSON.stringify(resp)).redirect('/paymentsuccessful')
-              }
-          })
+            reply(JSON.stringify(resp))
+          } else {
+            let resp = {
+              success: true,
+              error: null
+            }
+            reply(charge)
+
+            // TODO:
+            // reply(JSON.stringify(resp)).redirect('/paymentsuccessful')
+          }
         })
       }
     }
