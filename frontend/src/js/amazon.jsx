@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import Category from './itemsOnHomepage/Category.jsx'
+import SearchBar from './searchbar/searchbar.jsx'
+import ProductPage from './ProductPage/ProductPage.jsx'
 
 class Amazon extends React.Component {
   render () {
@@ -10,6 +12,7 @@ class Amazon extends React.Component {
         Amazon sucks, fAC7 is better!!!
       </p>
     <Category categoryName='cat name' />
+    <ProductPage />
     </div>
     )
   }
