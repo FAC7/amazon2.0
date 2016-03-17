@@ -5,11 +5,11 @@ class Button extends React.Component {
     const buttonText = this.props.buttonText
     const link = this.props.link
     return (
-            <a href={link}>
-                <button>{buttonText}</button>
-            </a>
-        )
-    }
+      <a href={link}>
+        <button>{buttonText}</button>
+      </a>
+    )
+  }
 }
 
 Button.PropTypes = {
@@ -17,4 +17,4 @@ Button.PropTypes = {
   link       : React.PropTypes.string.isRequired
 }
 
-export default Button;
+export default Button
