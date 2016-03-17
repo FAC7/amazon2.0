@@ -1,35 +1,35 @@
 "use strict";
 
-// modules
+// node modules
 const Hapi = require('hapi');
-const http = require('https');
-const server = new Hapi.Server();
 const Inert = require('inert');
-const port =  8080;
-const url = require('url');
-
-// Routes
-// const Index = require('/');
-
-
-
+const Path = require('path');
 // Hapi plugins
 const plugins = [
 	Inert,
 ];
 
+// local modules
+const redisClient = require('./redis.js');
+const dbHelpers		= require('./dbHelpers.js');
+
+// server config
+const server = new Hapi.Server();
+const port =  8080;
+
 server.connection({
-    host: 'localhost',
-    port: port
+	port: port
 });
+
 
 // Add the route
 server.route({
     method: 'GET',
     path:'/',
-    handler: function (request, reply) {
-
-        return reply('hello world');
+    handler: (request, reply) => {
+      reply('hello world');
+			// var path = Path.join(__dirname+'../../frontend/public/index.html');
+			// reply.file(path);
     }
 });
 
