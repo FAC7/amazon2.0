@@ -20,3 +20,7 @@ Setting up tasks and summarising where we are at
 
 * Four spaced indent!
 * Commits must pass the Travis build
+ 
+# Style guide
+
+![des](https://cloud.githubusercontent.com/assets/2573931/13844160/e7efdbb2-ec2f-11e5-8869-ab5843efde22.png)
