@@ -1,0 +1,23 @@
+/*.category {
+    padding: 20px;
+    overflow-x: scroll;
+    height: 500px;
+    overflow-y: hidden;
+    width: 1500px;
+}
+
+.category h2 {
+    color: #222E3E;
+    text-transform: capitalize;
+}
+
+.item {
+    float: left;
+}
+.item h3 {
+    color: #222E3E;
+    text-transform: capitalize;
+}
+.item a {
+    text-decoration: none;
+}*/
