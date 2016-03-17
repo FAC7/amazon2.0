@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ItemName = (props) => <div><a href={props.url}>{props.itemName}</a></div>
+const ItemName = (props) => <a href={props.url}>{props.itemName}</a>
 
 ItemName.propTypes = {
   url: React.PropTypes.string.isRequired,

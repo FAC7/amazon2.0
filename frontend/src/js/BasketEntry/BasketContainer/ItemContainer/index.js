@@ -2,7 +2,7 @@ import React from 'react'
 import Image from './Image.js'
 import ItemName from './ItemName.js'
 import Price from './Price.js'
-import DeleteItem from './DeleteItem.js'
+import DeleteLink from './DeleteLink.js'
 import Quantity from './Quantity.js'
 import Stock from './Stock.js'
 
@@ -14,21 +14,17 @@ class ItemContainer extends React.Component {
       <tr>
         <td><Image url={item.url} imgURL={item.imgURL} /></td>
         <td><ItemName itemName={item.itemName} url={item.url} /></td>
+        <td><DeleteLink deleteFunction={this.props.deleteFunction} index={this.props.index}/></td>
       </tr>
     )
   }
 }
 
 ItemContainer.propTypes = {
-  itemInfo: React.PropTypes.object.isRequired
+  itemInfo: React.PropTypes.object.isRequired,
+  deleteFunction: React.PropTypes.func.isRequired,
+  index: React.PropTypes.number.isRequired
 }
 
-// <ItemName itemURL={item.itemURL} itemName={item.itemName} />
-// <BasketImgItem itemImgURL={item.itemImgURL} />
-// <td><Image /></td>
-// <td><ItemName /></td>
-// <td><Price /></td>
-// <td><DeleteItem /></td>
-// <td><Quantity /></td>
-// <td><Stock /></td>
+
 export default ItemContainer
