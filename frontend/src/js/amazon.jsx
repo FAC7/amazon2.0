@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Category from './itemsOnHomepage/Category.jsx'
+import Category from './itemCategory//Category.jsx'
 import SearchBar from './searchbar/searchbar.jsx'
 import ProductPage from './ProductPage/ProductPage.jsx'
 
