@@ -3,13 +3,14 @@ import Link from './Link.js'
 import ItemName from './ItemName.js'
 
 class DeletedItemContainer extends React.Component {
+
   render () {
     const item = this.props.itemInfo
     return (
       <tr>
         <td><ItemName itemName={item.itemName} url={item.url} /></td>
-        <td><Link callback={this.props.restoreFunction} index={this.props.index} /></td>
-        <td><Link callback={this.props.removeFunction} index={this.props.index} /></td>
+        <td><Link callback={this.props.restoreFunction} index={this.props.index} linkName='Restore' /></td>
+        <td><Link callback={this.props.removeFunction} index={this.props.index} linkName='Remove' /></td>
       </tr>
     )
   }

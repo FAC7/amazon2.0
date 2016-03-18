@@ -2,8 +2,11 @@ import React from 'react'
 import ItemContainer from './ItemContainer/'
 import DeletedItemContainer from './ItemContainer/DeletedItemContainer.js'
 
-
 class BasketContainer extends React.Component {
+
+  componentWillMount () {
+    this.props.filterDeletedItems()
+  }
 
   render () {
     return (
@@ -15,7 +18,6 @@ class BasketContainer extends React.Component {
             <th>Quantity</th>
           </tr>
           {this.props.shoppingBasket.items.map((item, index) => {
-            console.log(item.deleted);
             if (!item.deleted) {
               return (
                 <ItemContainer index={index} key={index} itemInfo={item} deleteFunction={this.props.deleteFunction} />
@@ -37,7 +39,8 @@ BasketContainer.propTypes = {
   shoppingBasket: React.PropTypes.object.isRequired,
   deleteFunction: React.PropTypes.func,
   removeFunction: React.PropTypes.func,
-  restoreFunction: React.PropTypes.func
+  restoreFunction: React.PropTypes.func,
+  filterDeletedItems: React.PropTypes.func
 }
 
 export default BasketContainer
