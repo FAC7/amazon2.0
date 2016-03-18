@@ -4,33 +4,29 @@ import Button from './CheckoutButton.js'
 
 import Subtotal from './ItemCount.js'
 
+import TotalPrice from './TotalPrice.js'
+
 class CheckoutContainer extends React.Component {
-	
-	constructor () {
-		super()
-		this.redirectClick = this.redirectClick.bind(this)
-		this.itemCount = this.itemCount.bind(this)
-	}
 
-	redirectClick () {
-		return window.href = '/checkout'
-	}
+  shouldComponentUpdate(nextProps) {
+  	return nextProps !== this.props.numItems
+  }
 
-	itemCount () {
-		let totalQuantity = 20
-		let items = '(' + totalQuantity + ' items): '
-		return items
-	}
+  render () {
+    return (
+    <div>
+      <Subtotal subTotal='Subtotal ' numItems={this.props.numItems} />
+      <TotalPrice getPrice={this.props.getPrice} />
+      <Button handleClick={this.props.redirectClick} buttonText='Proceed to Checkout' />
+    </div>
+    )
+  }
+}
 
-	render() {
-		return (
-				<div>
-					<Subtotal subTotal='Subtotal ' numItems={this.itemCount()}/>
-				    <Button handleClick={this.redirectClick} buttonName="Proceed to Checkout"/>
-				</div>
-			)
-
-	}
+CheckoutContainer.propTypes = {
+  redirectClick: React.PropTypes.func,
+  numItems: React.PropTypes.func,
+  getPrice: React.PropTypes.func
 }
 
 export default CheckoutContainer

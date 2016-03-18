@@ -30,7 +30,7 @@ class BasketContainer extends React.Component {
             })}
           </tbody>
         </table>
-        <CheckoutContainer />
+        <CheckoutContainer redirectClick={this.props.redirectClick} numItems={this.props.numItems} getPrice={this.props.getPrice}/>
       </div>
     )
   }
@@ -41,7 +41,10 @@ BasketContainer.propTypes = {
   deleteFunction: React.PropTypes.func,
   removeFunction: React.PropTypes.func,
   restoreFunction: React.PropTypes.func,
-  quantityFunction: React.PropTypes.func
+  quantityFunction: React.PropTypes.func,
+  redirectClick: React.PropTypes.func,
+  numItems: React.PropTypes.func,
+  getPrice: React.PropTypes.func
 }
 
 export default BasketContainer
