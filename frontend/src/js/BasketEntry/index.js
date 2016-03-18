@@ -55,8 +55,8 @@ class BasketEntry extends React.Component {
   }
 
   redirectClick () {
-    window.href = '/checkout'
-    return window.href
+    document.cookie = ('currency=' + this.state.shoppingBasket.items[0].currency)
+    document.cookie = ('price=' + this.state.shoppingBasket.items[0].cost)
   }
 
   itemCount () {

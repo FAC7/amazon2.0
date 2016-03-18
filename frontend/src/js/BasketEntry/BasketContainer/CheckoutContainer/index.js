@@ -17,7 +17,7 @@ class CheckoutContainer extends React.Component {
     <div>
       <Subtotal subTotal='Subtotal ' numItems={this.props.numItems} />
       <TotalPrice getPrice={this.props.getPrice} />
-      <Button handleClick={this.props.redirectClick} />
+      <Button handleClick={this.props.redirectClick} buttonText="Proceed to Checkout" />
     </div>
     )
   }
