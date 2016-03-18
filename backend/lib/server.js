@@ -1,43 +1,36 @@
-"use strict";
+'use strict'
 
-// modules
-const Hapi = require('hapi');
-const http = require('https');
-const server = new Hapi.Server();
-const Inert = require('inert');
-const port =  8080;
-const url = require('url');
+// node modules
+const Hapi = require('hapi')
+const Inert = require('inert')
 
-// Routes
-// const Index = require('/');
+// plugins
+const payPlugin = require('./payPlugin.js')
 
+// server config
+const server = new Hapi.Server()
+const port = 4000
 
+server.connection({
+	port: port
+})
 
 // Hapi plugins
 const plugins = [
-	Inert,
-];
+	Inert, payPlugin
+]
 
-server.connection({
-    host: 'localhost',
-    port: port
-});
-
-// Add the route
-server.route({
+server.register(plugins, (err) => {
+	if (err) {
+		throw err
+	}
+	server.route({
     method: 'GET',
-    path:'/',
+    path: '/',
     handler: function (request, reply) {
-
-        return reply('hello world');
+      return reply('hello world')
     }
-});
+	})
+})
 
-// Start the server
-server.start((err) => {
-
-    if (err) {
-        throw err;
-    }
-    console.log('Server running at:', server.info.uri);
-});
+module.exports = server
