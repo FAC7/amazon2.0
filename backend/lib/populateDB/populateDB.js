@@ -26,14 +26,14 @@ sportTech, televisions, womensClothing] = fourDArray
 // add each member of an array to the database using dbHelper
 const addArrayOfProducts = (array, categories) => {
   array.forEach((productArr, i) => {
-    const rating = productArr[3].match(/rating-(\d_\d)/)
-      ? productArr[3].match(/rating-(\d_\d)/)[1].replace('_', '.') : null
     dbHelpers.addProduct({
       title: productArr[0],
       price: productArr[1],
-      ratingImage: productArr[2],
-      rating: rating,
-      imageLink: productArr[3],
+      imageLink: productArr[2],
+      rating: productArr[3],
+      ratingStars: productArr[4],
+      reviews: productArr[5],
+      description: productArr[6],
       categories: JSON.stringify(categories)
     }, (x) => { })
   })

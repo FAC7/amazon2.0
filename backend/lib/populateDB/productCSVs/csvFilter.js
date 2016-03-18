@@ -3,7 +3,6 @@ const fs = require('fs')
 const mapObj = {
   1: 'title',
   5: 'price',
-  15: 'ratingImage',
   42: 'imageLink'
 }
 
