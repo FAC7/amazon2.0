@@ -13,8 +13,10 @@ class ItemContainer extends React.Component {
     return (
       <tr>
         <td><Image url={item.url} imgURL={item.imgURL} /></td>
-        <td><ItemName itemName={item.itemName} url={item.url} /></td>
-        <td><DeleteLink deleteFunction={this.props.deleteFunction} index={this.props.index}/></td>
+        <td>
+          <ItemName itemName={item.itemName} url={item.url} /> <br/>
+          <DeleteLink deleteFunction={this.props.deleteFunction} index={this.props.index} />
+        </td>
       </tr>
     )
   }

@@ -30,7 +30,6 @@ class BasketEntry extends React.Component {
     this.deleteFunction = this.deleteFunction.bind(this)
     this.removeFunction = this.removeFunction.bind(this)
     this.restoreFunction = this.restoreFunction.bind(this)
-    this.filterDeletedItems = this.filterDeletedItems.bind(this)
   }
 
   deleteFunction (index) {

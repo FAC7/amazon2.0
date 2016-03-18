@@ -12,9 +12,10 @@ class BasketContainer extends React.Component {
         <table>
           <tbody>
             <tr>
-              <TableHeading HeadingName='Item' />
-              <TableHeading HeadingName='Price' />
-              <TableHeading HeadingName='Quantity' />
+              <TableHeading headingName='' span='1'/>
+              <TableHeading headingName='Item' span='1'/>
+              <TableHeading headingName='Price' />
+              <TableHeading headingName='Quantity' span='2'/>
             </tr>
             {this.props.shoppingBasket.items.map((item, index) => {
               if (!item.deleted) {
@@ -23,7 +24,7 @@ class BasketContainer extends React.Component {
                 )
               } else {
                 return (
-                  <DeletedItemContainer index={index} key={index} itemInfo={item} removeFunction={this.props.removeFunction} restoreFunction={this.props.restoreFunction} />
+                  <DeletedItemContainer span='3' index={index} key={index} itemInfo={item} removeFunction={this.props.removeFunction} restoreFunction={this.props.restoreFunction} />
                 )
               }
             })}
