@@ -13,4 +13,8 @@ class Category extends React.Component {
   }
 }
 
+Category.propTypes = {
+  categoryName: React.PropTypes.string.isRequired
+}
+
 export default Category

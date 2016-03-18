@@ -23,4 +23,11 @@ class Item extends React.Component {
   }
 }
 
+Item.propTypes = {
+  itemName: React.PropTypes.string.isRequired,
+  price: React.PropTypes.string.isRequired,
+  imageUrl: React.PropTypes.string.isRequired,
+  link: React.PropTypes.string.isRequired
+}
+
 export default Item
