@@ -2,5 +2,6 @@ node_modules
 config.env
 frontend/production
 frontend/dev
-.jshintrc
 dump.rdb
+npm-debug.log
+.jshintrc
