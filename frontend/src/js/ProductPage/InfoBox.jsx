@@ -6,7 +6,7 @@ class InfoBox extends React.Component {
     return (
       <div>
         <h2>{this.props.itemName}</h2>
-        <p>£345678987654{this.props.price}</p>
+        <p>£{this.props.price}</p>
         <BuyProduct {...this.props} />
       </div>
     )
