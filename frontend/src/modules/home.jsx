@@ -12,7 +12,7 @@ render() {
       <li><Link to="/basket" activeStyle={{ color: 'red' }}>Basket</Link></li>
       <li><Link to="/login" activeStyle={{ color: 'red' }}>Login</Link></li>
       <li><Link to="/payment" activeStyle={{ color: 'red' }}>Payment</Link></li>
-      <li><Link to="/products" activeStyle={{ color: 'red' }}>Products</Link></li>
+      <li><Link to="/productspage" activeStyle={{ color: 'red' }}>Products page</Link></li>
       </ul>
 
       {this.props.children}
