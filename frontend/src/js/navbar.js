@@ -1,5 +1,4 @@
 import React from 'react'
-require('../css/main.css')
 
 class Nav extends React.Component {
 
@@ -14,13 +13,12 @@ class Nav extends React.Component {
       listStyleType: 'none',
       margin: 'auto',
       padding: '10px 0px 10px 0px'
-    };
+    }
 
     const aInlineStyle = {
       padding: '10px',
       color: '#FFFFFF'
-    };
-
+    }
 
     return (
       <div>
@@ -39,7 +37,7 @@ class Nav extends React.Component {
           </li>
         </ul>
       </div>
-    );
+    )
   }
 }
 
@@ -48,6 +46,6 @@ Nav.propTypes = {
   browse: React.PropTypes.string,
   checkout: React.PropTypes.string,
   basket: React.PropTypes.string
-};
+}
 
-export default Nav;
+export default Nav
