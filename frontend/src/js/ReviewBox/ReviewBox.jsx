@@ -7,36 +7,39 @@ class ReviewBox extends React.Component {
     this.state = {
       review: '',
       author: '',
-      star: ''
+      rating: 0
     }
   }
+
   handleAuthor (e) {
     e.preventDefault()
     this.setState({
       author: e.target.value
     })
   }
+
   handleReview (e) {
     e.preventDefault()
     this.setState({
       review: e.target.value
     })
   }
+
   clickStars (i) {
     this.setState({
-      star: i
+      rating: i
     })
   }
 
   handleSubmit (e) {
     e.preventDefault()
-    console.log(this.state.author, this.state.review, 'stars!!!', this.state.star)
+    console.log(this.state.author, this.state.review, 'stars!!!', this.state.rating)
   }
 
   render () {
     return (
     <form>
-      <FiveStars {...this.props} clickStars={this.clickStars.bind(this)} />
+      <FiveStars {...this.props} clickStars={this.clickStars.bind(this)} rating={this.state.rating} />
       <input
         onChange={this.handleAuthor.bind(this)}
         type='text'

@@ -3,16 +3,12 @@ import Star from './Star.jsx'
 
 class FiveStars extends React.Component {
   // returns 5 star components with an active class depending on the rating
-  rateStars () {
-    //
-  }
-
   mapStars () {
-    const average = this.props.averageRating
+    const rating = this.props.rating
     return [1, 2, 3, 4, 5].map((i) => {
       let clickFn = this.props.clickStars.bind(this, i)
-      let activeClass = average > i
-      return <Star clickStar={clickFn} key={'star-' + i} active={activeClass} />
+      let activeClass = rating >= i
+      return <Star clickStars={clickFn} key={'star-' + i} active={activeClass} />
     })
   }
 
@@ -26,8 +22,9 @@ class FiveStars extends React.Component {
 }
 
 FiveStars.defaultProps = {
-  averageRating: 3,
-  productId: 123456
+  rating: 3,
+  productId: 123456,
+  clickStars: () => {}
 }
 
 export default FiveStars
