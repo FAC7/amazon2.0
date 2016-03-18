@@ -5,6 +5,7 @@ import Price from './Price.js'
 import DeleteLink from './DeleteLink.js'
 import Quantity from './Quantity.js'
 import Stock from './Stock.js'
+import AdditionalInfo from './AdditionalInfo.js'
 
 class ItemContainer extends React.Component {
 
@@ -17,6 +18,7 @@ class ItemContainer extends React.Component {
         </td>
         <td>
           <ItemName itemName={item.itemName} url={item.url} />
+          <AdditionalInfo stock={item.stock} />
           <DeleteLink deleteFunction={this.props.deleteFunction} index={this.props.index} />
         </td>
         <td>

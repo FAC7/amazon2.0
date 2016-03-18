@@ -10,7 +10,7 @@ const shoppingBasket = {
     cost: 118.99,
     imgURL: 'http://ecx.images-amazon.com/images/I/81haNKekOoL._SL1500_.jpg',
     quantity: 1,
-    stock: 11,
+    stock: 0,
     deleted: false
   }, {
     itemName: 'Anglepoise Type 75 Desk Lamp, Jet Black [Energy Class A]',

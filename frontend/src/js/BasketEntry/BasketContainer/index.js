@@ -9,7 +9,7 @@ class BasketContainer extends React.Component {
   render () {
     return (
       <div>
-        <table>
+        <table cellPadding='10'>
           <tbody>
             <tr>
               <TableHeading headingName='' span='1'/>
