@@ -12,10 +12,15 @@ class ItemContainer extends React.Component {
     const item = this.props.itemInfo
     return (
       <tr>
-        <td><Image url={item.url} imgURL={item.imgURL} /></td>
         <td>
-          <ItemName itemName={item.itemName} url={item.url} /> <br/>
+          <Image url={item.url} imgURL={item.imgURL} />
+        </td>
+        <td>
+          <ItemName itemName={item.itemName} url={item.url} />
           <DeleteLink deleteFunction={this.props.deleteFunction} index={this.props.index} />
+        </td>
+        <td>
+          <Price cost={item.cost} currencySymbol={item.currencySymbol} />
         </td>
       </tr>
     )
@@ -27,6 +32,5 @@ ItemContainer.propTypes = {
   deleteFunction: React.PropTypes.func.isRequired,
   index: React.PropTypes.number.isRequired
 }
-
 
 export default ItemContainer

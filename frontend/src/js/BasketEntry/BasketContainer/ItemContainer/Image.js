@@ -1,8 +1,8 @@
 import React from 'react';
 
 const style = {
-  width: '50px',
-  height: '50px'
+  width: '100px',
+  height: '100px'
 };
 
 class BasketImgItem extends React.Component {

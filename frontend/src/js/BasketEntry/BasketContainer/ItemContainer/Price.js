@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Price = (props) => <p>{props.itemPrice}</p>
+const Price = (props) => <p>{props.currencySymbol}{props.cost}</p>
 
 Price.propTypes = {
-    itemPrice: React.PropTypes.func.isRequired
+  cost: React.PropTypes.number.isRequired,
+  currencySymbol: React.PropTypes.string.isRequired
 }
 
 export default Price
