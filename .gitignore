@@ -4,3 +4,4 @@ frontend/production
 frontend/dev
 dump.rdb
 bower_components
+npm-debug.log
