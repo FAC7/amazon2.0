@@ -48,14 +48,10 @@ class BasketEntry extends React.Component {
     this.setState(this.state)
   }
 
-  filterDeletedItems () {
-    this.state.shoppingBasket.items = this.state.shoppingBasket.items.filter((item) => !item.deleted)
-    this.setState(this.state)
-  }
 
   render () {
     return (
-      <BasketContainer shoppingBasket={this.state.shoppingBasket} deleteFunction={this.deleteFunction} removeFunction={this.removeFunction} restoreFunction={this.restoreFunction} filterDeletedItems={this.filterDeletedItems}/>
+      <BasketContainer shoppingBasket={this.state.shoppingBasket} deleteFunction={this.deleteFunction} removeFunction={this.removeFunction} restoreFunction={this.restoreFunction} />
     )
   }
 }

@@ -6,10 +6,6 @@ import CheckoutContainer from './CheckoutContainer/'
 
 class BasketContainer extends React.Component {
 
-  componentWillMount () {
-    this.props.filterDeletedItems()
-  }
-
   render () {
     return (
       <div>
@@ -43,8 +39,7 @@ BasketContainer.propTypes = {
   shoppingBasket: React.PropTypes.object.isRequired,
   deleteFunction: React.PropTypes.func,
   removeFunction: React.PropTypes.func,
-  restoreFunction: React.PropTypes.func,
-  filterDeletedItems: React.PropTypes.func
+  restoreFunction: React.PropTypes.func
 }
 
 export default BasketContainer
