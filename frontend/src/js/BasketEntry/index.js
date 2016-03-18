@@ -54,7 +54,7 @@ class BasketEntry extends React.Component {
     this.setState(this.state)
   }
 
-  redirectClick (currency) {
+  redirectClick () {
     window.href = '/checkout'
     return window.href
   }
