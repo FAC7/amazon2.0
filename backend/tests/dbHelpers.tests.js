@@ -31,8 +31,8 @@ var testProductObj = {
   'description': 'give us your moneeeey!!',
   'quantity': 1,
   'productDetails': "{ 'size':'250x140cm', 'weight':'150kg', 'other':'stuff' }",
-  'average-rating': 3,
-  'reviews': '[{"author":"nickname","text":"this product sucks!","rating":1,"date":1458218917974},{"author":"this product is awesome!","text":"this product sucks!","rating":5,"date":1458218918000}]',
+  'averageRating': 3,
+  'reviews': '[{"author":"nickname","text":"this product sucks!","rating":1,"date":1458218917974},{"author":"nickname2","text":"this product is awesome!","rating":5,"date":1458218918000}]',
   'categories': '["sports","tech"]'
 }
 var testProductObj2 = {
@@ -43,7 +43,7 @@ var testProductObj2 = {
   'description': 'ripping you off...',
   'quantity': 2,
   'productDetails': "{ 'size':'250x140cm', 'weight':'150kg', 'other':'stuff' }",
-  'average-rating': 1,
+  'averageRating': 1,
   'reviews': '[{"author":"nickname","text":"this product sucks!","rating":1,"date":1458218917974},{"author":"this product is awesome!","text":"this product sucks!","rating":5,"date":1458218918000}]',
   'categories': '["tech"]'
 }
@@ -56,7 +56,7 @@ var testProductObj3 = {
   'description': 'meh...',
   'quantity': 3,
   'productDetails': "{ 'size':'250x140cm', 'weight':'150kg', 'other':'stuff' }",
-  'average-rating': 1,
+  'averageRating': 1,
   'reviews': '[{"author":"nickname","text":"this product sucks!","rating":1,"date":1458218917974},{"author":"this product is awesome!","text":"this product sucks!","rating":5,"date":1458218918000}]',
   'categories': '["cars"]'
 }
@@ -116,6 +116,47 @@ test('testing dbHelper getProductsByCategories', (t) => {
         })
         dbHelpers.getProductsByCategories('bluah', (err8, bluahReply) => {
           t.ok(!err8, 'error in retrieving products in unknown category')
+        })
+      })
+    })
+  })
+})
+var newReviewObj = {"author":"angry buyer","text":"where's my money?","rating":3,"date":1458218917954}
+var newReviewObj2 = {"author":"returning angry buyer","text":"where's my money again?","rating":2,"date":1458218917984}
+
+test('testing DBHelper getReviewsByProductId', (t) => {
+  t.plan(19)
+  dbHelpers.addProduct(testProductObj, (err, testProductId) => {
+    t.ok(!err, 'no error in adding product '+testProductId)
+
+    dbHelpers.getReviewsByProductId(testProductId, (err2,reviews) => {
+      t.ok(!err2,'no error in retrieving reviews for product '+testProductId)
+      t.ok(reviews instanceof Array, 'reply is in array format')
+      t.equal(reviews.length, 2, 'reviews array has two elements')
+      t.ok(reviews[0] instanceof Object && reviews[1] instanceof Object, 'items in reviews array are objects')
+      t.equal(reviews[0].author, 'nickname', 'correct nickname for first review')
+      t.equal(reviews[0].text, 'this product sucks!', 'correct content for first review')
+      t.equal(reviews[1].text, 'this product is awesome!', 'correct content for second review')
+
+      dbHelpers.addReview(testProductId, newReviewObj, (err3, newReview) => {
+        t.ok(!err3, 'no error in adding review to product ' + testProductId)
+        t.ok(newReview instanceof Object)
+        t.ok(newReview.author && newReview.text && newReview.rating && newReview.date, 'added review contains the correct fields')
+
+        dbHelpers.addReview(testProductId, newReviewObj2, (err4, newReview2) => {
+          t.ok(!err4, 'no error in adding review to product ' + testProductId)
+          t.ok(newReview2 instanceof Object)
+          t.ok(newReview2.author && newReview2.text && newReview2.rating && newReview2.date, 'added review contains the correct fields')
+
+          dbHelpers.getReviewsByProductId(testProductId, (err5, reviews2) => {
+            t.ok(!err5, 'no error in retrieving reviews on ' + testProductId)
+            t.equal(reviews2.length, 4, '4 reviews, so two reviews added correctly')
+            t.ok(reviews2[2] instanceof Object && reviews2[3] instanceof Object, 'added reviews are objects')
+          })
+          dbHelpers.getProductById(testProductId, (err6, productInfo) => {
+            t.ok(!err6, 'no error in retriving info for ' + testProductId)
+            t.equal(productInfo.averageRating, '2.75', 'correctly computed average ratings and set product\'s average rating')
+          })
         })
       })
     })
