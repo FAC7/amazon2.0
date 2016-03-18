@@ -2,3 +2,5 @@ node_modules
 config.env
 frontend/production
 frontend/dev
+dump.rdb
+npm-debug.log
