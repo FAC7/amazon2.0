@@ -1,6 +1,6 @@
 import React from 'react'
-import SearchBox from './searchbox.js'
-import SubmitButton from './submitbutton.js'
+import SearchBox from './searchbox.jsx'
+import SubmitButton from './submitbutton.jsx'
 
 class SearchBar extends React.Component {
   constructor () {
@@ -16,6 +16,7 @@ class SearchBar extends React.Component {
     styles.width = this.props.width
     styles.height = this.props.height
     return (
+<<<<<<< HEAD:frontend/src/js/searchbar/searchbar.js
       <form formAction={this.props.submitURL} onSubmit={this.props.submitHandler} style={styles}>
         <SearchBox
           placeholder='Type here...'
@@ -26,6 +27,16 @@ class SearchBar extends React.Component {
           show={this.props.showSubmit}
           buttonColor={this.props.buttonColor}/>
       </form>
+=======
+    <form formAction={this.props.submitURL} onSubmit={this.props.submitHandler} style={styles}>
+      <SearchBox
+        defaultValue='Type here...'
+        onChange={this.handleChange}
+        inputColor={this.props.inputColor}
+        roundRight={!this.props.showSubmit} />
+      <SubmitButton show={this.props.showSubmit} buttonColor={this.props.buttonColor} />
+    </form>
+>>>>>>> 91c97ff084a3557194735d6619c6388106b881c4:frontend/src/js/searchbar/searchbar.jsx
     )
   }
 }
