@@ -9,6 +9,10 @@ class ReviewBox extends React.Component {
       author: '',
       rating: 0
     }
+    this.handleAuthor = this.handleAuthor.bind(this)
+    this.handleReview = this.handleReview.bind(this)
+    this.clickStars = this.clickStars.bind(this)
+    this.submitReview = this.submitReview.bind(this)
   }
 
   handleAuthor (e) {
@@ -31,24 +35,28 @@ class ReviewBox extends React.Component {
     })
   }
 
-  handleSubmit (e) {
+  submitReview (e) {
     e.preventDefault()
-    console.log(this.state.author, this.state.review, 'stars!!!', this.state.rating)
+    let author = this.state.author
+    let review = this.state.review
+    let rating = this.state.rating
+
+    console.log(author, review, rating)
   }
 
   render () {
     return (
     <form>
-      <FiveStars {...this.props} clickStars={this.clickStars.bind(this)} rating={this.state.rating} />
+      <FiveStars {...this.props} clickStars={this.clickStars} rating={this.state.rating} />
       <input
-        onChange={this.handleAuthor.bind(this)}
+        onChange={this.handleAuthor}
         type='text'
         name='author'
         placeholder='your name'
         required></input>
       <br/>
-      <textarea onChange={this.handleReview.bind(this)} rows='4' columns='50'></textarea>
-      <button onClick={this.handleSubmit.bind(this)} type='button'>
+      <textarea onChange={this.handleReview} rows='4' columns='50'></textarea>
+      <button onClick={this.submitReview} type='button'>
         Submit Review
       </button>
     </form>
