@@ -15,7 +15,7 @@ const dbHelpers = require('./dbHelpers.js')
 
 // server config
 const server = new Hapi.Server()
-const port = 8080
+const port = 4000
 
 server.connection({
   port: port
