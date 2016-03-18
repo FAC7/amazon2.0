@@ -37,7 +37,7 @@ class Slider extends React.Component {
       infinite: true,
       lazyLoad: true,
       speed: 500,
-      slidesToShow: 1,
+      slidesToShow: 2,
       slidesToScroll: 1
     }
     let products = items.map((item) => {
