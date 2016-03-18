@@ -1,12 +1,10 @@
 import React from 'react'
+import Link from './Link.js'
 
-const Button = (props) => <button onClick={props.handleClick}>
-                            {props.buttonName}
-                          </button>
+const Button = (props) => <Link callback={props.handleClick} linkName='Proceed to Checkout' />
 
 Button.propTypes = {
-  buttonName: React.PropTypes.string.isRequired,
-  handleClick: React.PropTypes.func.isRequired
+  handleClick: React.PropTypes.func
 }
 
 export default Button
