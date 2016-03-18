@@ -1,12 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router'
 
-const Button = (props) => <button onClick={props.handleClick}>
-                            {props.buttonName}
-                          </button>
+const Button = (props) => <button onClick={props.handleClick}><Link to='/checkout' activeStyle={{ color: 'red'}}>{props.buttonText}</Link></button>
 
 Button.propTypes = {
-  buttonName: React.PropTypes.string.isRequired,
-  handleClick: React.PropTypes.func.isRequired
+  handleClick: React.PropTypes.func,
+  buttonText: React.PropTypes.string
 }
 
 export default Button
