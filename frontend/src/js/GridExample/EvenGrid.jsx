@@ -10,10 +10,7 @@ class EvenGrid extends React.Component {
   render () {
     return (
     <div className='container'>
-      <div className='column' style={styles}></div>
-      <div className='column' style={styles}></div>
-      <div className='column' style={styles}></div>
-      <div className='column' style={styles}></div>
+      
       <div className='column' style={styles}></div>
       <div className='column' style={styles}></div>
     </div>

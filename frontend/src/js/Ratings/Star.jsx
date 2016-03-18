@@ -13,7 +13,7 @@ class Star extends React.Component {
 
   render () {
     return (
-    <i className={this.highlightStar()}></i>
+    <i onClick={this.props.clickStar} className={this.highlightStar()}></i>
     )
   }
 }

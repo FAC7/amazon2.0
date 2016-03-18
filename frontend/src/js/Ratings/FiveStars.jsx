@@ -2,20 +2,27 @@ import React from 'react'
 import Star from './Star.jsx'
 
 class FiveStars extends React.Component {
-  // gets average rating based on the array of reviews
-  getAverageRating () {
-    const reviews = JSON.parse(this.props.reviewsArray)
-    if (reviews === 0) return 0
-    const total = reviews.reduce((acc, curr) => {
-      return acc + curr['rating']
-    }, 0)
-    return total / reviews.length
+  // returns 5 star components with an active class depending on the rating
+
+  clickStars (i) {
+    console.log(i)
+    // toggle class from hidden to visable on Review box div. routing? are we in the review box or not?
+    console.log(this.props.productId)
+    // grab starKey.
+
   }
 
-  // returns 5 star components with an active class depending on the rating
+  rateStars () {
+    //
+  }
+
   mapStars () {
-    const average = Math.ceil(this.getAverageRating())
-    return [1, 2, 3, 4, 5].map((i) => average > i ? <Star active={true} /> : <Star active={false} />)
+    const average = this.props.averageRating
+    return [1, 2, 3, 4, 5].map((i) => {
+      let clickFn = this.clickStars.bind(this, i)
+      let activeClass = average > i
+      return <Star clickStar={clickFn} key={'star-' + i} active={activeClass} />
+    })
   }
 
   render () {
@@ -25,6 +32,11 @@ class FiveStars extends React.Component {
     </div>
     )
   }
+}
+
+FiveStars.defaultProps = {
+  averageRating: 3,
+  productId: 123456
 }
 
 export default FiveStars
