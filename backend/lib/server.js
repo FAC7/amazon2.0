@@ -1,4 +1,5 @@
 'use strict'
+
 // node modules
 const Hapi = require('hapi')
 const Inert = require('inert')
@@ -6,18 +7,11 @@ const Inert = require('inert')
 // plugins
 const payPlugin = require('./payPlugin.js')
 
-// local modules
-// const redisClient = require('./redis.js')
-// const dbHelpers		= require('./dbHelpers.js')
-// Routes
-// const Index = require('/')
-
 // server config
 const server = new Hapi.Server()
-const port = 8080
+const port = 4000
 
 server.connection({
-	host: 'localhost',
 	port: port
 })
 
