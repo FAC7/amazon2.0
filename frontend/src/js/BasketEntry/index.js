@@ -10,7 +10,7 @@ const shoppingBasket = {
     cost: 118.99,
     imgURL: 'http://ecx.images-amazon.com/images/I/81haNKekOoL._SL1500_.jpg',
     quantity: 1,
-    stock: 0,
+    stock: 10,
     deleted: false
   }, {
     itemName: 'Anglepoise Type 75 Desk Lamp, Jet Black [Energy Class A]',
@@ -34,6 +34,14 @@ class BasketEntry extends React.Component {
     this.deleteFunction = this.deleteFunction.bind(this)
     this.removeFunction = this.removeFunction.bind(this)
     this.restoreFunction = this.restoreFunction.bind(this)
+    this.quantityFunction = this.quantityFunction.bind(this)
+  }
+
+  quantityFunction (index, e) {
+    if (e.target.value !== '' && !isNaN(Number(e.target.value))) {
+      this.state.shoppingBasket.items[index].quantity = e.target.value
+      this.setState(this.state)
+    }
   }
 
   deleteFunction (index) {
@@ -51,10 +59,9 @@ class BasketEntry extends React.Component {
     this.setState(this.state)
   }
 
-
   render () {
     return (
-      <BasketContainer shoppingBasket={this.state.shoppingBasket} deleteFunction={this.deleteFunction} removeFunction={this.removeFunction} restoreFunction={this.restoreFunction} />
+      <BasketContainer shoppingBasket={this.state.shoppingBasket} deleteFunction={this.deleteFunction} removeFunction={this.removeFunction} restoreFunction={this.restoreFunction} quantityFunction={this.quantityFunction} />
     )
   }
 }

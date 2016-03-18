@@ -20,7 +20,7 @@ class BasketContainer extends React.Component {
             {this.props.shoppingBasket.items.map((item, index) => {
               if (!item.deleted) {
                 return (
-                  <ItemContainer index={index} key={index} itemInfo={item} deleteFunction={this.props.deleteFunction} />
+                  <ItemContainer index={index} key={index} itemInfo={item} deleteFunction={this.props.deleteFunction} quantityFunction={this.props.quantityFunction}/>
                 )
               } else {
                 return (
@@ -40,7 +40,8 @@ BasketContainer.propTypes = {
   shoppingBasket: React.PropTypes.object.isRequired,
   deleteFunction: React.PropTypes.func,
   removeFunction: React.PropTypes.func,
-  restoreFunction: React.PropTypes.func
+  restoreFunction: React.PropTypes.func,
+  quantityFunction: React.PropTypes.func
 }
 
 export default BasketContainer
