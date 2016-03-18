@@ -69,7 +69,7 @@ class BasketEntry extends React.Component {
 
   itemCost () {
     let totalCost = this.state.shoppingBasket.items.reduce(function (prev, curr) {
-      return prev + (curr.deleted === true ? 0 : curr.cost)
+      return prev + (curr.deleted === true ? 0 : (curr.cost * curr.quantity))
     }, 0)
     let cost = this.state.shoppingBasket.items[0].currencySymbol + ' ' + totalCost
     return cost

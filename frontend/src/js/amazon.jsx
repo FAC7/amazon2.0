@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import Home from './../modules/home.jsx'
 import Login from './../modules/login.jsx'
 import ReactDom from 'react-dom'
-
+import BasketEntry from './BasketEntry/'
 import Category from './itemCategory//Category.jsx'
 import SearchBar from './searchbar/searchbar.jsx'
 import ProductPage from './ProductPage/ProductPage.jsx'
@@ -23,6 +23,7 @@ render((
     <Route path='/' component={Home}/>
     <Route path='/home' component={Home}/>
     <Route path='/login' component={Login}/>
+    <Route path='/basket' component={BasketEntry}/>
   </Router>
 ), document.getElementById('amazon'))
 
