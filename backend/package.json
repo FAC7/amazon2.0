@@ -15,11 +15,13 @@
   "author": "FAC7",
   "license": "ISC",
   "dependencies": {
+    "env2": "^2.0.6",
     "guid": "0.0.12",
     "hapi": "^13.2.1",
     "inert": "^3.2.0",
     "path": "^0.12.7",
-    "redis": "^2.5.2"
+    "redis": "^2.5.2",
+    "stripe": "^4.5.0"
   },
   "devDependencies": {
     "codecov.io": "^0.1.6",
