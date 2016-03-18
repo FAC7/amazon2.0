@@ -15,6 +15,7 @@
   "author": "FAC7",
   "license": "ISC",
   "dependencies": {
+    "env2": "^2.0.6",
     "hapi": "^13.2.1",
     "inert": "^3.2.0",
     "stripe": "^4.5.0"
