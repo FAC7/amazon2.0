@@ -15,7 +15,7 @@ const fileNameArray = ['laptops', 'footballs', 'gardenFurniture', 'hairdryers',
 const fourDArray = fileNameArray.map((fileName) =>
   fs.readFileSync('productCSVs/filtered/' + fileName + '.csv', 'utf8')
     .split('\n')
-    .map((rowString) => rowString.split(','))
+    .map((rowString) => rowString.split('\t'))
 )
 
 // assign variable to each 3D array in the 4D array (woo destructuring:
@@ -31,9 +31,8 @@ const addArrayOfProducts = (array, categories) => {
       price: productArr[1],
       imageLink: productArr[2],
       rating: productArr[3],
-      ratingStars: productArr[4],
-      reviews: productArr[5],
-      description: productArr[6],
+      reviews: productArr[4],
+      description: productArr[5],
       categories: JSON.stringify(categories)
     }, (x) => { })
   })
@@ -41,11 +40,11 @@ const addArrayOfProducts = (array, categories) => {
 
 // Call function with each array, passing in categories
 // (we can change & improve these later)
-addArrayOfProducts(laptops, ['technology', 'computers'])
-addArrayOfProducts(footballs, ['sport', 'garden'])
-addArrayOfProducts(gardenFurniture, ['garden', 'furniture'])
-addArrayOfProducts(hairdryers, ['appliances', 'electric'])
-addArrayOfProducts(mensClothing, ['clothing', 'men'])
-addArrayOfProducts(sportTech, ['technology', 'sport', 'clothing'])
-addArrayOfProducts(televisions, ['technology', 'television'])
-addArrayOfProducts(womensClothing, ['clothing', 'women'])
+addArrayOfProducts(laptops, ['technology', 'computers', 'global'])
+addArrayOfProducts(footballs, ['sport', 'garden', 'global'])
+addArrayOfProducts(gardenFurniture, ['garden', 'furniture', 'global'])
+addArrayOfProducts(hairdryers, ['appliances', 'electric', 'global'])
+addArrayOfProducts(mensClothing, ['clothing', 'men', 'global'])
+addArrayOfProducts(sportTech, ['technology', 'sport', 'clothing', 'global'])
+addArrayOfProducts(televisions, ['technology', 'television', 'global'])
+addArrayOfProducts(womensClothing, ['clothing', 'women', 'global'])
