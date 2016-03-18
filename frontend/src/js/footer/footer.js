@@ -1,5 +1,6 @@
 import React from 'react'
 import TopFooter from './topFooter.js'
+import BottomFooter from './bottomFooter.js'
 
 class Footer extends React.Component {
   render () {
@@ -8,6 +9,7 @@ class Footer extends React.Component {
         <div style={styles}>
           <TopFooter heading='Contact' data={contactContent} width='45%' />
           <TopFooter heading='About' data={aboutContent} width='45%' />
+          <BottomFooter />
         </div>
       </footer>
     )
