@@ -8,9 +8,9 @@ import TotalPrice from './TotalPrice.js'
 
 class CheckoutContainer extends React.Component {
 
-	// shouldComponentUpdate(nextProps) {
-	// 	return nextProps !== this.props.numItems
-	// }
+  // shouldComponentUpdate(nextProps) {
+  // 	return nextProps !== this.props.numItems
+  // }
 
   render () {
     return (

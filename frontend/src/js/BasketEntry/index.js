@@ -54,14 +54,13 @@ class BasketEntry extends React.Component {
     this.setState(this.state)
   }
 
-  redirectClick () {
-    console.log('BASKET', this.state.shoppingBasket.items.currencySymbol)
+  redirectClick (currency) {
     window.href = '/checkout'
     return window.href
   }
 
   itemCount () {
-    let totalQuantity = this.state.shoppingBasket.items.reduce(function(prev, curr) {
+    let totalQuantity = this.state.shoppingBasket.items.reduce(function (prev, curr) {
       return prev + (curr.deleted === true ? 0 : curr.quantity)
     }, 0)
     let items = '(' + totalQuantity + ' items): '
@@ -69,7 +68,7 @@ class BasketEntry extends React.Component {
   }
 
   itemCost () {
-    let totalCost = this.state.shoppingBasket.items.reduce(function(prev, curr) {
+    let totalCost = this.state.shoppingBasket.items.reduce(function (prev, curr) {
       return prev + (curr.deleted === true ? 0 : curr.cost)
     }, 0)
     let cost = this.state.shoppingBasket.items[0].currencySymbol + ' ' + totalCost
@@ -78,7 +77,14 @@ class BasketEntry extends React.Component {
 
   render () {
     return (
-  <BasketContainer shoppingBasket={this.state.shoppingBasket} deleteFunction={this.deleteFunction} removeFunction={this.removeFunction} restoreFunction={this.restoreFunction} redirectClick={this.redirectClick} numItems={this.itemCount} getPrice={this.itemCost}/>
+    <BasketContainer
+      shoppingBasket={this.state.shoppingBasket}
+      deleteFunction={this.deleteFunction}
+      removeFunction={this.removeFunction}
+      restoreFunction={this.restoreFunction}
+      redirectClick={this.redirectClick}
+      numItems={this.itemCount}
+      getPrice={this.itemCost} />
     )
   }
 }
