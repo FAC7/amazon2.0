@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 import Home from './../modules/home.jsx'
 import Login from './../modules/login.jsx'
 import ReactDom from 'react-dom'
+import Category from './itemCategory//Category.jsx'
 import SearchBar from './searchbar/searchbar.jsx'
 import ProductPage from './ProductPage/ProductPage.jsx'
 // import Products from './../modules/products.jsx'
@@ -36,7 +37,13 @@ render((
 class Amazon extends React.Component {
   render () {
     return (
+    <div>
+      <p>
+        Amazon sucks, fAC7 is better!!!
+      </p>
+    <Category categoryName='cat name' />
     <ProductPage />
+    </div>
     )
   }
 }
