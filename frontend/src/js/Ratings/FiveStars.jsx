@@ -15,12 +15,7 @@ class FiveStars extends React.Component {
   // returns 5 star components with an active class depending on the rating
   mapStars () {
     const average = Math.ceil(this.getAverageRating())
-    let stars = []
-    let i
-    for (i = 0; i < 5; i++) {
-      (i < average) ? stars.push(<Star active={true} />) : stars.push(<Star active={false} />)
-    }
-    return stars
+    return [1, 2, 3, 4, 5].map((i) => average > i ? <Star active={true} /> : <Star active={false} />)
   }
 
   render () {
