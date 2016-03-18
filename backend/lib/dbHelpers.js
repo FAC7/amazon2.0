@@ -1,50 +1,54 @@
-const Guid = require('guid');
+const Guid = require('guid')
 
-module.exports = function(client){
+module.exports = (client) => {
   return {
-    addProduct: function( productObj, cb ){
-      const productId = Guid.create().value;
-      productObj.id   = productId;
-      Object.keys( productObj ).forEach( key => {
-        const value = typeof productObj[key] === "object" ?
-          JSON.stringify( productObj[key] ) : productObj[key]
-        client.hset( productId, key, value, function(err){
-          if(err) {
-            console.log('--> was not able to set property ', key, 'to value ', value);
-            throw err;
-          console.log('successfully set property ', key, 'to value ', value);
+
+    addProduct: (productObj, cb) => {
+      const productId = Guid.create().value
+      productObj.id = productId
+      Object.keys(productObj).forEach((key) => {
+        const value = typeof productObj[key] === 'object' ?
+          JSON.stringify(productObj[key]) : productObj[key]
+        client.hset(productId, key, value, (err) => {
+          if (err) {
+            console.log('--> was not able to set property ', key, 'to value ', value)
+            throw err
           }
-        });
-      });
-      const categoriesArr = JSON.parse( productObj.categories );
-      categoriesArr.forEach( category => {
-        client.SADD( category, productId, function(err){
-          if(err) {
-            console.log('was not able to add product ',productId,' to category ',category);
-            throw err;
-          }
-          console.log('successfully added product ',productId,' to category ', category);
+          // console.log('successfully set property ', key, 'to value ', value)
         })
       })
-      cb(null,productId);
+      const categoriesArr = JSON.parse(productObj.categories)
+      categoriesArr.forEach((category) => {
+        client.SADD(category, productId, (err) => {
+          if (err) {
+            console.log('was not able to add product ', productId, ' to category ', category)
+            throw err
+          }
+          // console.log('successfully added product ', productId, ' to category ', category)
+        })
+      })
+      cb(null, productId)
     },
-    getProductById: function(id, cb){
-      client.hgetall( id, function(err, reply){
-        if(err){
-          console.log(' --> was not able to retrieve info for product with id',id);
-          throw err;
+
+    getProductById: (id, cb) => {
+      client.hgetall(id, (err, reply) => {
+        if (err) {
+          console.log(' --> was not able to retrieve info for product with id', id)
+          throw err
         }
-        console.log('successfully retrieved info for item with id ', id);
-        cb(null,reply);
-      });
+        console.log('successfully retrieved info for item with id ', id)
+        cb(null, reply)
+      })
     },
-    getProductsByCategories: function(categoriesArr, cb){
-      client.SINTER(...categoriesArr, function(err,reply){
-        if(err){
-          console.log(err);
+
+    getProductsByCategories: (categoriesArr, cb) => {
+      client.SINTER(...categoriesArr, (err, reply) => {
+        if (err) {
+          console.log(err)
         }
-        cb(null,reply);
-      });
+        cb(null, reply)
+      })
     }
+
   }
 }
