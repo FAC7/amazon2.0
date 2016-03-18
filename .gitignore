@@ -3,3 +3,4 @@ config.env
 frontend/production
 frontend/dev
 dump.rdb
+bower_components
