@@ -1,6 +1,7 @@
 'use strict'
 
 const stripe = require('stripe')(process.env.STRIPE_API_KEY)
+const Guid = require('guid')
 
 exports.register = (server, options, next) => {
   server.route([{
@@ -25,7 +26,12 @@ exports.register = (server, options, next) => {
               success: true,
               error: null
             }
-            reply(resp).redirect('/paymentsuccessful')
+            const success = charge.status === 'succeeded'
+            reply(resp).state('payDeets', {
+              status: success,
+              cardNumber: charge.source.last4,
+              orderNumber: success ? Guid.raw() : ''// spoof order number
+            })
           }
         })
       }
