@@ -1,6 +1,6 @@
 module.exports = {
   entry: {
-    javascript: './src/js/amazon.js',
+    javascript: './src/js/amazon.jsx',
     html: './public/index.html'
   },
   output: {
@@ -24,4 +24,4 @@ module.exports = {
       }
     ]
   }
-}
+};
