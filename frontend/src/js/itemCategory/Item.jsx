@@ -1,5 +1,4 @@
 import React from 'react'
-import Button from './Button.jsx'
 
 class Item extends React.Component {
   render () {
@@ -10,15 +9,15 @@ class Item extends React.Component {
     return (
       <div className='item'>
         <a href={link}>
-          <h3>{itemName}</h3>
+          <h4>{itemName}</h4>
         </a>
-          <span>{price}</span>
-          <div className='img-box'>
-        <a href={link}>
-          <img src={imageUrl}/>
-        </a>
-      </div>
-        <Button {...this.props}/>
+
+        <div className='img-box'>
+          <p className='priceBox'>{price}</p>
+          <a href={link}>
+            <img src={imageUrl}/>
+          </a>
+        </div>
       </div>
     )
   }

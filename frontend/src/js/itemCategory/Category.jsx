@@ -7,7 +7,7 @@ class Category extends React.Component {
     return (
           <div className='category'>
               <h2>{categoryName}</h2>
-                <Slider />
+              <Slider />
           </div>
     )
   }

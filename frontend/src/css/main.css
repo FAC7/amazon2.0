@@ -1,0 +1,74 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300);
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: #FFBE63;
+  font-size: 40px;
+}
+.category {
+  width: 72%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 45px;
+}
+
+.category h2 {
+  color: #222e3e;
+  text-transform: capitalize;
+  margin-bottom: 0;
+  border-bottom: 1px solid grey;
+  border-top: 1px solid grey;
+  padding: 5px 0;
+
+}
+
+.slick-slide img {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.item a {
+  text-decoration: none;
+  text-transform: capitalize;
+  color: #222e3e;
+}
+
+.slick-prev {
+  left: -45px;
+}
+.slick-prev, .slick-next {
+  margin-top: 20px;
+}
+
+.priceBox {
+  position: absolute;
+  margin-top: 0px;
+  color: #222e3e;
+  background: #ffbe63;
+  padding: 15px;
+  border-top-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.item .img-box img {
+  border-top-left-radius: 15px;
+  width: 100%;
+}
+
+.item .img-box {
+  width: 210px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.item {
+  padding: 5px 15px;
+}
+
+.item h4 {
+  padding: 0 10px;
+  text-align: center;
+}
