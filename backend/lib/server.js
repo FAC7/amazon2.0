@@ -22,15 +22,25 @@ const plugins = [
 
 server.register(plugins, (err) => {
 	if (err) {
+		console.log(err)
 		throw err
 	}
-	server.route({
+	server.route([{
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-      return reply('hello world')
+      reply.file(__dirname + '../../../frontend/production/index.html')
     }
-	})
+	},
+	{
+		method: 'GET',
+		path: '/{param*}',
+		handler: {
+			directory: {
+				path: '../frontend/production'
+			}
+		}
+	}])
 })
 
 module.exports = server
