@@ -1,7 +1,8 @@
 'use strict'
 
+require('env2')('./config.env')
 const tape = require('tape')
-const stripe = require('stripe')('sk_test_oZSgSdlwFlYGjZVkTDNUneLX')
+const stripe = require('stripe')(process.env.STRIPE_API_KEY)
 const server = require('../lib/server.js')
 
 const stripeTests = (() => {
@@ -28,8 +29,7 @@ const stripeTests = (() => {
           }
         }
         server.inject(options, (response) => {
-          console.log('response--------->', response.payload)
-          t.equal(response.statusCode, 200, 'server acknowledges API')
+          t.equal(response.statusCode, 302, 'server acknowledges API')
           t.end()
         })
       }
