@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node ./lib/server.js",
     "nodemon": "nodemon ./lib/server.js",
-    "test": "tape tests/runner.js"
+    "test": "tape tests/runner.js",
+    "postinstall": "mkdir ../.git/hooks && cp ../hooks/pre-commit ../.git/hooks && chmod -R 755 ../.git/hooks"
   },
   "keywords": [],
   "author": "FAC7",
