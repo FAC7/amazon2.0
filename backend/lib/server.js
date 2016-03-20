@@ -4,7 +4,7 @@ const Hapi = require('hapi')
 
 const plugins = [
   require('inert'),
-  require('./payPlugin.js')
+  require('./plugins/payments.js')
 ]
 
 const server = new Hapi.Server()
