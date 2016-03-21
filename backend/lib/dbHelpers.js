@@ -1,16 +1,14 @@
 // node modules
 const Guid = require('guid')
 const Bluebird = require('bluebird')
-// local modules
-const utils = require('./utils.js')
 
 module.exports = (client) => {
   const addProduct = (productObj, cb) => {
     const productId = Guid.create().value
     productObj.id = productId
     Object.keys(productObj).forEach((key) => {
-      const value = typeof productObj[key] === 'object' ?
-        JSON.stringify(productObj[key]) : productObj[key]
+      const value = typeof productObj[key] === 'object'
+        ? JSON.stringify(productObj[key]) : productObj[key]
       client.hset(productId, key, value, (err) => {
         if (err) {
           console.log('--> was not able to set property ', key, 'to value ', value)
@@ -87,6 +85,8 @@ module.exports = (client) => {
 
   this.addReview = (productId, reviewObj, cb) => {
     this.getReviewsByProductId(productId, (err, reviews) => {
+      if (err) return cb(err)
+
       reviews.push(reviewObj)
       var avgRating = reviews.reduce((accum, review) => {
         return accum + Number(review.rating)

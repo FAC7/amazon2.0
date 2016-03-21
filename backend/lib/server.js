@@ -17,13 +17,13 @@ server.connection({
 
 // Hapi plugins
 const plugins = [
-  Inert, payPlugin
+  Inert,
+  payPlugin
 ]
 
 server.register(plugins, (err) => {
-  if (err) {
-    throw err
-  }
+  if (err) throw err
+
   server.route({
     method: 'GET',
     path: '/',

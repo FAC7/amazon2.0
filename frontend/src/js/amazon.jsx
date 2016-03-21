@@ -2,9 +2,6 @@ import React from 'react'
 import { render } from 'react-dom'
 import Home from './../modules/home.jsx'
 import Login from './../modules/login.jsx'
-import ReactDom from 'react-dom'
-import Category from './itemCategory/Category.jsx'
-import SearchBar from './searchbar/searchbar.jsx'
 import ProductPage from './ProductPage/ProductPage.jsx'
 import { Router, Route } from 'react-router'
 require('../css/main.css')
@@ -20,9 +17,9 @@ require('../css/main.css')
 // /404 --- page for 'not found'
 render((
   <Router>
-    <Route path="/" component={Home} />
-    <Route path="/home" component={Home} />
-    <Route path="/login" component={Login} />
-    <Route path="/productspage" component={ProductPage} />
+    <Route path='/' component={Home} />
+    <Route path='/home' component={Home} />
+    <Route path='/login' component={Login} />
+    <Route path='/productspage' component={ProductPage} />
   </Router>
   ), document.getElementById('amazon'))

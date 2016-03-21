@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "webpack-dev-server --hot --inline --config devwebpack.config.js",
     "build": "webpack --progress --config productionwebpack.config.js",
-    "test": "tape tests/runner.js"
+    "test": "tape tests/runner.js",
+    "postinstall": "mkdir -p ../.git/hooks && cp ../hooks/pre-commit ../.git/hooks && chmod -R 755 ../.git/hooks"
   },
   "keywords": [],
   "author": "FAC7",
