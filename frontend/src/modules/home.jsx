@@ -11,7 +11,7 @@ render() {
     <div>
       <h1>Amazon 2.0 Home Page</h1>
         <Category categoryName='category name' />
-      // <ProductPage />
+      <ProductPage />
       <ul role="nav">
       <li><Link to="/home" activeStyle={{ color: 'red' }}>Home</Link></li>
       <li><Link to="/basket" activeStyle={{ color: 'red' }}>Basket</Link></li>
@@ -26,5 +26,3 @@ render() {
   );
 }
 });
-
-// <h2>{categoryName}</h2>
