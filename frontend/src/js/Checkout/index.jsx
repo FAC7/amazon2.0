@@ -70,6 +70,8 @@ const clickHandler = (e) => {
       const cookie = document.cookie
       const xhr = new XMLHttpRequest() // eslint-disable-line
       xhr.addEventListener('load', (response) => {
+        if (response.err) console.log(response.err)
+        document.cookie = 'status=' + response.success
         browserHistory.push('/payment-status')
       })
 
