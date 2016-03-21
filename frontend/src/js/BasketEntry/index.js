@@ -19,6 +19,7 @@ class BasketEntry extends React.Component {
     this.removeFunction = this.removeFunction.bind(this)
     this.restoreFunction = this.restoreFunction.bind(this)
     this.quantityFunction = this.quantityFunction.bind(this)
+    this.quantityIsEmpty = this.quantityIsEmpty.bind(this)
     this.redirectClick = this.redirectClick.bind(this)
     this.itemCount = this.itemCount.bind(this)
     this.itemCost = this.itemCost.bind(this)
@@ -51,11 +52,18 @@ class BasketEntry extends React.Component {
   }
 
   quantityFunction (index, e) {
-    if (e.target.value !== '' && !isNaN(Number(e.target.value))) {
+    if (!isNaN(Number(e.target.value))) {
       this.state.shoppingBasket.items[index].quantity = Number(e.target.value)
       this.setState(this.state)
     }
   }
+
+  quantityIsEmpty (index) {
+    if (this.state.shoppingBasket.items[index].quantity === 0) {
+      return "quantity cannot be empty or 0"
+    }
+  }
+
 
   deleteFunction (index) {
     this.state.shoppingBasket.items[index].deleted = true
@@ -95,15 +103,17 @@ class BasketEntry extends React.Component {
 
   render () {
     return (
-    <BasketContainer
-      shoppingBasket={this.state.shoppingBasket}
-      deleteFunction={this.deleteFunction}
-      removeFunction={this.removeFunction}
-      restoreFunction={this.restoreFunction}
-      redirectClick={this.redirectClick}
-      numItems={this.itemCount}
-      getPrice={this.itemCost}
-      quantityFunction={this.quantityFunction} />
+      <BasketContainer
+        shoppingBasket={this.state.shoppingBasket}
+        deleteFunction={this.deleteFunction}
+        removeFunction={this.removeFunction}
+        restoreFunction={this.restoreFunction}
+        redirectClick={this.redirectClick}
+        numItems={this.itemCount}
+        getPrice={this.itemCost}
+        quantityFunction={this.quantityFunction}
+        quantityIsEmpty={this.quantityIsEmpty}
+        />
     )
   }
 }

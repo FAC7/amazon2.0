@@ -12,7 +12,7 @@ class AdditionalInfo extends React.Component {
 }
 
 AdditionalInfo.propTypes = {
-  stock: React.PropTypes.number.required
+  stock: React.PropTypes.number.isRequired
 }
 
 export default AdditionalInfo

@@ -4,7 +4,6 @@ import ItemName from './ItemName.js'
 import Price from './Price.js'
 import DeleteLink from './DeleteLink.js'
 import Quantity from '../../../common/input.jsx'
-import Stock from './Stock.js'
 import AdditionalInfo from './AdditionalInfo.js'
 
 
@@ -18,7 +17,7 @@ class ItemContainer extends React.Component {
     //   this.setState(this.state)
     // }
   // }
-
+  
   render () {
     const item = this.props.itemInfo
     return (
@@ -35,19 +34,24 @@ class ItemContainer extends React.Component {
           <Price cost={item.cost} currencySymbol={item.currencySymbol} />
         </td>
         <td>
-          <Quantity width='20px' key={this.props.index} onChange={this.props.quantityFunction.bind(null, this.props.index)}/>
+          <Quantity width='20px' key={this.props.index} onChange={this.props.quantityFunction.bind(null, this.props.index)} defaultValue={item.quantity}/>
+          <p style={styleP} index={this.props.index}>{this.props.quantityIsEmpty(this.props.index)}</p>
         </td>
       </tr>
     )
   }
+}
+var styleP = {
+  color: '#EA0047',
+  fontSize: '0.8em'
 }
 
 ItemContainer.propTypes = {
   itemInfo: React.PropTypes.object.isRequired,
   deleteFunction: React.PropTypes.func.isRequired,
   index: React.PropTypes.number.isRequired,
-  quantityFunction: React.PropTypes.func.isRequired
-
+  quantityFunction: React.PropTypes.func.isRequired,
+  quantityIsEmpty: React.PropTypes.func.isRequired
 }
 
 export default ItemContainer
