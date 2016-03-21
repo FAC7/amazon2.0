@@ -1,5 +1,6 @@
 import React from 'react'
 import BasketContainer from './BasketContainer/'
+import { browserHistory } from 'react-router'
 
 class BasketEntry extends React.Component {
 
@@ -60,10 +61,9 @@ class BasketEntry extends React.Component {
 
   quantityIsEmpty (index) {
     if (this.state.shoppingBasket.items[index].quantity === 0) {
-      return "quantity cannot be empty or 0"
+      return 'quantity cannot be empty or 0'
     }
   }
-
 
   deleteFunction (index) {
     this.state.shoppingBasket.items[index].deleted = true
@@ -86,6 +86,7 @@ class BasketEntry extends React.Component {
   redirectClick () {
     document.cookie = ('currency=' + this.state.shoppingBasket.items[0].currency)
     document.cookie = ('price=' + this.state.shoppingBasket.items[0].cost)
+    browserHistory.push('/checkout')
   }
 
   itemCount () {
@@ -106,17 +107,16 @@ class BasketEntry extends React.Component {
 
   render () {
     return (
-      <BasketContainer
-        shoppingBasket={this.state.shoppingBasket}
-        deleteFunction={this.deleteFunction}
-        removeFunction={this.removeFunction}
-        restoreFunction={this.restoreFunction}
-        redirectClick={this.redirectClick}
-        numItems={this.itemCount}
-        getPrice={this.itemCost}
-        quantityFunction={this.quantityFunction}
-        quantityIsEmpty={this.quantityIsEmpty}
-        />
+    <BasketContainer
+      shoppingBasket={this.state.shoppingBasket}
+      deleteFunction={this.deleteFunction}
+      removeFunction={this.removeFunction}
+      restoreFunction={this.restoreFunction}
+      redirectClick={this.redirectClick}
+      numItems={this.itemCount}
+      getPrice={this.itemCost}
+      quantityFunction={this.quantityFunction}
+      quantityIsEmpty={this.quantityIsEmpty} />
     )
   }
 }
