@@ -58,9 +58,9 @@ server.register(plugins, (err) => {
 	    method: 'GET',
 	    path: '/getItemsForCarousel',
 	    handler: function (request, reply) {
-				dbHelpers.getProductById('676109a7-ec33-7291-2149-62e398b263b0').then((x) => {
+				dbHelpers.getArrayOfProdObjsByCategories(['technology']).then((x) => {
 					return reply(JSON.stringify(x))
-				})
+				}).catch((y)=>{console.log(y)})
 	    }
 	  }
   ])

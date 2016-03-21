@@ -10,10 +10,11 @@ class Slider extends React.Component {
   }
 
   componentDidMount () {
-    const xhr = new XMLHttpRequest ()
+    const xhr = new XMLHttpRequest()
     xhr.onreadystatechange = () => {
       if (xhr.status === 200 && xhr.readyState === 4) {
         const parsed = JSON.parse(xhr.responseText)
+        console.log('PARSED THAT BADBOY',parsed)
         const title = parsed['title']
         const imageLink = parsed['imageLink']
         const price = parsed['price']
