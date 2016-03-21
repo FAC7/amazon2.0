@@ -2,6 +2,7 @@
 // node modules
 const Guid = require('guid')
 const Bluebird = require('bluebird')
+
 // local modules
 const utils = require('./utils.js')
 
@@ -82,9 +83,9 @@ module.exports = (client) => {
       productObjsArr = ['global']
     }
     keyString = utils.removeUnwantedStrings(keyString)
-    const results = productObjsArr.filter(productObj => {
+    const results = productObjsArr.filter((productObj) => {
       let check = true
-      keyString.split(' ').forEach(keyWord => {
+      keyString.split(' ').forEach((keyWord) => {
         let re = new RegExp(keyWord, 'i')
         if (check && !productObj.title.match(re)) {
           check = false
@@ -114,9 +115,7 @@ module.exports = (client) => {
 
   this.addReview = (productId, reviewObj, cb) => {
     this.getReviewsByProductId(productId, (err, reviews) => {
-      if (err) {
-        console.log(err)
-      }
+      if (err) return cb(err)
       reviews.push(reviewObj)
       var avgRating = reviews.reduce((accum, review) => {
         return accum + Number(review.rating)

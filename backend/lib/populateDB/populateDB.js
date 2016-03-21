@@ -1,4 +1,5 @@
 'use strict"'
+const Path = require('path')
 
 module.exports = (client) => {
   const fs = require('fs')
@@ -10,11 +11,12 @@ module.exports = (client) => {
 
   // grab files, split by newline (into rows) and split again by comma (into
   // columns). Results in one huge 4D array containing the info from all CSVs
-  const fourDArray = fileNameArray.map((fileName) =>
-    fs.readFileSync(__dirname + '/productCSVs/filtered/' + fileName + '.csv', 'utf8')
+  const fourDArray = fileNameArray.map((fileName) => {
+    const path = Path.join(__dirname, '/productCSVs/filtered/', fileName, '.csv')
+    fs.readFileSync(path, 'utf8')
       .split('\n')
       .map((rowString) => rowString.split('\t'))
-  )
+  })
 
   // assign variable to each 3D array in the 4D array
   const laptops = fourDArray[0]
@@ -26,7 +28,7 @@ module.exports = (client) => {
   const televisions = fourDArray[6]
   const womensClothing = fourDArray[7]
 
-  // add each member of an array to the database using dbHelper
+// add each member of an array to the database using dbHelper
   const addArrayOfProducts = (array, categories) => {
     array.forEach((productArr, i) => {
       dbHelpers.addProduct({
@@ -36,11 +38,11 @@ module.exports = (client) => {
         rating: productArr[3],
         reviews: productArr[4],
         description: productArr[5],
+        stock: productArr[6],
         categories: JSON.stringify(categories)
       }, (x) => { })
     })
   }
-
   // Call function with each array, passing in categories
   // (we can change & improve these later)
   addArrayOfProducts(laptops, ['technology', 'computers', 'global'])

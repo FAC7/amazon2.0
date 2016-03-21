@@ -8,7 +8,7 @@ module.exports = {
 
   removeUnwantedStrings: (keywordString) => {
     keywordString = keywordString.replace(/[<>]/g, '')
-    nonKeyWords.forEach(word => {
+    nonKeyWords.forEach((word) => {
       var re = new RegExp(word, 'g')
       keywordString = keywordString.replace(re, '').trim()
     })

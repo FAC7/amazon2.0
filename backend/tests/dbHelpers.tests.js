@@ -4,7 +4,6 @@ var redis = require('redis')
 var client = {}
 var test = {}
 var dbHelpers
-var populateDB
 // env variables
 var dbUrl = process.env.REDIS_URL || 'redis://localhost:6379'
 var dbNum = process.env.REDIS_TEST_DB || 16
@@ -29,25 +28,25 @@ var testProductObj = {
   'price': '345',
   'vendor': 'brand1',
   'imageUrl': 'https://img.com',
-  'title': "this product is not very descriptive, so you won't find it",
+  'title': 'this product is not very descriptive, so you won\'t find it',
   'description': 'give us your moneeeey!!',
   'quantity': '1',
-  'productDetails': "{ 'size':'250x140cm', 'weight':'150kg', 'other':'stuff' }",
+  'productDetails': JSON.stringify({size: '250x140cm', weight: '150kg', other: 'stuff'}),
   'averageRating': '3',
-  'reviews': '[{"author":"nickname","text":"this product sucks!","rating":"1","date":1458218917974},{"author":"nickname2","text":"this product is awesome!","rating":"5","date":1458218918000}]',
-  'categories': '["sports","tech"]'
+  'reviews': JSON.stringify([{author: 'nickname', text: 'this product sucks!', rating: 1, date: 1458218917974}, {author: 'nickname2', text: 'this product is awesome!', rating: 5, date: 1458218918000}]),
+  'categories': JSON.stringify(['sports', 'tech'])
 }
 var testProductObj2 = {
   'price': '200',
   'vendor': 'brand2',
   'imageUrl': 'https://img2.com',
-  'title': "expensive stuff, don't buy this.",
+  'title': 'expensive stuff, don\'t buy this.',
   'description': 'ripping you off...',
   'quantity': '2',
-  'productDetails': "{ 'size':'250x140cm', 'weight':'150kg', 'other':'stuff' }",
+  'productDetails': JSON.stringify({size: '250x140cm', weight: '150kg', other: 'stuff'}),
   'averageRating': '1',
-  'reviews': '[{"author":"nickname","text":"this product sucks!","rating":"1","date":1458218917974},{"author":"this product is awesome!","text":"this product sucks!","rating":"5","date":1458218918000}]',
-  'categories': '["tech"]'
+  'reviews': JSON.stringify([{author: 'nickname', text: 'this product sucks!', rating: 1, date: 1458218917974}, {author: 'this product is awesome!', text: 'this product sucks!', rating: 5, date: 1458218918000}]),
+  'categories': JSON.stringify(['tech'])
 }
 
 var testProductObj3 = {
@@ -57,10 +56,10 @@ var testProductObj3 = {
   'title': 'a superfast sportscar running like crazy at 400km/h',
   'description': 'meh...',
   'quantity': '3',
-  'productDetails': "{ 'size':'250x140cm', 'weight':'150kg', 'other':'stuff' }",
+  'productDetails': JSON.stringify({size: '250x140cm', weight: '150kg', other: 'stuff'}),
   'averageRating': '1',
-  'reviews': '[{"author":"nickname","text":"this product sucks!","rating":1,"date":1458218917974},{"author":"this product is awesome!","text":"this product sucks!","rating":5,"date":1458218918000}]',
-  'categories': '["cars"]'
+  'reviews': JSON.stringify([{author: 'nickname', text: 'this product sucks!', rating: 1, date: 1458218917974}, {author: 'this product is awesome!', text: 'this product sucks!', rating: 5, date: 1458218918000}]),
+  'categories': JSON.stringify(['cars'])
 }
 
 test('testing db Helper getProductById with manual input', (t) => {
@@ -77,10 +76,8 @@ test('testing db Helper getProductById with manual input', (t) => {
 })
 test('testing db Helper addProduct', (t) => {
   dbHelpers.addProduct(testProductObj, (err, testProductId) => {
-    if (err) {
-      console.log(err)
-    }
-    t.plan(6)
+    t.plan(7)
+    t.ok(!err, 'Assert no error')
     dbHelpers.getProductById(testProductId, (err, reply) => {
       t.ok(!err, 'no error in retrieving product by guid with getProductById')
       t.equal(typeof reply, 'object', 'parsed reply is an object')
@@ -92,15 +89,16 @@ test('testing db Helper addProduct', (t) => {
   })
 })
 test('testing dbHelper getProductIdsByCategories', (t) => {
+  t.plan(17)
   dbHelpers.addProduct(testProductObj, (err, testProductId) => {
-    if (err) {
-      console.log(err)
-    }
+    t.ok(!err, 'no error in adding product with id ' + testProductId)
     dbHelpers.addProduct(testProductObj2, (err2, testProductId2) => {
+      t.ok(!err2, 'no error in adding product with id ' + testProductId2)
       dbHelpers.addProduct(testProductObj3, (err3, testProductId3) => {
+        t.ok(!err3, 'no error in adding product with id ' + testProductId3)
         dbHelpers.getProductIdsByCategories(['sports'], (err4, sportsReply) => {
-          t.plan(13)
-          t.ok(sportsReply instanceof Array, 'successfull reply to sports getProductIdsByCategories is an array')
+          t.ok(!err4, 'no error in retrieving products by category sports')
+          t.ok(sportsReply instanceof Array, 'successfull reply to sports getProductsByCategories is an array')
           t.equal(sportsReply.length, 1, 'one item only found in sports category')
           t.equal(sportsReply[0], testProductId, 'correct product id found in sports category')
         })
@@ -128,8 +126,9 @@ test('testing dbHelper getProductIdsByCategories', (t) => {
     })
   })
 })
-const newReviewObj = { 'author': 'angry buyer', 'text': 'where\'s my money?', 'rating': 3, 'date': 1458218917954 }
-const newReviewObj2 = { 'author': 'returning angry buyer', 'text': 'where\'s my money again?', 'rating': 2, 'date': 1458218917984 }
+
+var newReviewObj = {author: 'angry buyer', text: 'where\'s my money?', rating: 3, date: 1458218917954}
+var newReviewObj2 = {author: 'returning angry buyer', text: 'where\'s my money again?', rating: 2, date: 1458218917984}
 
 test('testing DBHelper getReviewsByProductId', (t) => {
   t.plan(19)
@@ -216,7 +215,8 @@ test('testing dbHelper getSearchResults', (t) => {
   })
 })
 test('testing searchResults with populated DB', (t) => {
-  const populateDB = require('./../lib/populateDB/populateDB.js')(client)
+  const populateDB = require('./../lib/populateDB/populateDB.js')
+  populateDB(client)
   t.plan(2)
   dbHelpers.getSearchResults(['technology'], '500GB pentium toshiba', (laptopResults) => {
     t.ok(laptopResults instanceof Array, 'laptop search for 500GB returns an array')

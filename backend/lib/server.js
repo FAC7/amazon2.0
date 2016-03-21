@@ -2,6 +2,7 @@
 // node modules
 const Hapi = require('hapi')
 const Inert = require('inert')
+const Path = require('path')
 // plugins
 const payPlugin = require('./payPlugin.js')
 // server config
@@ -10,7 +11,7 @@ const port = 4000
 // local modules
 const client = require('./redis.js')
 // local variables
-require('.env2')('./../../config.env')
+require('env2')('./../../config.env')
 
 server.connection({
   port: port
@@ -18,7 +19,8 @@ server.connection({
 
 // Hapi plugins
 const plugins = [
-  Inert, payPlugin
+  Inert,
+  payPlugin
 ]
 
 server.register(plugins, (err) => {
@@ -30,14 +32,22 @@ server.register(plugins, (err) => {
       method: 'GET',
       path: '/',
       handler: (request, reply) => {
-        reply('hello world')
+        const path = Path.join(__dirname, './../../frontend/production/index.html')
+        reply.file(path)
       }
-    },{
+    }, {
       method: 'GET',
       path: '/populateDB',
       handler: (request, reply) => {
         require('./populateDB/populateDB.js')(client)
         reply.redirect('/')
+      }
+    }, {
+      method: 'GET',
+      path: '/amazon.js',
+      handler: (request, reply) => {
+        const path = Path.join(__dirname, './../../frontend/production/amazon.js')
+        reply.file(path)
       }
     }
   ])
