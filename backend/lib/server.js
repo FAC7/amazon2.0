@@ -8,10 +8,8 @@ const payPlugin = require('./payPlugin.js')
 // server config
 const server = new Hapi.Server()
 const port = 4000
-// local modules
-const client = require('./redis.js')
 // local variables
-require('env2')('./../../config.env')
+require('env2')('./../config.env')
 
 server.connection({
   port: port
@@ -32,13 +30,15 @@ server.register(plugins, (err) => {
       method: 'GET',
       path: '/',
       handler: (request, reply) => {
-        const path = Path.join(__dirname, './../../frontend/production/index.html')
+        const path = Path.join(__dirname, '../../frontend/production/index.html')
+        console.log(path)
         reply.file(path)
       }
     }, {
       method: 'GET',
       path: '/populateDB',
       handler: (request, reply) => {
+        const client = require('./redis.js')
         require('./populateDB/populateDB.js')(client)
         reply.redirect('/')
       }
