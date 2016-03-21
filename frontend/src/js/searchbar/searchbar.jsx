@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchBox from './searchbox.jsx'
 import SubmitButton from './submitbutton.jsx'
+import CategoryButton from './categorybutton.jsx'
 
 class SearchBar extends React.Component {
   constructor () {
@@ -17,6 +18,7 @@ class SearchBar extends React.Component {
     styles.height = this.props.height
     return (
     <form formAction={this.props.submitURL} onSubmit={this.props.submitHandler} style={styles}>
+      <CategoryButton />
       <SearchBox
         defaultValue='Type here...'
         onChange={this.handleChange}
