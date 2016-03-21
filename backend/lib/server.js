@@ -12,25 +12,25 @@ const server = new Hapi.Server()
 const port = 4000
 
 server.connection({
-	port: port
+  port: port
 })
 
 // Hapi plugins
 const plugins = [
-	Inert, payPlugin
+  Inert, payPlugin
 ]
 
 server.register(plugins, (err) => {
-	if (err) {
-		throw err
-	}
-	server.route({
+  if (err) {
+    throw err
+  }
+  server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
       return reply('hello world')
     }
-	})
+  })
 })
 
 module.exports = server
