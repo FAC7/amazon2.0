@@ -75,7 +75,34 @@ module.exports = (client) => {
       }
     )
   }
+  this.getArrayOfProdObjsByCategories = Bluebird.promisify(getArrayOfProdObjsByCategories)
 
+  this.filterProductsArrByKeyString = (productObjsArr, keyString) => {
+    if (productObjsArr.length === 0) {
+      productObjsArr = ['global']
+    }
+    keyString = utils.removeUnwantedStrings(keyString)
+    const results = productObjsArr.filter(productObj => {
+      let check = true
+      keyString.split(' ').forEach(keyWord => {
+        let re = new RegExp(keyWord, 'i')
+        if (check && !productObj.title.match(re)) {
+          check = false
+        }
+      })
+      return check
+    })
+    return results
+  }
+  this.getSearchResults = (categoriesArr, keyString, cb) => {
+    this.getArrayOfProdObjsByCategories(categoriesArr)
+    .then((resultsByCat) => {
+      cb(this.filterProductsArrByKeyString(resultsByCat, keyString))
+    })
+    .catch((categoriesErr) => {
+      console.log(categoriesErr)
+    })
+  }
   this.getReviewsByProductId = (id, cb) => {
     client.hget(id, 'reviews', (err, reply) => {
       if (err) {
