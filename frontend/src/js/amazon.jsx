@@ -18,7 +18,6 @@ require('../css/main.css')
 // import Payment from './../modules/payment.jsx'
 // /{params*} --- resource handler
 // /404 --- page for 'not found'
-
 render((
   <Router>
     <Route path="/" component={Home} />
@@ -27,22 +26,3 @@ render((
     <Route path="/productspage" component={ProductPage} />
   </Router>
   ), document.getElementById('amazon'))
-
-// <Route path='/products' component={Products}/>
-  // <Route path='/basket' component={Basket}/>
-  // <Route path='/payment' component={Payment}/>
-
-class Amazon extends React.Component {
-  render () {
-    return (
-    <div>
-      <p>
-        Amazon sucks, fAC7 is better!!!
-      </p>
-      <Category categoryName='category name' />
-      <Category categoryName='bouh' />
-      <ProductPage />
-    </div>
-    )
-  }
-}
