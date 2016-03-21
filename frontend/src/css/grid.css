@@ -6,7 +6,7 @@
   flex: 1;
 }
 
-@media (max-width: 48em) {
+@media (max-width: 650px) {
   .container {
     flex-direction: column;
   }
@@ -15,7 +15,7 @@
   }
 }
 
-@media (min-width: 48em) {
+@media (min-width: 650px) {
   .column-tenth {
     flex: 0 0 10%;
   }
