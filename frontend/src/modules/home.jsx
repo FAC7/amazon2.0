@@ -32,7 +32,6 @@ export default React.createClass({
             </Link>
           </li>
         </ul>
-        {this.props.children}
       </div>
     )
   }
