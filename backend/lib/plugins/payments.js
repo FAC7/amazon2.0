@@ -18,6 +18,7 @@ exports.register = (server, options, next) => {
     path: '/pay',
     config: {
       handler: (request, reply) => {
+        console.log('WORKING')
         const data = JSON.parse(request.payload)
         stripe.charges.create({
           amount: data.amount,
