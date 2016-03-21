@@ -33,6 +33,7 @@ const addArrayOfProducts = (array, categories) => {
       rating: productArr[3],
       reviews: productArr[4],
       description: productArr[5],
+      stock: productArr[6],
       categories: JSON.stringify(categories)
     }, (x) => { })
   })
