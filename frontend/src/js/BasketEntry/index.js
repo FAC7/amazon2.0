@@ -67,16 +67,19 @@ class BasketEntry extends React.Component {
 
   deleteFunction (index) {
     this.state.shoppingBasket.items[index].deleted = true
+    localStorage.setItem('shoppingBasket', JSON.stringify(this.state.shoppingBasket.items))
     this.setState(this.state)
   }
 
   removeFunction (index) {
     this.state.shoppingBasket.items = this.state.shoppingBasket.items.slice(0, index).concat(this.state.shoppingBasket.items.slice(index + 1))
+    localStorage.setItem('shoppingBasket', JSON.stringify(this.state.shoppingBasket.items))
     this.setState(this.state)
   }
 
   restoreFunction (index) {
     this.state.shoppingBasket.items[index].deleted = false
+    localStorage.setItem('shoppingBasket', JSON.stringify(this.state.shoppingBasket.items))
     this.setState(this.state)
   }
 
