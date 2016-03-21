@@ -1,4 +1,5 @@
 import React from 'react'
+import { browserHistory } from 'react-router'
 import Input from '../common/input.jsx'
 
 class CheckoutForm extends React.Component {
@@ -33,7 +34,7 @@ class CheckoutForm extends React.Component {
           </div>
 
           <div style={divStyles}>
-            <label>CVC* (<a href='#'>What's this?</a>):</label>
+            <label>CVC* (<a href='#'>What is this?</a>):</label>
             <Input
               type='text'
               data-stripe='cvc'
@@ -54,26 +55,25 @@ class CheckoutForm extends React.Component {
 }
 
 const clickHandler = (e) => {
-  console.log('clicked')
   e.preventDefault()
-  var paymentForm = document.getElementById('payment-form')
-  console.log(paymentForm)
+  const paymentForm = document.getElementById('payment-form')
   const stripeResponseHandler = (status, response) => {
+    // TODO: delete next 2 lines when we join up with the basket
     document.cookie = 'currency=GBP;'
     document.cookie = 'price=123;'
+    let errors = document.getElementById('payment-errors')
     if (response.error) {
-      document.getElementById('payment-errors').innerHTML = response.error.message
+      errors.innerHTML = response.error.message
     } else {
-      document.getElementById('payment-errors').innerHTML = ''
-      var token = response.id
-      var cookie = document.cookie
-      var xhr = new XMLHttpRequest()
-
-      xhr.addEventListener('load', function(response) {
-        console.log('RESPONSE', response)
+      errors.innerHTML = ''
+      const token = response.id
+      const cookie = document.cookie
+      const xhr = new XMLHttpRequest() // eslint-disable-line
+      xhr.addEventListener('load', (response) => {
+        browserHistory.push('/payment-status')
       })
 
-      var request = {
+      const request = {
         currency: cookie.split('currency=')[1].split(';')[0],
         amount: cookie.split('price=')[1].split(';')[0],
         source: token
@@ -83,7 +83,7 @@ const clickHandler = (e) => {
       xhr.send(JSON.stringify(request))
     }
   }
-  Stripe.card.createToken(paymentForm, stripeResponseHandler)
+  Stripe.card.createToken(paymentForm, stripeResponseHandler) // eslint-disable-line
 }
 
 const formStyles = {
