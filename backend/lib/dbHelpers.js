@@ -5,8 +5,8 @@ module.exports = (client) => {
     const productId = Guid.create().value
     productObj.id = productId
     Object.keys(productObj).forEach((key) => {
-      const value = typeof productObj[key] === 'object' ?
-        JSON.stringify(productObj[key]) : productObj[key]
+      const value = typeof productObj[key] === 'object'
+        ? JSON.stringify(productObj[key]) : productObj[key]
       client.hset(productId, key, value, (err) => {
         if (err) {
           console.log('--> was not able to set property ', key, 'to value ', value)
@@ -58,8 +58,10 @@ module.exports = (client) => {
   }
   this.addReview = (productId, reviewObj, cb) => {
     this.getReviewsByProductId(productId, (err, reviews) => {
+      if (err) return cb(err)
+
       reviews.push(reviewObj)
-      var avgRating = reviews.reduce( (accum, review) => {
+      var avgRating = reviews.reduce((accum, review) => {
         return accum + Number(review.rating)
       }, 0) / reviews.length
       client.hmset(productId,
@@ -67,7 +69,7 @@ module.exports = (client) => {
         'averageRating', avgRating,
         (err, reply) => {
           if (err) {
-            console.log(err);
+            console.log(err)
           }
           cb(null, reviewObj)
         }
