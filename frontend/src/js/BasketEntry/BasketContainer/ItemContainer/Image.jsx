@@ -1,14 +1,14 @@
-import React from 'react';
+import React from 'react'
 
 const style = {
   width: '100px',
   height: '100px'
-};
+}
 
 class BasketImgItem extends React.Component {
   render () {
     return (
-      <a href={this.props.url}><img style={style} src={this.props.imgURL} /></a>
+    <a href={this.props.url}><img style={style} src={this.props.imgURL} /></a>
     )
   }
 }
@@ -16,9 +16,6 @@ class BasketImgItem extends React.Component {
 BasketImgItem.propTypes = {
   imgURL: React.PropTypes.string.isRequired,
   url: React.PropTypes.string.isRequired
-};
+}
 
-
-
-
-export default BasketImgItem;
+export default BasketImgItem

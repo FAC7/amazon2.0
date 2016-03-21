@@ -1,5 +1,5 @@
 import React from 'react'
-import BasketContainer from './BasketContainer/'
+import BasketContainer from './BasketContainer/index.jsx'
 import { browserHistory } from 'react-router'
 
 class BasketEntry extends React.Component {

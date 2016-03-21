@@ -1,10 +1,10 @@
 import React from 'react'
 
-import Button from './CheckoutButton.js'
+import Button from './CheckoutButton.jsx'
 
-import Subtotal from './ItemCount.js'
+import Subtotal from './ItemCount.jsx'
 
-import TotalPrice from './TotalPrice.js'
+import TotalPrice from './TotalPrice.jsx'
 
 class CheckoutContainer extends React.Component {
 
