@@ -58,7 +58,7 @@ server.register(plugins, (err) => {
 	    method: 'GET',
 	    path: '/getItemsForCarousel',
 	    handler: function (request, reply) {
-				dbHelpers.getArrayOfProdObjsByCategories(['garden']).then((x) => {
+				dbHelpers.getArrayOfProdObjsByCategories(['appliances', 'electric', 'global']).then((x) => {
 					return reply(JSON.stringify(x))
 				}).catch((y)=>{console.log(y)})
 	    }
