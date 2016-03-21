@@ -1,27 +1,10 @@
 import React from 'react'
+require('./NavBar.css')
 
 class Nav extends React.Component {
-
   render () {
-    const ulInlineStyle = {
-      backgroundColor: '#222E3E',
-      display: 'flex',
-      justifyContent: 'flex-end',
-      position: 'fixed',
-      height: '10vh',
-      width: '100%',
-      listStyleType: 'none',
-      margin: 'auto',
-      padding: '10px 0px 10px 0px'
-    }
-
-    const aInlineStyle = {
-      padding: '10px',
-      color: '#FFFFFF'
-    }
-
     return (
-      <div>
+      <nav>
         <ul style={ulInlineStyle}>
           <li>
             <a style= {aInlineStyle} href={this.props.home}>Home</a>
@@ -36,7 +19,7 @@ class Nav extends React.Component {
             <a style= {aInlineStyle} href={this.props.basket}>Basket</a>
           </li>
         </ul>
-      </div>
+      </nav>
     )
   }
 }
@@ -46,6 +29,12 @@ Nav.propTypes = {
   browse: React.PropTypes.string,
   checkout: React.PropTypes.string,
   basket: React.PropTypes.string
+}
+
+const ulInlineStyle = {
+}
+
+const aInlineStyle = {
 }
 
 export default Nav
