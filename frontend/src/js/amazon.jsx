@@ -5,6 +5,7 @@ import Products from './../modules/products.jsx'
 import Basket from './../modules/basket.jsx'
 import Search from './../modules/search.jsx'
 import Payment from './../modules/payment.jsx'
+import { browserHistory } from 'react-router'
 // import ReactDom from 'react-dom'
 // import Category from './itemCategory/Category.jsx'
 // import SearchBar from './searchbar/searchbar.jsx'
@@ -22,7 +23,7 @@ require('../css/main.css')
 // /{params*} --- resource handler
 // /404 --- page for 'not found'
 render((
-  <Router>
+  <Router history={browserHistory}>
     <Route path='/' activeStyle={{ color: 'red' }}component={Home} />
     <Route path='/home' activeStyle={{ color: 'red' }}component={Home} />
     <Route path='/basket' activeStyle={{ color: 'red' }}component={Basket} />
