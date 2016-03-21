@@ -12,8 +12,9 @@ module.exports = (client) => {
   // grab files, split by newline (into rows) and split again by comma (into
   // columns). Results in one huge 4D array containing the info from all CSVs
   const fourDArray = fileNameArray.map((fileName) => {
-    const path = Path.join(__dirname, '/productCSVs/filtered/', fileName, '.csv')
-    fs.readFileSync(path, 'utf8')
+    fileName = fileName + '.csv'
+    const path = Path.join(__dirname, 'productCSVs/filtered', fileName)
+    return fs.readFileSync(path, 'utf8')
       .split('\n')
       .map((rowString) => rowString.split('\t'))
   })
