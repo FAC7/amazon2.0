@@ -29,7 +29,7 @@ Set up badges, file structure, travis build and have final say of what is merged
 Setting up tasks and summarising where we are at.
 
 # Project Documentation
-This README is the main source of project documentation. Please update it with everything required to contribute to the project. Commit your README changes in isolation and tag the commit message with `[ci skip]` to prevent Travis running a build.
+This README is the main source of project documentation. Please update it with everything required to contribute to the project.
 
 The [wiki](https://github.com/FAC7/amazon2.0/wiki) is the other source of project documentation, where technical details of parts of the project should be documented so that all team members can get to grips with any part of the project.
 
