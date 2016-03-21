@@ -1,15 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router'
 import Category from './../js/itemCategory/Category.jsx'
-import ProductPage from './../js/ProductPage/ProductPage.jsx'
+import FiveStars from './../js/Ratings/FiveStars.jsx'
+import SearchBar from './../js/searchbar/searchbar.jsx'
+// import searchbox from './../js/searchbar/searchbox.jsx'
+// import Nav from './'
+// import FiveStars from './../js/Ratings/FiveStars.jsx'
+// import ProductPage from './../js/ProductPage/ProductPage.jsx'
+// import SearchBox from './../js/searchbar/searchbox.jsx'
+// import SubmitButton from './../js/searchbar/submitbutton.jsx'
+require('../css/grid.css')
 
 export default React.createClass({
   render () {
     return (
       <div>
         <h1>Amazon 2.0 Home Page</h1>
-        <Category categoryName='category name' />
-        <ProductPage />
+        <SearchBar/>
+        <Category categoryName='titleeeeeee' />
         <ul role='nav'>
           <li>
             <Link to='/home' activeStyle={{ color: 'red' }}> Home
@@ -32,6 +40,7 @@ export default React.createClass({
             </Link>
           </li>
         </ul>
+        <FiveStars/>
       </div>
     )
   }
