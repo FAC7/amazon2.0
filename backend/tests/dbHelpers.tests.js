@@ -30,9 +30,9 @@ var testProductObj = {
   'imageUrl': 'https://img.com',
   'title': 'this product is not very descriptive, so you won\'t find it',
   'description': 'give us your moneeeey!!',
-  'quantity': 1,
+  'quantity': '1',
   'productDetails': JSON.stringify({size: '250x140cm', weight: '150kg', other: 'stuff'}),
-  'averageRating': 3,
+  'averageRating': '3',
   'reviews': JSON.stringify([{author: 'nickname', text: 'this product sucks!', rating: 1, date: 1458218917974}, {author: 'nickname2', text: 'this product is awesome!', rating: 5, date: 1458218918000}]),
   'categories': JSON.stringify(['sports', 'tech'])
 }
@@ -42,9 +42,9 @@ var testProductObj2 = {
   'imageUrl': 'https://img2.com',
   'title': 'expensive stuff, don\'t buy this.',
   'description': 'ripping you off...',
-  'quantity': 2,
+  'quantity': '2',
   'productDetails': JSON.stringify({size: '250x140cm', weight: '150kg', other: 'stuff'}),
-  'averageRating': 1,
+  'averageRating': '1',
   'reviews': JSON.stringify([{author: 'nickname', text: 'this product sucks!', rating: 1, date: 1458218917974}, {author: 'this product is awesome!', text: 'this product sucks!', rating: 5, date: 1458218918000}]),
   'categories': JSON.stringify(['tech'])
 }
@@ -55,15 +55,15 @@ var testProductObj3 = {
   'imageUrl': 'https://img3.com',
   'title': 'i don\'t know what this is',
   'description': 'meh...',
-  'quantity': 3,
+  'quantity': '3',
   'productDetails': JSON.stringify({size: '250x140cm', weight: '150kg', other: 'stuff'}),
-  'averageRating': 1,
+  'averageRating': '1',
   'reviews': JSON.stringify([{author: 'nickname', text: 'this product sucks!', rating: 1, date: 1458218917974}, {author: 'this product is awesome!', text: 'this product sucks!', rating: 5, date: 1458218918000}]),
   'categories': JSON.stringify(['cars'])
 }
 
 test('testing db Helper getProductById with manual input', (t) => {
-  t.plan(4)
+  t.plan(5)
   client.hmset('h12345', 'title', 'test product new! 500kg', 'price', 500, 'average-rating', 4, (err, reply) => {
     t.ok(!err, 'no error in manually adding a product to the db')
     dbHelpers.getProductById('h12345', (err, obj) => {
@@ -92,7 +92,7 @@ test('testing dbHelper getProductIdsByCategories', (t) => {
   dbHelpers.addProduct(testProductObj, (err, testProductId) => {
     dbHelpers.addProduct(testProductObj2, (err2, testProductId2) => {
       dbHelpers.addProduct(testProductObj3, (err3, testProductId3) => {
-        dbHelpers.getProductsByCategories(['sports'], (err4, sportsReply) => {
+        dbHelpers.getProductIdsByCategories(['sports'], (err4, sportsReply) => {
           t.plan(14)
           t.ok(!err, 'Assert no error')
           t.ok(sportsReply instanceof Array, 'successfull reply to sports getProductsByCategories is an array')
