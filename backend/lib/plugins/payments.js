@@ -1,8 +1,18 @@
 'use strict'
 
 const stripe = require('stripe')(process.env.STRIPE_API_KEY)
+const guid = require('guid')
 
 exports.register = (server, options, next) => {
+  server.state('am2_pay_data', {
+    ttl: 1 * 24 * 60 * 60 * 1000,
+    // isSecure: true, // should have isSecure, but don't have HTTPS
+    isHttpOnly: true,
+    encoding: 'base64json',
+    clearInvalid: true,
+    strictHeader: true
+  })
+
   server.route([{
     method: 'POST',
     path: '/pay',
@@ -14,34 +24,21 @@ exports.register = (server, options, next) => {
           source: request.payload.source, // obtained with Stripe.js
           description: request.payload.description
         }, (err, charge) => {
-          if (err) {
-            let resp = {
-              success: false,
-              error: err
-            }
-            reply(resp)
-          } else {
-            let resp = {
-              success: true,
-              error: null
-            }
-            reply(resp).redirect('/paymentsuccessful')
-          }
+          reply({
+            success: !err,
+            error: err
+          }).state('am2_pay_data', {
+            card_number: charge.last4,
+            order_number: (!err) ? guid.raw() : '' // spoof an order number
+          })
         })
       }
     }
-  }, {
-    method: 'POST',
-    path: '/paymentsuccessful',
-    config: {
-      handler: (request, reply) => {
-        reply('todo')
-      }
-    }
   }])
+
   next()
 }
 
 exports.register.attributes = {
-  name: 'payPlugin'
+  name: 'payments'
 }
