@@ -26,13 +26,11 @@ exports.register = (server, options, next) => {
           source: data.source, // obtained with Stripe.js
           description: data.description
         }, (err, charge) => {
-          console.log('err', err)
-          console.log('CHARGE', charge)
           reply({
             success: !err,
             error: err
           }).state('am2_pay_data', {
-            amount: '£' + (charge.amount / 100)
+            amount: '£' + (charge.amount / 100),
             card_number: charge.last4,
             order_number: (!err) ? guid.raw() : '' // spoof an order number
           })

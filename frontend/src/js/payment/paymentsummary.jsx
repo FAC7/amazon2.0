@@ -4,19 +4,11 @@ require('./paymentsummary.css')
 
 class Payment extends React.Component {
   render () {
-    document.cookie = "cardNumber=1234"
-    document.cookie = "orderNumber=987654321"
-    document.cookie = "status=false"
-    document.cookie = "amount=£30.50"
-
     const payDeets = cookieParser.parse(document.cookie)
     const status = payDeets.status === 'true'
-
     const success = status ? 'Payment Confirmed' : 'Payment Failed'
-    const filler = status ? 'Thankyou for shopping with Amazon 2.0!'  : 'We\'re sorry, your payment has been refused.'
-    const display = {
-      display: status ? 'block' : 'none'
-    }
+    const filler = status ? 'Thankyou for shopping with Amazon 2.0!' : 'We\'re sorry, your payment has been refused.'
+    const display = {display: status ? 'block' : 'none'}
 
     return (
       <div className='mainDiv'>
@@ -29,11 +21,11 @@ class Payment extends React.Component {
           <tbody>
           <tr>
             <td className='tdRight'>Order Number:</td>
-            <td>{payDeets.orderNumber}</td>
+            <td>{payDeets.order_number}</td>
           </tr>
           <tr>
             <td className='tdRight'>Card Number:</td>
-            <td>xxxx xxxx xxxx {payDeets.cardNumber}</td>
+            <td>xxxx xxxx xxxx {payDeets.card_number}</td>
           </tr>
         </tbody>
         </table>
