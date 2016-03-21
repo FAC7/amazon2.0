@@ -133,19 +133,5 @@ module.exports = (client) => {
       )
     })
   }
-
-  // this.getProductObjsByKeyString = (productObjsArr, keyString, cb) => {
-  //   if(productsArr.length === 0){
-  //     productsArr = ['global']
-  //   }
-  //   var results = []
-  //   keyString = utils.removeUnwantedStrings(keyString)
-  //   productsArr.forEach( productId => {
-  //     this.getProductById(productId, (err,reply)=>{
-  //
-  //     })
-  //   })
-  // }
-
   return this
 }
