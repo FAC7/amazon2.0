@@ -5,7 +5,7 @@ module.exports = {
   },
   output: {
     filename: 'amazon.js',
-    path: __dirname + '/production'
+    path: __dirname.join('/production')
   },
   module: {
     loaders: [
