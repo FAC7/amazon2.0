@@ -5,7 +5,7 @@ const Bluebird = require('bluebird')
 const utils = require('./utils.js')
 
 module.exports = (client) => {
-  addProduct = (productObj, cb) => {
+  const addProduct = (productObj, cb) => {
     const productId = Guid.create().value
     productObj.id = productId
     Object.keys(productObj).forEach((key) => {
@@ -16,7 +16,7 @@ module.exports = (client) => {
           console.log('--> was not able to set property ', key, 'to value ', value)
           throw err
         }
-        // console.log('successfully set property ', key, 'to value ', value)
+      // console.log('successfully set property ', key, 'to value ', value)
       })
     })
     const categoriesArr = JSON.parse(productObj.categories)
@@ -33,7 +33,7 @@ module.exports = (client) => {
   }
   this.addProduct = Bluebird.promisify(addProduct)
 
-  getProductById = (id, cb) => {
+  const getProductById = (id, cb) => {
     client.hgetall(id, (err, reply) => {
       if (err) {
         console.log(' --> was not able to retrieve info for product with id', id)
@@ -45,7 +45,7 @@ module.exports = (client) => {
   }
   this.getProductById = Bluebird.promisify(getProductById)
 
-  getProductIdsByCategories = (categoriesArr, cb) => {
+  const getProductIdsByCategories = (categoriesArr, cb) => {
     client.SINTER(...categoriesArr, (err, reply) => {
       if (err) {
         console.log(err)
@@ -60,15 +60,14 @@ module.exports = (client) => {
       (productIdsArr) => {
         if (productIdsArr.length === 0) {
           cb(null, productIdsArr)
-        }
-        else {
-          var productObjsPromises = productIdsArr.map( (productId) => {
+        } else {
+          var productObjsPromises = productIdsArr.map((productId) => {
             return this.getProductById(productId)
           })
-          // console.log(productObjsPromises);
+          // console.log(productObjsPromises)
           Bluebird.all(productObjsPromises).then(
             (productObjsResults) => {
-              // console.log(productObjsResults);
+              // console.log(productObjsResults)
               cb(null, productObjsResults)
             }
           )
@@ -89,7 +88,7 @@ module.exports = (client) => {
   this.addReview = (productId, reviewObj, cb) => {
     this.getReviewsByProductId(productId, (err, reviews) => {
       reviews.push(reviewObj)
-      var avgRating = reviews.reduce( (accum, review) => {
+      var avgRating = reviews.reduce((accum, review) => {
         return accum + Number(review.rating)
       }, 0) / reviews.length
       client.hmset(productId,
@@ -97,7 +96,7 @@ module.exports = (client) => {
         'averageRating', avgRating,
         (err, reply) => {
           if (err) {
-            console.log(err);
+            console.log(err)
           }
           cb(null, reviewObj)
         }
