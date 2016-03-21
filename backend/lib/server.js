@@ -1,15 +1,16 @@
 'use strict'
-
 // node modules
 const Hapi = require('hapi')
 const Inert = require('inert')
-
 // plugins
 const payPlugin = require('./payPlugin.js')
-
 // server config
 const server = new Hapi.Server()
 const port = 4000
+// local modules
+const client = require('./redis.js')
+// local variables
+require('.env2')('./../../config.env')
 
 server.connection({
   port: port
@@ -24,13 +25,22 @@ server.register(plugins, (err) => {
   if (err) {
     throw err
   }
-  server.route({
-    method: 'GET',
-    path: '/',
-    handler: function (request, reply) {
-      return reply('hello world')
+  server.route([
+    {
+      method: 'GET',
+      path: '/',
+      handler: (request, reply) => {
+        reply('hello world')
+      }
+    },{
+      method: 'GET',
+      path: '/populateDB',
+      handler: (request, reply) => {
+        require('./populateDB/populateDB.js')(client)
+        reply.redirect('/')
+      }
     }
-  })
+  ])
 })
 
 module.exports = server
