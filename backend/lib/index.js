@@ -1,4 +1,4 @@
-require('env2')('./config.env')
+require('env2')('./../config.env')
 const server = require('./server.js')
 
 // Start the server
