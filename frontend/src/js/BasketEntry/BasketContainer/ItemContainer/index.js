@@ -4,7 +4,6 @@ import ItemName from './ItemName.js'
 import Price from './Price.js'
 import DeleteLink from './DeleteLink.js'
 import Quantity from '../../../common/input.jsx'
-import Stock from './Stock.js'
 import AdditionalInfo from './AdditionalInfo.js'
 
 
@@ -18,7 +17,7 @@ class ItemContainer extends React.Component {
     //   this.setState(this.state)
     // }
   // }
-
+  
   render () {
     const item = this.props.itemInfo
     return (
