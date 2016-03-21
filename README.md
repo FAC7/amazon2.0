@@ -1,6 +1,7 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![travis-build](https://travis-ci.org/FAC7/amazon2.0.svg?branch=master)](https://travis-ci.org/FAC7/amazon2.0)
 
+
 # What
 This project is developed by all FAC7 cohort members from [Founders and Coders](http://www.foundersandcoders.com/)
 
