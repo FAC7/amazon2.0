@@ -1,37 +1,30 @@
 import React from 'react'
 import BasketContainer from './BasketContainer/'
 
-const shoppingBasket = {
-  items: [{
-    itemName: 'Kärcher K4 Full Control Pressure Washer',
-    url: 'http://www.amazon.co.uk/gp/product/B0198VLMLC?ref_=gbps_tit_s-3_8407_d3ac7b06&smid=A3P5ROKL5A1OLE',
-    currency: 'GBP',
-    currencySymbol: '£',
-    cost: 118.99,
-    imgURL: 'http://ecx.images-amazon.com/images/I/81haNKekOoL._SL1500_.jpg',
-    quantity: 1,
-    stock: 10,
-    deleted: false
-  }, {
-    itemName: 'Anglepoise Type 75 Desk Lamp, Jet Black [Energy Class A]',
-    url: 'http://www.amazon.co.uk/gp/product/B001027J38?ref_=gbps_img_s-3_8407_eccd2ca2&smid=A3P5ROKL5A1OLE',
-    currency: 'GBP',
-    currencySymbol: '£',
-
-    cost: 59.99,
-    imgURL: 'http://ecx.images-amazon.com/images/I/51GYbTD1nxL._SL1296_.jpg',
-    quantity: 2,
-    stock: 11,
-    deleted: false
-  }]
-}
-
 class BasketEntry extends React.Component {
+
   constructor () {
     super()
+    let storage = localStorage
+    // if (storage.length > 0 && storage.getItem('shoppingBasket')) {
+    //   let shoppingBasket = { items: JSON.parse(storage.getItem('shoppingBasket'))}
+    //   this.state = {
+    //     shoppingBasket: shoppingBasket
+    //   }
+    // } else {
+    //   this.state = {
+    //     shoppingBasket: { items: [] }
+    //   }
+    // }
+    let shoppingBasket = { items: [] }
+    if (storage.length > 0 && storage.getItem('shoppingBasket')) {
+      shoppingBasket = { items: JSON.parse(storage.getItem('shoppingBasket'))}
+    }
+
     this.state = {
       shoppingBasket: shoppingBasket
     }
+
     this.deleteFunction = this.deleteFunction.bind(this)
     this.removeFunction = this.removeFunction.bind(this)
     this.restoreFunction = this.restoreFunction.bind(this)
@@ -39,6 +32,32 @@ class BasketEntry extends React.Component {
     this.redirectClick = this.redirectClick.bind(this)
     this.itemCount = this.itemCount.bind(this)
     this.itemCost = this.itemCost.bind(this)
+  }
+
+  componentWillMount () {
+    localStorage.setItem('shoppingBasket', JSON.stringify([{
+      id: '111',
+      itemName: 'Kärcher K4 Full Control Pressure Washer',
+      url: 'http://www.amazon.co.uk/gp/product/B0198VLMLC?ref_=gbps_tit_s-3_8407_d3ac7b06&smid=A3P5ROKL5A1OLE',
+      currency: 'GBP',
+      currencySymbol: '£',
+      cost: 118.99,
+      imgURL: 'http://ecx.images-amazon.com/images/I/81haNKekOoL._SL1500_.jpg',
+      quantity: 1,
+      stock: 10,
+      deleted: false
+    }, {
+      id: '222',
+      itemName: 'Anglepoise Type 75 Desk Lamp, Jet Black [Energy Class A]',
+      url: 'http://www.amazon.co.uk/gp/product/B001027J38?ref_=gbps_img_s-3_8407_eccd2ca2&smid=A3P5ROKL5A1OLE',
+      currency: 'GBP',
+      currencySymbol: '£',
+      cost: 59.99,
+      imgURL: 'http://ecx.images-amazon.com/images/I/51GYbTD1nxL._SL1296_.jpg',
+      quantity: 2,
+      stock: 11,
+      deleted: false
+    }]))
   }
 
   quantityFunction (index, e) {
@@ -100,3 +119,29 @@ class BasketEntry extends React.Component {
 }
 
 export default BasketEntry
+
+const shoppingBasket = {
+  items: [{
+    id: '111',
+    itemName: 'Kärcher K4 Full Control Pressure Washer',
+    url: 'http://www.amazon.co.uk/gp/product/B0198VLMLC?ref_=gbps_tit_s-3_8407_d3ac7b06&smid=A3P5ROKL5A1OLE',
+    currency: 'GBP',
+    currencySymbol: '£',
+    cost: 118.99,
+    imgURL: 'http://ecx.images-amazon.com/images/I/81haNKekOoL._SL1500_.jpg',
+    quantity: 1,
+    stock: 10,
+    deleted: false
+  }, {
+    id: '222',
+    itemName: 'Anglepoise Type 75 Desk Lamp, Jet Black [Energy Class A]',
+    url: 'http://www.amazon.co.uk/gp/product/B001027J38?ref_=gbps_img_s-3_8407_eccd2ca2&smid=A3P5ROKL5A1OLE',
+    currency: 'GBP',
+    currencySymbol: '£',
+    cost: 59.99,
+    imgURL: 'http://ecx.images-amazon.com/images/I/51GYbTD1nxL._SL1296_.jpg',
+    quantity: 2,
+    stock: 11,
+    deleted: false
+  }]
+}
