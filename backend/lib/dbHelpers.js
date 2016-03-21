@@ -1,8 +1,6 @@
 // node modules
 const Guid = require('guid')
 const Bluebird = require('bluebird')
-// local modules
-const utils = require('./utils.js')
 
 module.exports = (client) => {
   const addProduct = (productObj, cb) => {
