@@ -182,5 +182,44 @@ test('testing dbHelper getArrayOfProdObjsByCategories', (t) => {
       t.deepEqual(reply[0], testProductObj, 'array\'s first item is correct')
       t.deepEqual(reply[1], testProductObj2, 'array\'s second item is correct')
     })
+    dbHelpers.getArrayOfProdObjsByCategories(['tech', 'sports'], (err, reply) => {
+      t.ok(!err, 'no error in retrieving the array of product objects from the database call by categories')
+      reply.sort((productA, productB) => {
+        return (productB.averageRating - productA.averageRating)
+      })
+      t.equal(reply.length, 1, 'reply has only one object')
+      t.deepEqual(reply[0], testProductObj, 'array\'s first item is correct')
+    })
+    dbHelpers.getArrayOfProdObjsByCategories(['tech', 'sports', 'cars'], (err, reply) => {
+      t.ok(!err, 'no error in retrieving empty array of product objects from the database call by too many categories')
+      t.equal(reply.length, 0, 'empty array when no products are found')
+    })
+  })
 })
-  // dbHelpers.getProductObjsArrByCategories()
+test('testing dbHelper getSearchResults', (t) => {
+  t.plan(4)
+  dbHelpers.addProduct(testProductObj).then(
+  dbHelpers.addProduct(testProductObj2)).then(
+  dbHelpers.addProduct(testProductObj3)).then(() => {
+    dbHelpers.getArrayOfProdObjsByCategories(['tech'])
+    .then((resultsByCat) => {
+      const results = dbHelpers.filterProductsArrByKeyString(resultsByCat, 'expensive')
+      t.ok(results instanceof Array, 'returns an array')
+      t.deepEqual(results[0], testProductObj2, 'search result gives correct item in tech category with "expensive" keyword')
+    }).catch((categoriesErr) => {
+      console.log(categoriesErr)
+    })
+    dbHelpers.getSearchResults(['cars'], 'superfast 400km/h', (searchResults) => {
+      t.ok(searchResults instanceof Array, 'getSearchResults returns an array')
+      t.deepEqual(searchResults[0], testProductObj3, 'search result works with multi word string')
+    })
+  })
+})
+test('testing searchResults with populated DB', (t) => {
+  const populateDB = require('./../lib/populateDB/populateDB.js')(client)
+  t.plan(2)
+  dbHelpers.getSearchResults(['technology'], '500GB pentium toshiba', (laptopResults) => {
+    t.ok(laptopResults instanceof Array, 'laptop search for 500GB returns an array')
+    t.equal(laptopResults.length, 1, 'laptop search for 500GB returns an array with some results')
+  })
+})
