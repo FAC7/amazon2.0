@@ -15,7 +15,6 @@ require('../css/main.css')
 // import Payment from './../modules/payment.jsx'
 // /{params*} --- resource handler
 // /404 --- page for 'not found'
-
 render((
   <Router>
     <Route path='/' component={Home} />
@@ -24,7 +23,3 @@ render((
     <Route path='/productspage' component={ProductPage} />
   </Router>
   ), document.getElementById('amazon'))
-
-// <Route path='/products' component={Products}/>
-  // <Route path='/basket' component={Basket}/>
-  // <Route path='/payment' component={Payment}/>

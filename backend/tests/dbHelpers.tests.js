@@ -25,7 +25,7 @@ test = tape({
 })
 
 var testProductObj = {
-  'price': 345,
+  'price': '345',
   'vendor': 'brand1',
   'imageUrl': 'https://img.com',
   'title': 'this product is not very descriptive, so you won\'t find it',
@@ -37,7 +37,7 @@ var testProductObj = {
   'categories': JSON.stringify(['sports', 'tech'])
 }
 var testProductObj2 = {
-  'price': 200,
+  'price': '200',
   'vendor': 'brand2',
   'imageUrl': 'https://img2.com',
   'title': 'expensive stuff, don\'t buy this.',
@@ -50,7 +50,7 @@ var testProductObj2 = {
 }
 
 var testProductObj3 = {
-  'price': 10,
+  'price': '10',
   'vendor': 'brand3',
   'imageUrl': 'https://img3.com',
   'title': 'i don\'t know what this is',
@@ -88,7 +88,7 @@ test('testing db Helper addProduct', (t) => {
     })
   })
 })
-test('testing dbHelper getProductsByCategories', (t) => {
+test('testing dbHelper getProductIdsByCategories', (t) => {
   dbHelpers.addProduct(testProductObj, (err, testProductId) => {
     dbHelpers.addProduct(testProductObj2, (err2, testProductId2) => {
       dbHelpers.addProduct(testProductObj3, (err3, testProductId3) => {
@@ -99,24 +99,24 @@ test('testing dbHelper getProductsByCategories', (t) => {
           t.equal(sportsReply.length, 1, 'one item only found in sports category')
           t.equal(sportsReply[0], testProductId, 'correct product id found in sports category')
         })
-        dbHelpers.getProductsByCategories(['tech'], (err5, techReply) => {
-          t.ok(techReply instanceof Array, 'successfull reply to tech getProductsByCategories is an array')
+        dbHelpers.getProductIdsByCategories(['tech'], (err5, techReply) => {
+          t.ok(techReply instanceof Array, 'successfull reply to tech getProductIdsByCategories is an array')
           t.equal(techReply.length, 2, 'two items only found in tech category')
           var trythis1 = techReply[0] === testProductId || techReply[0] === testProductId2
           var trythis2 = techReply[1] === testProductId || techReply[1] === testProductId2
           t.ok(trythis1 && trythis2, 'correct product ids found in tech category')
         })
-        dbHelpers.getProductsByCategories(['cars'], (err6, carsReply) => {
-          t.ok(carsReply instanceof Array, 'successfull reply to cars getProductsByCategories is an array')
+        dbHelpers.getProductIdsByCategories(['cars'], (err6, carsReply) => {
+          t.ok(carsReply instanceof Array, 'successfull reply to cars getProductIdsByCategories is an array')
           t.equal(carsReply.length, 1, 'one item only found in cars category')
           t.equal(carsReply[0], testProductId3, 'correct product id found in cars category')
         })
-        dbHelpers.getProductsByCategories(['sports', 'tech'], (err7, sportsNtechReply) => {
-          t.ok(sportsNtechReply instanceof Array, 'successfull reply to sports & tech getProductsByCategories is an array')
+        dbHelpers.getProductIdsByCategories(['sports', 'tech'], (err7, sportsNtechReply) => {
+          t.ok(sportsNtechReply instanceof Array, 'successfull reply to sports & tech getProductIdsByCategories is an array')
           t.equal(sportsNtechReply.length, 1, 'one item only found in both sports & tech categories')
           t.equal(sportsNtechReply[0], testProductId, 'correct product id found in tech category')
         })
-        dbHelpers.getProductsByCategories('bluah', (err8, bluahReply) => {
+        dbHelpers.getProductIdsByCategories('bluah', (err8, bluahReply) => {
           t.ok(!err8, 'error in retrieving products in unknown category')
         })
       })
@@ -164,3 +164,19 @@ test('testing DBHelper getReviewsByProductId', (t) => {
     })
   })
 })
+test('testing dbHelper getProductObjsArrByCategories', (t) => {
+  t.plan(3)
+  dbHelpers.addProduct(testProductObj).then(
+  dbHelpers.addProduct(testProductObj2)).then(
+  dbHelpers.addProduct(testProductObj3)).then(
+    dbHelpers.getProductObjsArrByCategories(['tech'], (err, reply) => {
+      t.ok(!err, 'no error in retrieving the array of product objects from the database call by categories')
+      reply.sort((productA, productB) => {
+        return (productB.averageRating - productA.averageRating)
+      })
+      t.deepEqual(reply[0], testProductObj, 'array\'s first item is correct')
+      t.deepEqual(reply[1], testProductObj2, 'array\'s second item is correct')
+    })
+  )
+})
+  // dbHelpers.getProductObjsArrByCategories()
