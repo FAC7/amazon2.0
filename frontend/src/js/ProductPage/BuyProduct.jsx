@@ -5,14 +5,14 @@ class BuyProduct extends React.Component {
   constructor () {
     super()
     this.state = {
-      quantitySelected: 1
+      quantity: 1
     }
   }
 
   handleOptions (e) {
     const selected = e.target.options.selectedIndex
     this.setState({
-      quantitySelected: selected + 1
+      quantity: selected + 1
     })
   }
 
@@ -26,12 +26,16 @@ class BuyProduct extends React.Component {
       price: item.price,
       imageLink: item.imageLink,
       stock: item.stock,
-      quantitySelected: this.state.quantitySelected,
+      quantity: this.state.quantity,
       deleted: false
     }
   }
 
-  checkBasketIndex (basket, itemId) {
+  addToLocal (item) {
+    localStorage.setItem('shoppingBasket', JSON.stringify(item))
+  }
+
+  itemInBasketIndex (basket, itemId) {
     let basketIndex
     if (basket) {
       basket.forEach((item, i) => {
@@ -46,34 +50,36 @@ class BuyProduct extends React.Component {
   addToBasket (item) {
     const formatted = this.formatItem(item)
     const basket = JSON.parse(localStorage.getItem('shoppingBasket'))
-    const basketIndex = this.checkBasketIndex(basket, item.id)
-    // console.log('basket=', basket)
+    const basketIndex = this.itemInBasketIndex(basket, item.id)
+
     if (basketIndex > -1) {
-      basket[basketIndex].quantitySelected += this.state.quantitySelected
-      localStorage.setItem('shoppingBasket', JSON.stringify(basket))
+      basket[basketIndex].quantity += this.state.quantity
+      this.addToLocal(basket)
     } else if (basket) {
       basket.push(formatted)
-      localStorage.setItem('shoppingBasket', JSON.stringify(basket))
+      this.addToLocal(basket)
     } else {
-      localStorage.setItem('shoppingBasket', JSON.stringify([formatted]))
+      this.addToLocal([formatted])
     }
     console.log('shoppingbasketitem---', localStorage.getItem('shoppingBasket'))
   // localStorage.removeItem('shoppingBasket')
   }
 
-  createOptions () {
+  generateOptions () {
     let stock = this.props.stock
-    if (stock > 0) {
-      let options = []
-      let i = 1
-      while (i <= stock) {
-        options.push(<option value={i}>{i}</option>)
-        i++
-      }
+    let options = []
+    for (let i = 1; i <= stock; i++) {
+      options.push(<option value={i}>{i}</option>)
+    }
+    return options
+  }
+
+  createDropdown () {
+    if (this.props.stock > 0) {
       return (
         <div>
           <select onChange={this.handleOptions.bind(this)}>
-            {options}
+            {this.generateOptions()}
           </select>
           <Button addToBasket={this.addToBasket.bind(this)} {...this.props} />
         </div>
@@ -87,12 +93,10 @@ class BuyProduct extends React.Component {
 
   render () {
     return (
-    <div>
-      {this.createOptions()}
-      <p>
-        {this.props.stock} items left
-      </p>
-    </div>
+      <div>
+        <div>{this.createDropdown()}</div>
+        <p>{this.props.stock} items left</p>
+      </div>
     )
   }
 }
