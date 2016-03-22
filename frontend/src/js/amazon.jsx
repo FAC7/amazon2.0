@@ -5,6 +5,7 @@ import Products from './../modules/products.jsx'
 import Basket from './../modules/basket.jsx'
 import Search from './../modules/search.jsx'
 import Payment from './../modules/payment.jsx'
+import ProductPage from './ProductPage/ProductPage.jsx'
 import { browserHistory } from 'react-router'
 // import ReactDom from 'react-dom'
 // import Category from './itemCategory/Category.jsx'
@@ -30,5 +31,6 @@ render((
     <Route path='/search' activeStyle={{ color: 'red' }}component={Search} />
     <Route path='/products' activeStyle={{ color: 'red' }}component={Products} />
     <Route path='/payment' activeStyle={{ color: 'red' }} component={Payment} />
+    <Route path='/item/:itemID' component={ProductPage} />
   </Router>
   ), document.getElementById('amazon'))
