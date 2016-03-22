@@ -8,7 +8,7 @@ const style = {
 class BasketImgItem extends React.Component {
   render () {
     return (
-    <a href={this.props.url}><img style={style} src={this.props.imgURL} /></a>
+      <a href={this.props.url}><img style={style} src={this.props.imgURL} /></a>
     )
   }
 }

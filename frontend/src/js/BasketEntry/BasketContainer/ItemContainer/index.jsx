@@ -7,15 +7,6 @@ import Quantity from '../../../common/input.jsx'
 import AdditionalInfo from './AdditionalInfo.jsx'
 
 class ItemContainer extends React.Component {
-  // quantityFunction (e) {
-  //   console.log('clicked at ' + e.target.value , 'index is : ' + this.props.index)
-  //   console.log(this)
-  // if (e.target.value !== '' && !isNaN(Number(e.target.value))) {
-  //   this.state.shoppingBasket.items[this.props.index].quantity = e.target.value
-  //   console.log(this.state.shoppingBasket.items[this.props.index].quantity)
-  //   this.setState(this.state)
-  // }
-  // }
 
   render () {
     const item = this.props.itemInfo

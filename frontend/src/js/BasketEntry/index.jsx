@@ -27,6 +27,7 @@ class BasketEntry extends React.Component {
   }
 
   componentWillMount () {
+    // this can be removed when we get localStorage from adding items
     window.localStorage.setItem('shoppingBasket', JSON.stringify([{
       id: '111',
       itemName: 'Kärcher K4 Full Control Pressure Washer',
@@ -60,11 +61,11 @@ class BasketEntry extends React.Component {
     }
   }
 
-  quantityValidation(index) {
+  quantityValidation (index) {
     if (this.state.shoppingBasket.items[index].quantity === 0) {
-      return "quantity cannot be empty or 0"
+      return 'quantity cannot be empty or 0'
     } else if (this.state.shoppingBasket.items[index].quantity > this.state.shoppingBasket.items[index].stock) {
-      return "only " + this.state.shoppingBasket.items[index].stock + " left in stock"
+      return 'only ' + this.state.shoppingBasket.items[index].stock + ' left in stock'
     }
   }
 

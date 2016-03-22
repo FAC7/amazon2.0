@@ -10,8 +10,7 @@ class BasketContainer extends React.Component {
     const items = this.props.shoppingBasket.items
     return (
     <div>
-      {items.length === 0 ? <h1>Shopping Basket is Empty</h1> :
-         <table cellPadding='10'>
+      {items.length === 0 ? <h1>Shopping Basket is Empty</h1> : <table cellPadding='10'>
            <tbody>
              <tr>
                <TableHeading headingName='' span='1' />
@@ -20,8 +19,8 @@ class BasketContainer extends React.Component {
                <TableHeading headingName='Quantity' span='2' />
              </tr>
              {items.map((item, index) => {
-                if (!item.deleted) {
-                  return (
+               if (!item.deleted) {
+                 return (
                   <ItemContainer
                     index={index}
                     key={index}
@@ -30,8 +29,8 @@ class BasketContainer extends React.Component {
                     quantityFunction={this.props.quantityFunction}
                     quantityValidation={this.props.quantityValidation} />
                   )
-                } else {
-                  return (
+               } else {
+                 return (
                   <DeletedItemContainer
                     span='3'
                     index={index}
@@ -40,8 +39,8 @@ class BasketContainer extends React.Component {
                     removeFunction={this.props.removeFunction}
                     restoreFunction={this.props.restoreFunction} />
                   )
-                }
-              })}
+               }
+             })}
            </tbody>
          </table>}
       {items.length > 0 ? <CheckoutContainer redirectClick={this.props.redirectClick} numItems={this.props.numItems} getPrice={this.props.getPrice} /> : <p></p>}
