@@ -75,6 +75,19 @@ server.register(plugins, (err) => {
           console.log(err3)
         })
       }
+    }, {
+      method: 'GET',
+      path: '/getIndividualItem/{id}',
+      handler: (request, reply) => {
+        const client = require('./redis.js')
+        const dbHelpers = require('./dbHelpers.js')(client)
+        dbHelpers.getProductById(request.params.id, (err, response) => {
+          if (err) throw Error
+          else {
+            reply(response)
+          }
+        })
+      }
     }
   ])
 })

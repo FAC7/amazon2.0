@@ -46,7 +46,7 @@ class Slider extends React.Component {
     }
     let products = this.state.categoryArray.map((item) => {
       return (
-        <div> <Item itemName={item.itemName} price={'£ ' + item.price} imageUrl={item.imageUrl}/></div>
+        <div> <Item itemName={item.itemName} price={'£ ' + item.price} imageUrl={item.imageUrl} itemID={item.id}/></div>
       )
     })
     return (
