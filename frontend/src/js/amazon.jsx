@@ -2,10 +2,12 @@ import React from 'react'
 import { render } from 'react-dom'
 import Home from './../modules/home.jsx'
 import Products from './../modules/products.jsx'
-import Basket from './../modules/basket.jsx'
+import BasketEntry from './BasketEntry/index.jsx'
 import Search from './../modules/search.jsx'
 import Payment from './../modules/payment.jsx'
 import SearchResults from './SearchResults/index.jsx'
+import ProductPage from './ProductPage/ProductPage.jsx'
+
 // import ReactDom from 'react-dom'
 // import Category from './itemCategory/Category.jsx'
 // import SearchBar from './searchbar/searchbar.jsx'
@@ -17,9 +19,9 @@ class App extends React.Component {
   constructor () {
     super()
     this.state = {
-      searchResults : []
+      searchResults: []
     }
-    this.search = this.search.bind(this);
+    this.search = this.search.bind(this)
   }
 
   search () {
@@ -42,7 +44,7 @@ class App extends React.Component {
         <Route
           path='/basket'
           activeStyle={{ color: 'red' }}
-          component={Basket}
+          component={BasketEntry}
         />
         <Route
           path='/search'
@@ -60,10 +62,17 @@ class App extends React.Component {
           activeStyle={{ color: 'red' }}
           component={Payment}
         />
+        <Route
+          path='/item/:itemID'
+          component={ProductPage}
+        />
+        <Route
+          path='/search?q=:searchString&categories=:categories'
+          component={SearchResults}
+        />
       </Router>
-    );
+    )
   }
-
 
 }
 // potential future routes

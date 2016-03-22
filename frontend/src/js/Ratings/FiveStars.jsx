@@ -14,11 +14,17 @@ class FiveStars extends React.Component {
 
   render () {
     return (
-    <div>
-      {this.mapStars()}
-    </div>
+      <div>
+        {this.mapStars()}
+      </div>
     )
   }
+}
+
+FiveStars.propTypes = {
+  rating: React.PropTypes.number,
+  productId: React.PropTypes.number,
+  clickStars: React.PropTypes.function
 }
 
 FiveStars.defaultProps = {
