@@ -2,6 +2,7 @@ import React from 'react'
 import InfoBox from './InfoBox.jsx'
 import Description from './Description.jsx'
 import ReviewList from '../ReviewBox/ReviewList.jsx'
+import Header from '../Header/index.jsx'
 require('../../css/grid.css')
 
 class ProductPage extends React.Component {
@@ -34,6 +35,7 @@ class ProductPage extends React.Component {
   render () {
     return (
       <div>
+        <Header />
         <div className='container'>
           <div className='img-scale column-third'>
             <img src={this.state.product.imageLink} />
