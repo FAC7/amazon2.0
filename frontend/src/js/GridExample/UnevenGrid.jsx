@@ -9,13 +9,13 @@ const styles = {
 class UnevenGrid extends React.Component {
   render () {
     return (
-    <div className='container'>
-      <div className='column-third' style={styles}></div>
-      <div className='column' style={styles}></div>
-      <div className='column' style={styles}></div>
-      <div className='column' style={styles}></div>
-      <div className='column' style={styles}></div>
-    </div>
+      <div className='container'>
+        <div className='column-third' style={styles}></div>
+        <div className='column' style={styles}></div>
+        <div className='column' style={styles}></div>
+        <div className='column' style={styles}></div>
+        <div className='column' style={styles}></div>
+      </div>
     )
   }
 }
