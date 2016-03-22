@@ -28,7 +28,7 @@ class BasketEntry extends React.Component {
 
   componentWillMount () {
     // this can be removed when we get localStorage from adding items
-    window.window.localStorage.setItem('shoppingBasket', JSON.stringify([{
+    window.localStorage.setItem('shoppingBasket', JSON.stringify([{
       id: '111',
       itemName: 'Kärcher K4 Full Control Pressure Washer',
       url: 'http://www.amazon.co.uk/gp/product/B0198VLMLC?ref_=gbps_tit_s-3_8407_d3ac7b06&smid=A3P5ROKL5A1OLE',
