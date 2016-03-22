@@ -1,8 +1,8 @@
 import React from 'react'
 
-const TableHeading = (props) => <th colSpan={props.span}>
-                                  {props.headingName}
-                                </th>
+const TableHeading = (props) => {
+  <th colSpan={props.span}>{props.headingName}</th>
+}
 
 TableHeading.propTypes = {
   headingName: React.PropTypes.string.isRequired,

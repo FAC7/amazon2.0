@@ -1,3 +1,5 @@
+const Path = require('path')
+
 module.exports = {
   entry: {
     javascript: './src/js/amazon.jsx',
@@ -5,7 +7,7 @@ module.exports = {
   },
   output: {
     filename: 'amazon.js',
-    path: __dirname.join('/production')
+    path: Path.join(__dirname, 'production')
   },
   module: {
     loaders: [

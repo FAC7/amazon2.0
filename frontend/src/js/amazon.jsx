@@ -2,10 +2,11 @@ import React from 'react'
 import { render } from 'react-dom'
 import Home from './../modules/home.jsx'
 import Products from './../modules/products.jsx'
-import Basket from './../modules/basket.jsx'
+import BasketEntry from './BasketEntry/index.jsx'
 import Search from './../modules/search.jsx'
 import Payment from './../modules/payment.jsx'
-import { browserHistory } from 'react-router'
+// import { browserHistory } from 'react-router'
+
 // import ReactDom from 'react-dom'
 // import Category from './itemCategory/Category.jsx'
 // import SearchBar from './searchbar/searchbar.jsx'
@@ -23,10 +24,10 @@ require('../css/main.css')
 // /{params*} --- resource handler
 // /404 --- page for 'not found'
 render((
-  <Router history={browserHistory}>
+  <Router>
     <Route path='/' activeStyle={{ color: 'red' }}component={Home} />
     <Route path='/home' activeStyle={{ color: 'red' }}component={Home} />
-    <Route path='/basket' activeStyle={{ color: 'red' }}component={Basket} />
+    <Route path='/basket' activeStyle={{ color: 'red' }}component={BasketEntry} />
     <Route path='/search' activeStyle={{ color: 'red' }}component={Search} />
     <Route path='/products' activeStyle={{ color: 'red' }}component={Products} />
     <Route path='/payment' activeStyle={{ color: 'red' }} component={Payment} />

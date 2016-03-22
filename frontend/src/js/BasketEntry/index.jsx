@@ -108,16 +108,16 @@ class BasketEntry extends React.Component {
 
   render () {
     return (
-    <BasketContainer
-      shoppingBasket={this.state.shoppingBasket}
-      deleteFunction={this.deleteFunction}
-      removeFunction={this.removeFunction}
-      restoreFunction={this.restoreFunction}
-      redirectClick={this.redirectClick}
-      numItems={this.itemCount}
-      getPrice={this.itemCost}
-      quantityFunction={this.quantityFunction}
-      quantityIsEmpty={this.quantityIsEmpty} />
+      <BasketContainer
+        shoppingBasket={this.state.shoppingBasket}
+        deleteFunction={this.deleteFunction}
+        removeFunction={this.removeFunction}
+        restoreFunction={this.restoreFunction}
+        redirectClick={this.redirectClick}
+        numItems={this.itemCount}
+        getPrice={this.itemCost}
+        quantityFunction={this.quantityFunction}
+        quantityIsEmpty={this.quantityIsEmpty} />
     )
   }
 }

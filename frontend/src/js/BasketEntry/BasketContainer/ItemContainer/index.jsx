@@ -20,29 +20,29 @@ class ItemContainer extends React.Component {
   render () {
     const item = this.props.itemInfo
     return (
-    <tr>
-      <td>
-        <Image url={item.url} imgURL={item.imgURL} />
-      </td>
-      <td>
-        <ItemName itemName={item.itemName} url={item.url} />
-        <AdditionalInfo stock={item.stock} />
-        <DeleteLink deleteFunction={this.props.deleteFunction} index={this.props.index} />
-      </td>
-      <td>
-        <Price cost={item.cost} currencySymbol={item.currencySymbol} />
-      </td>
-      <td>
-        <Quantity
-          width='20px'
-          key={this.props.index}
-          onChange={this.props.quantityFunction.bind(null, this.props.index)}
-          defaultValue={item.quantity} />
-        <p style={styleP} index={this.props.index}>
-          {this.props.quantityIsEmpty(this.props.index)}
-        </p>
-      </td>
-    </tr>
+      <tr>
+        <td>
+          <Image url={item.url} imgURL={item.imgURL} />
+        </td>
+        <td>
+          <ItemName itemName={item.itemName} url={item.url} />
+          <AdditionalInfo stock={item.stock} />
+          <DeleteLink deleteFunction={this.props.deleteFunction} index={this.props.index} />
+        </td>
+        <td>
+          <Price cost={item.cost} currencySymbol={item.currencySymbol} />
+        </td>
+        <td>
+          <Quantity
+            width='20px'
+            key={this.props.index}
+            onChange={this.props.quantityFunction.bind(null, this.props.index)}
+            defaultValue={item.quantity} />
+          <p style={styleP} index={this.props.index}>
+            {this.props.quantityIsEmpty(this.props.index)}
+          </p>
+        </td>
+      </tr>
     )
   }
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Link = (props) => <button onClick={props.callback.bind(null, props.index)}>
-                          {props.linkName}
-                        </button>
+const Link = (props) => {
+  <button onClick={props.callback.bind(null, props.index)}>{props.linkName}</button>
+}
 
 Link.propTypes = {
   callback: React.PropTypes.func.isRequired,

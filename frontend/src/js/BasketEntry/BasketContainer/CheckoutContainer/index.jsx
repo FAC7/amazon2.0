@@ -8,17 +8,17 @@ import TotalPrice from './TotalPrice.jsx'
 
 class CheckoutContainer extends React.Component {
 
-  shouldComponentUpdate(nextProps) {
-  	return nextProps !== this.props.numItems
+  shouldComponentUpdate (nextProps) {
+    return nextProps !== this.props.numItems
   }
 
   render () {
     return (
-    <div>
-      <Subtotal subTotal='Subtotal ' numItems={this.props.numItems} />
-      <TotalPrice getPrice={this.props.getPrice} />
-      <Button handleClick={this.props.redirectClick} buttonText='Proceed to Checkout' />
-    </div>
+      <div>
+        <Subtotal subTotal='Subtotal ' numItems={this.props.numItems} />
+        <TotalPrice getPrice={this.props.getPrice} />
+        <Button handleClick={this.props.redirectClick} buttonText='Proceed to Checkout' />
+      </div>
     )
   }
 }

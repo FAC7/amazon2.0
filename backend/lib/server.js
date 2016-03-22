@@ -55,7 +55,7 @@ server.register(plugins, (err) => {
     }, {
       method: 'GET',
       path: '/getItemsForCarousel',
-      handler: function (request, reply) {
+      handler: (request, reply) => {
         const client = require('./redis.js')
         const dbHelpers = require('./dbHelpers.js')(client)
         dbHelpers.getArrayOfProdObjsByCategories(['appliances', 'electric', 'global'])
