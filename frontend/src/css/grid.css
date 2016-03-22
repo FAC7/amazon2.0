@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+}
+
+@media (max-width: 650px) {
+  .container {
+    flex-direction: column;
+  }
+  .column {
+    flex: 0 0 auto;
+  }
+}
+
+@media (min-width: 650px) {
+  .column-tenth {
+    flex: 0 0 10%;
+  }
+  .column-fifth {
+    flex: 0 0 20%;
+  }
+  .column-quarter {
+    flex: 0 0 25%;
+  }
+  .column-third {
+    flex: 0 0 33.3333334%;
+  }
+  .column-half {
+    flex: 0 0 50%;
+  }
+}

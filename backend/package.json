@@ -7,21 +7,28 @@
     "test": "tests"
   },
   "scripts": {
-      "start": "node ./lib/server.js",
-      "nodemon": "nodemon ./lib/server.js",
-      "test": "tape tests/runner.js"
+    "start": "node ./lib/index.js",
+    "nodemon": "nodemon ./lib/index.js",
+    "test": "tape tests/runner.js",
+    "postinstall": "mkdir -p ../.git/hooks && cp ../hooks/pre-commit ../.git/hooks && chmod -R 755 ../.git/hooks"
   },
   "keywords": [],
   "author": "FAC7",
   "license": "ISC",
   "dependencies": {
+    "env2": "^2.0.6",
+    "guid": "0.0.12",
     "hapi": "^13.2.1",
-    "inert": "^3.2.0"
+    "inert": "^3.2.0",
+    "path": "^0.12.7",
+    "redis": "^2.5.2",
+    "stripe": "^4.5.0"
   },
   "devDependencies": {
     "codecov.io": "^0.1.6",
     "istanbul": "^0.4.2",
     "nodemon": "^1.9.1",
-    "tape": "^4.5.1"
+    "tape": "^4.5.1",
+    "wrapping-tape": "0.0.3"
   }
 }
