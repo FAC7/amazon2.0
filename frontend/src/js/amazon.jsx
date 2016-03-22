@@ -5,6 +5,7 @@ import Products from './../modules/products.jsx'
 import Basket from './../modules/basket.jsx'
 import Search from './../modules/search.jsx'
 import Payment from './../modules/payment.jsx'
+import SearchResults from './SearchResults/index.jsx'
 // import ReactDom from 'react-dom'
 // import Category from './itemCategory/Category.jsx'
 // import SearchBar from './searchbar/searchbar.jsx'
@@ -14,8 +15,9 @@ require('../css/main.css')
 
 class App extends React.Component {
   constructor () {
+    super()
     this.state = {
-      searchResults = []
+      searchResults : []
     }
     this.search = this.search.bind(this);
   }
