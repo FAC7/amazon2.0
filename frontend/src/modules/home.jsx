@@ -17,7 +17,7 @@ export default React.createClass({
       <div>
         <h1>Amazon 2.0 Home Page</h1>
         <SearchBar/>
-        <Category categoryName='hairdryers' />
+        <Category />
         <ul role='nav'>
           <li>
             <Link to='/home' activeStyle={{ color: 'red' }}> Home
