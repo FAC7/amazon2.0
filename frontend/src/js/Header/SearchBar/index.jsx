@@ -41,7 +41,7 @@ SearchBar.propTypes = {
 }
 
 SearchBar.defaultProps = {
-  submitURL: '/home',
+  submitURL: '/',
   submitHandler: function () {},
   showSubmit: true,
   width: '90%',
