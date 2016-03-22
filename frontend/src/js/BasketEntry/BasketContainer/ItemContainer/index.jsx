@@ -13,15 +13,15 @@ class ItemContainer extends React.Component {
     return (
     <tr>
       <td>
-        <Image url={item.url} imgURL={item.imgURL} />
+        <Image url={item.url} imageLink={item.imageLink} />
       </td>
       <td>
-        <ItemName itemName={item.itemName} url={item.url} />
+        <ItemName title={item.title} url={item.url} />
         <AdditionalInfo stock={item.stock} />
         <DeleteLink deleteFunction={this.props.deleteFunction} index={this.props.index} />
       </td>
       <td>
-        <Price cost={item.cost} currencySymbol={item.currencySymbol} />
+        <Price price={item.price} currencySymbol={item.currencySymbol} />
       </td>
       <td>
         <Quantity

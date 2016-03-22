@@ -18,7 +18,7 @@ require('../css/main.css')
 // import Products from './../modules/products.jsx'
 // import ProductsCatagories from './../modules/productscatagories.jsx'
 // import ProductsCatagoriesItem  from './../modules/productscatagoriesitem.jsx'
-import Basket from './../modules/basket.jsx'
+import Basket from './BasketEntry/index.jsx'
 // import Payment from './../modules/payment.jsx'
 // /{params*} --- resource handler
 // /404 --- page for 'not found'
