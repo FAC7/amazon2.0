@@ -11,11 +11,11 @@ class CheckoutForm extends React.Component {
         <form id='payment-form' method='POST' onSubmit={clickHandler} formAction='' style={formStyles}>
           <div style={divStyles}>
             <label htmlFor='card-number'>Card Number*:</label>
-              <Input
-                data-stripe='number'
-                type='text'
-                placeholder='NNNNNNNNNNNNNNNN'
-                width='15em' />
+            <Input
+              data-stripe='number'
+              type='text'
+              placeholder='NNNNNNNNNNNNNNNN'
+              width='15em' />
           </div>
 
           <div style={divStyles}>

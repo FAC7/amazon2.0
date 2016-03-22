@@ -4,7 +4,7 @@ const Button = (props) => <button onClick={props.handleClick}>{props.buttonText}
 
 Button.propTypes = {
   handleClick: React.PropTypes.func,
-  buttonText: React.PropTypes.string
+  buttonText: React.PropTypes.string.isRequired
 }
 
 export default Button

@@ -19,15 +19,15 @@ class Payment extends React.Component {
         </div>
         <table className='tableDiv'>
           <tbody>
-          <tr>
-            <td className='tdRight'>Order Number:</td>
-            <td>{payDeets.order_number}</td>
-          </tr>
-          <tr>
-            <td className='tdRight'>Card Number:</td>
-            <td>xxxx xxxx xxxx {payDeets.card_number}</td>
-          </tr>
-        </tbody>
+            <tr>
+              <td className='tdRight'>Order Number:</td>
+              <td>{payDeets.order_number}</td>
+            </tr>
+            <tr>
+              <td className='tdRight'>Card Number:</td>
+              <td>xxxx xxxx xxxx {payDeets.card_number}</td>
+            </tr>
+          </tbody>
         </table>
       </div>
     )
