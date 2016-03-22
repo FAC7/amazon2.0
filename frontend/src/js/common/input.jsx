@@ -6,8 +6,8 @@ import React from 'react'
 class Input extends React.Component {
   render () {
     var {display, width, height, ...props} = this.props
-    styles.width = (width) ? width : undefined
-    styles.height = (height) ? height : undefined
+    styles.width = width
+    styles.height = height
     styles.display = display
     return (
       <input style={styles} {...props}/>

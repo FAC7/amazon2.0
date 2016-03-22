@@ -46,20 +46,20 @@ class ReviewBox extends React.Component {
 
   render () {
     return (
-    <form>
-      <FiveStars {...this.props} clickStars={this.clickStars} rating={this.state.rating} />
-      <input
-        onChange={this.handleAuthor}
-        type='text'
-        name='author'
-        placeholder='your name'
-        required></input>
-      <br/>
-      <textarea onChange={this.handleReview} rows='4' columns='50'></textarea>
-      <button onClick={this.submitReview} type='button'>
-        Submit Review
-      </button>
-    </form>
+      <form>
+        <FiveStars {...this.props} clickStars={this.clickStars} rating={this.state.rating} />
+        <input
+          onChange={this.handleAuthor}
+          type='text'
+          name='author'
+          placeholder='your name'
+          required></input>
+        <br/>
+        <textarea onChange={this.handleReview} rows='4' columns='50'></textarea>
+        <button onClick={this.submitReview} type='button'>
+          Submit Review
+        </button>
+      </form>
     )
   }
 }

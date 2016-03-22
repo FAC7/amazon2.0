@@ -7,15 +7,6 @@ import React from 'react'
 // * Default to the current selected one when you click off of the list
 
 class CategoryButton extends React.Component {
-
-  constructor () {
-    super()
-    this.state = { array: ['all departments'],
-                   selected: 'all departments',
-                   listOpen: false
-                 }
-  }
-
   render () {
     styles.backgroundColor = this.props.buttonColor
     styles.borderColor = this.props.buttonColor

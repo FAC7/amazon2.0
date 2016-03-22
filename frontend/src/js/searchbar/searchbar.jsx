@@ -1,4 +1,6 @@
 import React from 'react'
+import { browserHistory } from 'react-router'
+import querystring from 'querystring'
 import SearchBox from './searchbox.jsx'
 import SubmitButton from './submitbutton.jsx'
 import CategoryButton from './categorybutton.jsx'
@@ -11,21 +13,21 @@ class SearchBar extends React.Component {
     this.sendRequest = this.sendRequest.bind(this)
     this.state = {
       input: '',
-      category: '',
-      array: ['all departments'],
-      selected: 'all departments',
-      listOpen: false
+      category: 'global',
+      array: ['global'],
+      listOpen: false,
+      results: ''
     }
   }
 
   showArray (item) {
-    const catArray = ['all departments', 'technology', 'computers', 'global', 'sport', 'garden', 'furniture', 'electric', 'clothing', 'men', 'television', 'women'].sort()
+    const catArray = ['global', 'technology', 'computers', 'global', 'sport', 'garden', 'furniture', 'electric', 'clothing', 'men', 'television', 'women'].sort()
     this.state.listOpen = !this.state.listOpen
     if (this.state.listOpen) {
       this.state.array = []
       catArray.map((i) => this.state.array.push(i))
     } else {
-      this.state.selected = item
+      this.state.category = item
       this.state.array = [item]
     }
     this.setState(this.state)
@@ -34,21 +36,29 @@ class SearchBar extends React.Component {
   handleChange (e) {
     this.state.input = e.target.value
     this.setState(this.state)
-    console.log(this.state)
     // TODO Setup autocomplete
   }
 
   sendRequest (e) {
     e.preventDefault()
     console.log(this.state, 'STATE')
+    var obj = {}
+    obj.category = this.state.category
+    obj.input = this.state.input
     var xhr = new XMLHttpRequest() // eslint-disable-line
     xhr.addEventListener('load', (response) => {
-      if (response) {
-
-      }
+      console.log(response.target.response, '<<----RESPONSE!!!!!')
+      this.state.results = response.target.response
+      this.setState(this.state)
+      console.log(this.state, 'STATE!!!!!')
+      obj = {}
+      obj.q = 'input'
+      obj.categories = 'categories'
+      browserHistory.push('/search' + querystring.stringify(obj))
     })
-    xhr.open('GET', '/search')
-    xhr.send(this.state)
+    console.log(obj, 'OBJ')
+    xhr.open('GET', '/search?' + querystring.stringify(obj))
+    xhr.send()
   }
 
   render () {
@@ -79,7 +89,7 @@ SearchBar.propTypes = {
 }
 
 SearchBar.defaultProps = {
-  submitURL: '/',
+  submitURL: '/home',
   submitHandler: function () {},
   showSubmit: true,
   width: '90%',

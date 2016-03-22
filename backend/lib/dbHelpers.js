@@ -1,6 +1,10 @@
+'use strict'
 // node modules
 const Guid = require('guid')
 const Bluebird = require('bluebird')
+
+// local modules
+const utils = require('./utils.js')
 
 module.exports = (client) => {
   const addProduct = (productObj, cb) => {
@@ -53,7 +57,7 @@ module.exports = (client) => {
   }
   this.getProductIdsByCategories = Bluebird.promisify(getProductIdsByCategories)
 
-  this.getProductObjsArrByCategories = (categoriesArr, cb) => {
+  const getArrayOfProdObjsByCategories = (categoriesArr, cb) => {
     this.getProductIdsByCategories(categoriesArr).then(
       (productIdsArr) => {
         if (productIdsArr.length === 0) {
@@ -65,7 +69,6 @@ module.exports = (client) => {
           // console.log(productObjsPromises)
           Bluebird.all(productObjsPromises).then(
             (productObjsResults) => {
-              // console.log(productObjsResults)
               cb(null, productObjsResults)
             }
           )
@@ -73,7 +76,34 @@ module.exports = (client) => {
       }
     )
   }
+  this.getArrayOfProdObjsByCategories = Bluebird.promisify(getArrayOfProdObjsByCategories)
 
+  this.filterProductsArrByKeyString = (productObjsArr, keyString) => {
+    if (productObjsArr.length === 0) {
+      productObjsArr = ['global']
+    }
+    keyString = utils.removeUnwantedStrings(keyString)
+    const results = productObjsArr.filter((productObj) => {
+      let check = true
+      keyString.split(' ').forEach((keyWord) => {
+        let re = new RegExp(keyWord, 'i')
+        if (check && !productObj.title.match(re)) {
+          check = false
+        }
+      })
+      return check
+    })
+    return results
+  }
+  this.getSearchResults = (categoriesArr, keyString, cb) => {
+    this.getArrayOfProdObjsByCategories(categoriesArr)
+    .then((resultsByCat) => {
+      cb(null, this.filterProductsArrByKeyString(resultsByCat, keyString))
+    })
+    .catch((categoriesErr) => {
+      cb(categoriesErr, null)
+    })
+  }
   this.getReviewsByProductId = (id, cb) => {
     client.hget(id, 'reviews', (err, reply) => {
       if (err) {
@@ -86,7 +116,6 @@ module.exports = (client) => {
   this.addReview = (productId, reviewObj, cb) => {
     this.getReviewsByProductId(productId, (err, reviews) => {
       if (err) return cb(err)
-
       reviews.push(reviewObj)
       var avgRating = reviews.reduce((accum, review) => {
         return accum + Number(review.rating)
@@ -103,19 +132,5 @@ module.exports = (client) => {
       )
     })
   }
-
-  // this.getProductObjsByKeyString = (productObjsArr, keyString, cb) => {
-  //   if(productsArr.length === 0){
-  //     productsArr = ['global']
-  //   }
-  //   var results = []
-  //   keyString = utils.removeUnwantedStrings(keyString)
-  //   productsArr.forEach( productId => {
-  //     this.getProductById(productId, (err,reply)=>{
-  //
-  //     })
-  //   })
-  // }
-
   return this
 }
