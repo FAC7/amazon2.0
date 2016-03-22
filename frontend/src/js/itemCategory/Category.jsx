@@ -6,15 +6,10 @@ class Category extends React.Component {
     const categoryName = this.props.categoryName
     return (
       <div className='category'>
-        <h2>{categoryName}</h2>
         <Slider />
       </div>
     )
   }
-}
-
-Category.propTypes = {
-  categoryName: React.PropTypes.string.isRequired
 }
 
 export default Category
