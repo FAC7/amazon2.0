@@ -6,7 +6,7 @@ class SearchResults extends React.Component {
 
   render () {
     return (
-      <ul>
+      <ul style={listStyle}>
         {data.map((item) => {
           return (
             <li key={item.id} className='itemLi'>
@@ -22,6 +22,12 @@ class SearchResults extends React.Component {
       </ul>
     )
   }
+}
+
+const listStyle = {
+  padding: '0',
+  margin: '0 auto',
+  width: '60%'
 }
 
 export default SearchResults
