@@ -88,6 +88,28 @@ server.register(plugins, (err) => {
           }
         })
       }
+    }, {
+      method: 'POST',
+      path: '/submitReview',
+      handler: (request, reply) => {
+        const client = require('./redis.js')
+        const dbHelpers = require('./dbHelpers.js')(client)
+        const reviewObj = JSON.parse(request.payload)
+        const formattedObj = {
+          author: reviewObj.author,
+          date: reviewObj.date,
+          rating: reviewObj.rating,
+          text: reviewObj.text
+        }
+        console.log(formattedObj)
+        dbHelpers.addReview(reviewObj.id, formattedObj, (err, response) => {
+          if (err) {
+            throw error
+          } else {
+            reply(response)
+          }
+        })
+      }
     }
   ])
 })
