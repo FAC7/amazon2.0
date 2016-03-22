@@ -24,6 +24,8 @@ class BasketEntry extends React.Component {
     this.redirectClick = this.redirectClick.bind(this)
     this.itemCount = this.itemCount.bind(this)
     this.itemCost = this.itemCost.bind(this)
+    this.addItem = this.addItem.bind(this)
+    this.removeItem = this.removeItem.bind(this)
   }
 
   componentWillMount () {
@@ -53,12 +55,8 @@ class BasketEntry extends React.Component {
     }]))
   }
 
-  quantityFunction (index, e) {
-    if (!isNaN(Number(e.target.value))) {
-      this.state.shoppingBasket.items[index].quantity = Number(e.target.value)
-      window.localStorage.setItem('shoppingBasket', JSON.stringify(this.state.shoppingBasket.items))
-      this.setState(this.state)
-    }
+  quantityFunction (index) {
+    return this.state.shoppingBasket.items[index].quantity
   }
 
   quantityValidation (index) {
@@ -115,6 +113,24 @@ class BasketEntry extends React.Component {
     return cost
   }
 
+  addItem (index) {
+    let item = this.state.shoppingBasket.items[index]
+    if (item.quantity < item.stock) {
+      item.quantity++
+      window.localStorage.setItem('shoppingBasket', JSON.stringify(this.state.shoppingBasket.items))
+      this.setState(this.state)
+    }
+  }
+
+  removeItem (index) {
+    let item = this.state.shoppingBasket.items[index]
+    if (item.quantity > 1) {
+      item.quantity--
+      window.localStorage.setItem('shoppingBasket', JSON.stringify(this.state.shoppingBasket.items))
+      this.setState(this.state)
+    }
+  }
+
   render () {
     return (
     <BasketContainer
@@ -127,6 +143,8 @@ class BasketEntry extends React.Component {
       getPrice={this.itemCost}
       quantityFunction={this.quantityFunction}
       quantityValidation={this.quantityValidation}
+      addItem={this.addItem}
+      removeItem={this.removeItem}
       />
     )
   }
