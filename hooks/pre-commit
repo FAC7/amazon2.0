@@ -31,12 +31,12 @@ fi
 if [ $RUN_LINTER -ne 0 ]; then
   echo "Running standard.js linter before committing"
 
-  cd frontend && standard
+  cd frontend && standard || echo 'CANNOT RUN LINTER!!!'
   WARN_FRONT=$?
 
   cd ..
 
-  cd backend && standard
+  cd backend && standard || echo 'CANNOT RUN LINTER!!!'
   WARN_BACK=$?
 
   if [[ $WARN_FRONT -ne 0 || $WARN_BACK -ne 0 ]]; then
