@@ -15,7 +15,7 @@ class Slider extends React.Component {
       if (xhr.status === 200 && xhr.readyState === 4) {
         const parsed = JSON.parse(xhr.responseText)
         const slicedArr = parsed.slice(0, 20)
-        slicedArr.map((el) => {
+        slicedArr[0].map((el) => {
           const title = el['title']
           const imageLink = el['imageLink']
           const price = el['price']
