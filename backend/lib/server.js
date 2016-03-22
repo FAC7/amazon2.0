@@ -1,12 +1,8 @@
 'use strict'
-// node modules
-const Hapi = require('hapi')
-const Inert = require('inert')
-const Path = require('path')
-// plugins
-const payPlugin = require('./payPlugin.js')
 
-// server config
+const Hapi = require('hapi')
+const Path = require('path')
+
 const server = new Hapi.Server()
 const port = 4000
 // local variables
@@ -19,8 +15,8 @@ server.connection({
 
 // Hapi plugins
 const plugins = [
-  Inert,
-  payPlugin
+  require('inert'),
+  require('./plugins/payments.js')
 ]
 
 server.register(plugins, (err) => {
@@ -104,7 +100,7 @@ server.register(plugins, (err) => {
         console.log(formattedObj)
         dbHelpers.addReview(reviewObj.id, formattedObj, (err, response) => {
           if (err) {
-            throw error
+            throw err
           } else {
             reply(response)
           }

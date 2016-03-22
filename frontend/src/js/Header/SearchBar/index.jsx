@@ -18,7 +18,7 @@ class SearchBar extends React.Component {
     return (
       <form formAction={this.props.submitURL} onSubmit={this.props.submitHandler} style={styles}>
         <SearchBox
-          defaultValue='Type here...'
+          placeholder='Type here...'
           onChange={this.handleChange}
           inputColor={this.props.inputColor}
           roundRight={!this.props.showSubmit}/>
