@@ -41,12 +41,12 @@ class ReviewBox extends React.Component {
     let text = this.state.text
     let rating = this.state.rating
     let date = Date.now()
-    let id     = this.props.id
+    let id = this.props.id // eslint-disable-line
 
     console.log(author, text, rating, id)
-    this.props.closeReviewModal()
+    this.props.closeReviewModal() // eslint-disable-line
 
-    let xhr = new XMLHttpRequest()
+    let xhr = new XMLHttpRequest() // eslint-disable-line
     xhr.onreadystatechange = () => {
       if (xhr.status === 200 && xhr.readyState === 4) {
         console.log(xhr.responseText)
@@ -71,7 +71,9 @@ class ReviewBox extends React.Component {
         <button onClick={this.submitReview} type='button'>
           Submit Review
         </button>
-      <button onClick={this.props.closeReviewModal.bind(this)}>Close</button>
+        <button onClick={
+            this.props.closeReviewModal.bind(this) // eslint-disable-line
+          }>Close</button>
       </form>
     )
   }
