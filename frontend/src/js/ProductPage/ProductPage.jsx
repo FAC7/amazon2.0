@@ -1,6 +1,7 @@
 import React from 'react'
 import InfoBox from './InfoBox.jsx'
 import Description from './Description.jsx'
+import ReviewList from '../ReviewBox/ReviewList.jsx'
 require('../../css/grid.css')
 
 class ProductPage extends React.Component {
@@ -15,13 +16,16 @@ class ProductPage extends React.Component {
     let xhr = new XMLHttpRequest()
     xhr.onreadystatechange = () => {
       if (xhr.status === 200 && xhr.readyState === 4) {
-        this.setState({ product: JSON.parse(xhr.responseText) })
+        let product = JSON.parse(xhr.responseText)
+        product.reviews = JSON.parse(product.reviews)
+        this.setState({ product: product })
         console.log(this.state)
       }
     }
     xhr.open('GET', `http://localhost:4000/getIndividualItem/${this.props.params.itemID}`)
     xhr.send()
   }
+
 
   componentDidMount () {
     this.getData()
@@ -36,7 +40,8 @@ class ProductPage extends React.Component {
           </div>
           <InfoBox {...this.state.product} buttonText='buy' />
         </div>
-        <Description {...this.state.product}  />
+        <Description {...this.state.product} />
+        <ReviewList reviews={this.state.product.reviews} />
       </div>
     )
   }
