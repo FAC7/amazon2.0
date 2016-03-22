@@ -1,7 +1,5 @@
 import React from 'react'
 import Category from './../js/itemCategory/Category.jsx'
-import FiveStars from './../js/Ratings/FiveStars.jsx'
-import SearchBar from './../js/Header/SearchBar/index.jsx'
 import Header from './../js/Header/index.jsx'
 
 // import searchbox from './../js/searchbar/searchbox.jsx'
