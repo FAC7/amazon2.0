@@ -21,8 +21,10 @@ class SearchBar extends React.Component {
           defaultValue='Type here...'
           onChange={this.handleChange}
           inputColor={this.props.inputColor}
-          roundRight={!this.props.showSubmit} />
-        <SubmitButton show={this.props.showSubmit} buttonColor={this.props.buttonColor} />
+          roundRight={!this.props.showSubmit}/>
+        <SubmitButton
+          show={this.props.showSubmit}
+          buttonColor={this.props.buttonColor}/>
       </form>
     )
   }
@@ -39,7 +41,7 @@ SearchBar.propTypes = {
 }
 
 SearchBar.defaultProps = {
-  submitURL: '/home',
+  submitURL: '/',
   submitHandler: function () {},
   showSubmit: true,
   width: '90%',
