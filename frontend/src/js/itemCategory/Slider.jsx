@@ -2,27 +2,6 @@ import React from 'react'
 import Item from './Item.jsx'
 import Slick from 'react-slick'
 
-function mapDBtoState(slicedArr, stateArr) {
-  slicedArr.map((el) => {
-    const title = el['title']
-    const imageLink = el['imageLink']
-    const price = el['price']
-    const id = el['id']
-    stateArr.push({
-      itemName: title,
-      price: price,
-      imageUrl: imageLink,
-      id: id
-    })
-  })
-}
-
-function someOtherMapFunction (item) {
-  return (
-    <div> <Item itemName={item.itemName} price={'£ ' + item.price} imageUrl={item.imageUrl} itemID={item.id}/></div>
-  )
-}
-
 class Slider extends React.Component {
 
   constructor () {
@@ -35,12 +14,19 @@ class Slider extends React.Component {
     xhr.onreadystatechange = () => {
       if (xhr.status === 200 && xhr.readyState === 4) {
         const parsed = JSON.parse(xhr.responseText)
-        const slicedHairdryerArr = parsed[0].slice(0, 20)
-        const slicedFootballArr = parsed[1].slice(0, 20)
-        const slicedLaptopArr = parsed[2].slice(0, 20)
-        mapDBtoState(slicedHairdryerArr, this.state.hairdryersArray)
-        mapDBtoState(slicedFootballArr, this.state.footballsArray)
-        mapDBtoState(slicedLaptopArr, this.state.laptopsArray)
+        parsed.forEach((productsArr, i) => {
+          // grabs hairdryersArray, footballsArray or laptopsArray depending on index
+          const stateArr = this.state[Object.keys(this.state)[i]]
+          // slices first 20 products and pushes product obj into appropriate state array
+          productsArr.slice(0, 20).map((item) => {
+            stateArr.push({
+              itemName: item.title,
+              price: item.price,
+              imageUrl: item.imageLink,
+              id: item.id
+            })
+          })
+        })
         this.setState(this.state)
       }
     }
@@ -58,23 +44,34 @@ class Slider extends React.Component {
       slidesToShow: 5,
       slidesToScroll: 2
     }
-    let hairdryersProducts = this.state.hairdryersArray.map(someOtherMapFunction)
-    let footballsProducts = this.state.footballsArray.map(someOtherMapFunction)
-    let laptopsProducts = this.state.laptopsArray.map(someOtherMapFunction)
+    const returnItemJSX = (item) => {
+      return (
+        <div>
+          <Item
+            itemName={item.itemName}
+            price={'£ ' + item.price}
+            imageUrl={item.imageUrl}
+            itemID={item.id} />
+        </div>
+      )
+    }
+    let hairdryersProducts = this.state.hairdryersArray.map(returnItemJSX)
+    let footballsProducts = this.state.footballsArray.map(returnItemJSX)
+    let laptopsProducts = this.state.laptopsArray.map(returnItemJSX)
     return (
       <div>
         <h2>Hairdryers</h2>
-      <Slick {...settings}>
-        {hairdryersProducts}
-      </Slick>
-      <h2>Footballs</h2>
-      <Slick {...settings}>
-        {footballsProducts}
-      </Slick>
-      <h2>Laptops</h2>
-    <Slick {...settings}>
-      {laptopsProducts}
-    </Slick>
+        <Slick {...settings}>
+          {hairdryersProducts}
+        </Slick>
+        <h2>Footballs</h2>
+        <Slick {...settings}>
+          {footballsProducts}
+        </Slick>
+        <h2>Laptops</h2>
+        <Slick {...settings}>
+          {laptopsProducts}
+        </Slick>
       </div>
     )
   }
