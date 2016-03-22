@@ -6,7 +6,7 @@ const generateDescription = (productArray) => {
 }
 
 const generateSingleReview = (productName) => {
-  const rating = +(Math.random() * (6 - 4) + 3).toFixed(1)
+  const rating = +(Math.random() * 4 + 1).toFixed(1)
   const review = 'This ' + productName + ' was fantastic. I have never been so happy with a product before in my life as I was with the ' + productName
   return {
     author: 'nickname',
@@ -16,6 +16,7 @@ const generateSingleReview = (productName) => {
   }
 }
 
+// generate three different reviews; get average rating from reviews; generate random stock
 const generateThreeReviews = (productArray) => {
   let reviews = []
   for (let i = 0; i < 3; i++) {
@@ -24,12 +25,12 @@ const generateThreeReviews = (productArray) => {
   const rating = Math.round(reviews.reduce((acc, b) => {
     return acc + b.rating
   }, 0) / 3)
-  return {reviews: JSON.stringify(reviews), rating: rating}
+  const stock = Math.floor(Math.random() * 6)
+  return {reviews: JSON.stringify(reviews), rating: rating, stock: stock}
 }
 
 module.exports = (productArray) => {
+  const reviewsAndRating = generateThreeReviews(productArray)
   const description = generateDescription(productArray)
-  const reviews = generateThreeReviews(productArray).reviews
-  const rating = generateThreeReviews(productArray).rating
-  return [rating, reviews, description]
+  return [reviewsAndRating.rating, reviewsAndRating.reviews, description, reviewsAndRating.stock]
 }
