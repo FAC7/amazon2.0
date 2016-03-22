@@ -6,7 +6,7 @@ const generateDescription = (productArray) => {
 }
 
 const generateSingleReview = (productName) => {
-  const rating = +(Math.random() * (6 - 4) + 3).toFixed(1)
+  const rating = +(Math.random() * 4 + 1).toFixed(1)
   const review = 'This ' + productName + ' was fantastic. I have never been so happy with a product before in my life as I was with the ' + productName
   return {
     author: 'nickname',
