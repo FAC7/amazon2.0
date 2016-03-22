@@ -6,35 +6,35 @@ import DeleteLink from './DeleteLink.jsx'
 import Quantity from '../../../common/input.jsx'
 import AdditionalInfo from './AdditionalInfo.jsx'
 
+const style = {
+  fontSize: '20px',
+  verticalAlign: 'top',
+  paddingTop: '0px',
+  marginTop: '0px'
+}
 class ItemContainer extends React.Component {
-  // quantityFunction (e) {
-  //   console.log('clicked at ' + e.target.value , 'index is : ' + this.props.index)
-  //   console.log(this)
-  // if (e.target.value !== '' && !isNaN(Number(e.target.value))) {
-  //   this.state.shoppingBasket.items[this.props.index].quantity = e.target.value
-  //   console.log(this.state.shoppingBasket.items[this.props.index].quantity)
-  //   this.setState(this.state)
-  // }
-  // }
 
   render () {
+
     const item = this.props.itemInfo
     return (
       <tr>
         <td>
           <Image url={item.url} imgURL={item.imgURL} />
         </td>
-        <td>
+        <td style={style}>
           <ItemName itemName={item.itemName} url={item.url} />
           <AdditionalInfo stock={item.stock} />
           <DeleteLink deleteFunction={this.props.deleteFunction} index={this.props.index} />
         </td>
-        <td>
+        <td style={style}>
           <Price cost={item.cost} currencySymbol={item.currencySymbol} />
         </td>
-        <td>
+        <td style={style}>
           <Quantity
             width='20px'
+            height='20px'
+            fontsize='20px'
             key={this.props.index}
             onChange={this.props.quantityFunction.bind(null, this.props.index)}
             defaultValue={item.quantity} />
