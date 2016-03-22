@@ -1,14 +1,17 @@
 import React from 'react'
+import Modal from 'react-modal'
 import InfoBox from './InfoBox.jsx'
 import Description from './Description.jsx'
 import ReviewList from '../ReviewBox/ReviewList.jsx'
+import ReviewBox from '../ReviewBox/ReviewBox.jsx'
 require('../../css/grid.css')
 
 class ProductPage extends React.Component {
   constructor () {
     super()
     this.state = {
-      product: {}
+      product: {},
+      reviewBool: false
     }
   }
 
@@ -26,7 +29,17 @@ class ProductPage extends React.Component {
     xhr.send()
   }
 
+  openReviewModal () {
+    this.setState({
+      reviewBool: true
+    })
+  }
+  closeReviewModal () {
+    this.setState({
+      reviewBool: false
+    })
 
+  }
   componentDidMount () {
     this.getData()
   }
@@ -41,6 +54,11 @@ class ProductPage extends React.Component {
           <InfoBox {...this.state.product} buttonText='buy' />
         </div>
         <Description {...this.state.product} />
+        <button onClick={this.openReviewModal.bind(this)}> Write a review </button>
+          <Modal
+            isOpen={this.state.reviewBool} >
+            <ReviewBox id={this.state.product.id} closeReviewModal={this.closeReviewModal.bind(this)} />
+          </Modal>
         <ReviewList reviews={this.state.product.reviews} />
       </div>
     )

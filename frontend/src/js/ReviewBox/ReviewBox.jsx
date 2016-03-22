@@ -5,7 +5,7 @@ class ReviewBox extends React.Component {
   constructor () {
     super()
     this.state = {
-      review: '',
+      text: '',
       author: '',
       rating: 0
     }
@@ -25,7 +25,7 @@ class ReviewBox extends React.Component {
   handleReview (e) {
     e.preventDefault()
     this.setState({
-      review: e.target.value
+      text: e.target.value
     })
   }
 
@@ -38,10 +38,22 @@ class ReviewBox extends React.Component {
   submitReview (e) {
     e.preventDefault()
     let author = this.state.author
-    let review = this.state.review
+    let text = this.state.text
     let rating = this.state.rating
+    let date = Date.now()
+    let id     = this.props.id
 
-    console.log(author, review, rating)
+    console.log(author, text, rating, id)
+    this.props.closeReviewModal()
+
+    let xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = () => {
+      if (xhr.status === 200 && xhr.readyState === 4) {
+        console.log(xhr.responseText)
+      }
+    }
+    xhr.open('POST', 'http://localhost:4000/submitReview')
+    xhr.send(JSON.stringify({ author, text, rating, date, id }))
   }
 
   render () {
@@ -59,6 +71,7 @@ class ReviewBox extends React.Component {
         <button onClick={this.submitReview} type='button'>
           Submit Review
         </button>
+      <button onClick={this.props.closeReviewModal.bind(this)}>Close</button>
       </form>
     )
   }
