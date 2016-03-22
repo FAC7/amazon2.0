@@ -31,7 +31,6 @@ render((
 // <Route path='/basket' component={Basket}/>
 // <Route path='/payment' component={Payment}/>
 
-
 // class Amazon extends React.Component {
 //   render () {
 //     return (
