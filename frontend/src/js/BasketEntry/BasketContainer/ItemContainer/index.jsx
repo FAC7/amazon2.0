@@ -39,7 +39,7 @@ class ItemContainer extends React.Component {
           onChange={this.props.quantityFunction.bind(null, this.props.index)}
           defaultValue={item.quantity} />
         <p style={styleP} index={this.props.index}>
-          {this.props.quantityIsEmpty(this.props.index)}
+          {this.props.quantityValidation(this.props.index)}
         </p>
       </td>
     </tr>
@@ -56,7 +56,7 @@ ItemContainer.propTypes = {
   deleteFunction: React.PropTypes.func.isRequired,
   index: React.PropTypes.number.isRequired,
   quantityFunction: React.PropTypes.func.isRequired,
-  quantityIsEmpty: React.PropTypes.func.isRequired
+  quantityValidation: React.PropTypes.func.isRequired
 }
 
 export default ItemContainer
