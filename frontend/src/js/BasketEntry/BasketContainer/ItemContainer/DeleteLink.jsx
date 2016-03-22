@@ -1,7 +1,7 @@
 import React from 'react'
 
 const DeleteLink = (props) => {
-  <button onClick={props.deleteFunction.bind(null, props.index)}>delete</button>
+  return <button onClick={props.deleteFunction.bind(null, props.index)}>delete</button>
 }
 
 DeleteLink.propTypes = {

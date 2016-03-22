@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ItemName = (props) => {
-  <a href={props.url}>{props.itemName}</a>
+  return <a href={props.url}>{props.itemName}</a>
 }
 
 ItemName.propTypes = {

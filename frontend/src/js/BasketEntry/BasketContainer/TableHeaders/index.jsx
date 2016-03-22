@@ -1,7 +1,7 @@
 import React from 'react'
 
 const TableHeading = (props) => {
-  <th colSpan={props.span}>{props.headingName}</th>
+  return <th colSpan={props.span}>{props.headingName}</th>
 }
 
 TableHeading.propTypes = {

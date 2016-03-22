@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Link = (props) => {
-  <button onClick={props.callback.bind(null, props.index)}>{props.linkName}</button>
+  return <button onClick={props.callback.bind(null, props.index)}>{props.linkName}</button>
 }
 
 Link.propTypes = {
