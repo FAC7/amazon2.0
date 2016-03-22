@@ -20,10 +20,12 @@ class BasketEntry extends React.Component {
     this.removeFunction = this.removeFunction.bind(this)
     this.restoreFunction = this.restoreFunction.bind(this)
     this.quantityFunction = this.quantityFunction.bind(this)
-    this.quantityIsEmpty = this.quantityIsEmpty.bind(this)
+    this.quantityValidation = this.quantityValidation.bind(this)
     this.redirectClick = this.redirectClick.bind(this)
     this.itemCount = this.itemCount.bind(this)
     this.itemCost = this.itemCost.bind(this)
+    this.addItem = this.addItem.bind(this)
+    this.removeItem = this.removeItem.bind(this)
   }
 
   componentWillMount () {
@@ -53,16 +55,15 @@ class BasketEntry extends React.Component {
     }]))
   }
 
-  quantityFunction (index, e) {
-    if (!isNaN(Number(e.target.value))) {
-      this.state.shoppingBasket.items[index].quantity = Number(e.target.value)
-      this.setState(this.state)
-    }
+  quantityFunction (index) {
+    return this.state.shoppingBasket.items[index].quantity
   }
 
-  quantityIsEmpty (index) {
+  quantityValidation (index) {
     if (this.state.shoppingBasket.items[index].quantity === 0) {
       return 'quantity cannot be empty or 0'
+    } else if (this.state.shoppingBasket.items[index].quantity > this.state.shoppingBasket.items[index].stock) {
+      return 'only ' + this.state.shoppingBasket.items[index].stock + ' left in stock'
     }
   }
 
@@ -92,6 +93,9 @@ class BasketEntry extends React.Component {
 
   itemCount () {
     let totalQuantity = this.state.shoppingBasket.items.reduce(function (prev, curr) {
+      if (curr.quantity > curr.stock) {
+        curr.quantity = 0
+      }
       return prev + (curr.deleted === true ? 0 : curr.quantity)
     }, 0)
     let items = '(' + totalQuantity + ' items): '
@@ -100,10 +104,31 @@ class BasketEntry extends React.Component {
 
   itemCost () {
     let totalCost = this.state.shoppingBasket.items.reduce(function (prev, curr) {
+      if (curr.quantity > curr.stock) {
+        curr.quantity = 0
+      }
       return prev + (curr.deleted === true ? 0 : (curr.cost * curr.quantity))
     }, 0)
     let cost = this.state.shoppingBasket.items[0].currencySymbol + ' ' + totalCost
     return cost
+  }
+
+  addItem (index) {
+    let item = this.state.shoppingBasket.items[index]
+    if (item.quantity < item.stock) {
+      item.quantity++
+      window.localStorage.setItem('shoppingBasket', JSON.stringify(this.state.shoppingBasket.items))
+      this.setState(this.state)
+    }
+  }
+
+  removeItem (index) {
+    let item = this.state.shoppingBasket.items[index]
+    if (item.quantity > 1) {
+      item.quantity--
+      window.localStorage.setItem('shoppingBasket', JSON.stringify(this.state.shoppingBasket.items))
+      this.setState(this.state)
+    }
   }
 
   render () {
@@ -117,7 +142,8 @@ class BasketEntry extends React.Component {
         numItems={this.itemCount}
         getPrice={this.itemCost}
         quantityFunction={this.quantityFunction}
-        quantityIsEmpty={this.quantityIsEmpty} />
+        quantityValidation={this.quantityValidation}
+        />
     )
   }
 }

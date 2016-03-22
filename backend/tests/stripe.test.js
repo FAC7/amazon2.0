@@ -29,7 +29,7 @@ const stripeTests = (() => {
           }
         }
         server.inject(options, (response) => {
-          t.equal(response.statusCode, 302, 'server acknowledges API')
+          t.equal(response.statusCode, 200, 'server acknowledges API')
           t.end()
         })
       }
