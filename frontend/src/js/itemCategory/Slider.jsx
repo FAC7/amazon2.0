@@ -67,14 +67,14 @@ class Slider extends React.Component {
     }
     let products = items.map((item) => {
       return (
-        <div> <Item itemName={item.itemName} price={'£ '+ item.price} imageUrl={item.imageUrl} link={item.link}/></div>
+        <div> <Item itemName={item.itemName} price={'£ ' + item.price} imageUrl={item.imageUrl} link={item.link}/></div>
       )
     })
 
     return (
-        <Slick {...settings}>
-            {products}
-        </Slick>
+      <Slick {...settings}>
+          {products}
+      </Slick>
     )
   }
 }

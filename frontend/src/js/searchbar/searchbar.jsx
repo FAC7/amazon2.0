@@ -16,14 +16,14 @@ class SearchBar extends React.Component {
     styles.width = this.props.width
     styles.height = this.props.height
     return (
-    <form formAction={this.props.submitURL} onSubmit={this.props.submitHandler} style={styles}>
-      <SearchBox
-        defaultValue='Type here...'
-        onChange={this.handleChange}
-        inputColor={this.props.inputColor}
-        roundRight={!this.props.showSubmit} />
-      <SubmitButton show={this.props.showSubmit} buttonColor={this.props.buttonColor} />
-    </form>
+      <form formAction={this.props.submitURL} onSubmit={this.props.submitHandler} style={styles}>
+        <SearchBox
+          defaultValue='Type here...'
+          onChange={this.handleChange}
+          inputColor={this.props.inputColor}
+          roundRight={!this.props.showSubmit} />
+        <SubmitButton show={this.props.showSubmit} buttonColor={this.props.buttonColor} />
+      </form>
     )
   }
 }
