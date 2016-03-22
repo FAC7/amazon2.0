@@ -5,8 +5,6 @@ const Inert = require('inert')
 const Path = require('path')
 // plugins
 const payPlugin = require('./payPlugin.js')
-const client = require('./redis.js')
-const dbHelpers = require('./dbHelpers.js')(client)
 
 // server config
 const server = new Hapi.Server()
@@ -15,7 +13,7 @@ const port = 4000
 require('env2')('./../config.env')
 
 server.connection({
-	routes: {cors: true},
+  routes: {cors: true},
   port: port
 })
 
@@ -55,14 +53,18 @@ server.register(plugins, (err) => {
         reply.file(path)
       }
     }, {
-	    method: 'GET',
-	    path: '/getItemsForCarousel',
-	    handler: function (request, reply) {
-				dbHelpers.getArrayOfProdObjsByCategories(['appliances', 'electric', 'global']).then((x) => {
-					return reply(JSON.stringify(x))
-				}).catch((y)=>{console.log(y)})
-	    }
-	  }
+      method: 'GET',
+      path: '/getItemsForCarousel',
+      handler: function (request, reply) {
+        const client = require('./redis.js')
+        const dbHelpers = require('./dbHelpers.js')(client)
+        dbHelpers.getArrayOfProdObjsByCategories(['appliances', 'electric', 'global']).then((x) => {
+          return reply(JSON.stringify(x))
+        }).catch((y) => {
+          console.log(y)
+        })
+      }
+    }
   ])
 })
 
