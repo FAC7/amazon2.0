@@ -29,7 +29,9 @@ class BasketContainer extends React.Component {
                     itemInfo={item}
                     deleteFunction={this.props.deleteFunction}
                     quantityFunction={this.props.quantityFunction}
-                    quantityValidation={this.props.quantityValidation} />
+                    quantityValidation={this.props.quantityValidation}
+                    addItem={this.props.addItem}
+                    removeItem={this.props.removeItem}/>
                   )
                } else {
                  return (
@@ -60,7 +62,10 @@ BasketContainer.propTypes = {
   quantityValidation: React.PropTypes.func,
   redirectClick: React.PropTypes.func,
   numItems: React.PropTypes.func,
-  getPrice: React.PropTypes.func
+  getPrice: React.PropTypes.func,
+  addItem: React.PropTypes.func,
+  removeItem: React.PropTypes.func,
+  counter: React.PropTypes.func
 }
 
 export default BasketContainer
