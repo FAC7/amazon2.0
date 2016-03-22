@@ -3,7 +3,6 @@ import FiveStars from '../Ratings/FiveStars.jsx'
 
 class ReviewList extends React.Component {
   mapReviews () {
-    console.log('>>>>>', this.props.reviews)
     const reviews = this.props.reviews
     if (reviews) {
       return (
@@ -12,6 +11,7 @@ class ReviewList extends React.Component {
             <div>
               <h3>{item.author}</h3>
               <FiveStars rating={item.rating} />
+              <h5>{item.date}</h5>
               <p>{item.text}</p>
             </div>
             )
