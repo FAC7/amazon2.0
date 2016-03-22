@@ -14,20 +14,6 @@ class CategoryButton extends React.Component {
                    selected: 'all departments',
                    listOpen: false
                  }
-    this.showArray = this.showArray.bind(this)
-  }
-
-  showArray (item) {
-    const catArray = ['all departments', 'technology', 'computers', 'global', 'sport', 'garden', 'furniture', 'electric', 'clothing', 'men', 'television', 'women'].sort()
-    this.state.listOpen = !this.state.listOpen
-    if (!this.state.listOpen) {
-      this.state.array = []
-      catArray.map((i) => this.state.array.push(i))
-    } else {
-      this.state.selected = item
-      this.state.array = [item]
-    }
-    this.setState(this.state)
   }
 
   render () {
@@ -36,12 +22,9 @@ class CategoryButton extends React.Component {
     styles.display = (this.props.show) ? 'inline' : 'none'
     return (
       <ul style={styles}>
-        {this.state.array.map((item, index) => {
-          console.log(index, '<--index--')
-          console.log(item, '<--item--')
-          console.log(this.state.selected, '<----selected')
+        {this.props.array.map((item, index) => {
           return (
-            <li onClick={this.showArray.bind(this, item)}>{item}</li>
+            <li onClick={this.props.showArray.bind(this, item)}>{item}</li>
           )
         })}
       </ul>
@@ -51,7 +34,8 @@ class CategoryButton extends React.Component {
 
 CategoryButton.propTypes = {
   buttonColor: React.PropTypes.string,
-  show: React.PropTypes.bool
+  show: React.PropTypes.bool,
+  showArray: React.PropTypes.func.isRequired
 }
 
 CategoryButton.defaultProps = {

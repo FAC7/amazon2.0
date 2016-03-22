@@ -6,14 +6,15 @@ class SubmitButton extends React.Component {
     styles.borderColor = this.props.buttonColor
     styles.display = (this.props.show) ? 'inline' : 'none'
     return (
-      <input type='submit' value='' style={styles}/>
+      <input type='submit' value='' style={styles} onClick={this.props.requestFunction}/>
     )
   }
 }
 
 SubmitButton.propTypes = {
   buttonColor: React.PropTypes.string,
-  show: React.PropTypes.bool
+  show: React.PropTypes.bool,
+  requestFunction: React.PropTypes.func.isRequired
 }
 
 SubmitButton.defaultProps = {
