@@ -6,20 +6,3 @@
 .itemTable td {
   padding: 0 2em;
 }
-
-.ReactModalPortal > * {
-  opacity: 0;
-}
-
-.ReactModal__Overlay {
-  transition: opacity 500ms ease-in-out;
-  background: rgba(0, 0, 0, 0.15);
-}
-
-.ReactModal__Overlay--after-open {
-  opacity: 1;
-}
-
-.ReactModal__Overlay--before-close {
-  opacity: 0;
-}
