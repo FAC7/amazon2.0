@@ -36,8 +36,8 @@ exports.register = (server, options, next) => {
             success: !err,
             error: err
           }).state('am2_pay_data', {
-            amount: '£' + (charge.amount / 100),
-            card_number: charge.last4,
+            amount: (!err) ? '£' + (charge.amount / 100) : '',
+            card_number: (!err) ? charge.last4 : '',
             order_number: (!err) ? guid.raw() : '' // spoof an order number
           })
         })
