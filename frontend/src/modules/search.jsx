@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router'
+import Search from '../js/Header/SearchBar/index.jsx'
 
 export default React.createClass({
   render () {
-    return <div>
+    return (<div>
       <h1>Welcome to the Search Page</h1>
+      <Search />
       <li>
         <Link to='/' activeStyle={{ color: 'red' }}> Home
         </Link>
@@ -17,6 +19,6 @@ export default React.createClass({
         <Link to='/basket' activeStyle={{ color: 'red' }}> Basket
         </Link>
       </li>
-    </div>
+    </div>)
   }
 })

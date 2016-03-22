@@ -92,7 +92,7 @@ server.register(plugins, (err) => {
     },
     {
       method: 'GET',
-      path: '/search/{params*}',
+      path: '/searchrequest/{params*}',
       handler: (request, reply) => {
         const client = require('./redis.js')
         const dbHelpers = require('./dbHelpers.js')(client)

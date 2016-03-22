@@ -26,7 +26,8 @@ class CategoryButton extends React.Component {
 CategoryButton.propTypes = {
   buttonColor: React.PropTypes.string,
   show: React.PropTypes.bool,
-  showArray: React.PropTypes.func.isRequired
+  showArray: React.PropTypes.func.isRequired,
+  array: React.PropTypes.array
 }
 
 CategoryButton.defaultProps = {

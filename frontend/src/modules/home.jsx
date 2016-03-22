@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router'
 import Category from './../js/itemCategory/Category.jsx'
 import FiveStars from './../js/Ratings/FiveStars.jsx'
-import SearchBar from './../js/searchbar/searchbar.jsx'
 // import searchbox from './../js/searchbar/searchbox.jsx'
 // import Nav from './'
 // import FiveStars from './../js/Ratings/FiveStars.jsx'
@@ -16,8 +15,7 @@ export default React.createClass({
     return (
       <div>
         <h1>Amazon 2.0 Home Page</h1>
-        <SearchBar/>
-        <Category categoryName='hairdryers' />
+        <Category />
         <ul role='nav'>
           <li>
             <Link to='/home' activeStyle={{ color: 'red' }}> Home

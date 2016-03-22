@@ -14,7 +14,8 @@ class SearchBox extends React.Component {
 SearchBox.propTypes = {
   defaultValue: React.PropTypes.string,
   inputColor: React.PropTypes.string,
-  roundRight: React.PropTypes.bool
+  roundRight: React.PropTypes.bool,
+  onChange: React.PropTypes.func.isRequired
 }
 
 SearchBox.defaultProps = {

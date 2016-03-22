@@ -57,7 +57,7 @@ class SearchBar extends React.Component {
       browserHistory.push('/search' + querystring.stringify(obj))
     })
     console.log(obj, 'OBJ')
-    xhr.open('GET', '/search?' + querystring.stringify(obj))
+    xhr.open('GET', '/searchrequest?' + querystring.stringify(obj))
     xhr.send()
   }
 
@@ -89,7 +89,7 @@ SearchBar.propTypes = {
 }
 
 SearchBar.defaultProps = {
-  submitURL: '/home',
+  submitURL: '/',
   submitHandler: function () {},
   showSubmit: true,
   width: '90%',

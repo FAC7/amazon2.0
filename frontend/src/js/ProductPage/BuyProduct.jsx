@@ -32,7 +32,7 @@ class BuyProduct extends React.Component {
   }
 
   addToLocal (item) {
-    localStorage.setItem('shoppingBasket', JSON.stringify(item))
+    localStorage.setItem('shoppingBasket', JSON.stringify(item)) // eslint-disable-line
   }
 
   itemInBasketIndex (basket, itemId) {
@@ -49,7 +49,7 @@ class BuyProduct extends React.Component {
 
   addToBasket (item) {
     const formatted = this.formatItem(item)
-    const basket = JSON.parse(localStorage.getItem('shoppingBasket'))
+    const basket = JSON.parse(localStorage.getItem('shoppingBasket')) // eslint-disable-line
     const basketIndex = this.itemInBasketIndex(basket, item.id)
 
     if (basketIndex > -1) {
@@ -61,42 +61,50 @@ class BuyProduct extends React.Component {
     } else {
       this.addToLocal([formatted])
     }
-    console.log('shoppingbasketitem---', localStorage.getItem('shoppingBasket'))
+    console.log('shoppingbasketitem---', localStorage.getItem('shoppingBasket')) // eslint-disable-line
   // localStorage.removeItem('shoppingBasket')
   }
 
   generateOptions () {
-    let stock = this.props.stock
+    let stock = this.props.stock // eslint-disable-line
     let options = []
     for (let i = 1; i <= stock; i++) {
-      options.push(<option value={i}>{i}</option>)
+      options.push(<option value={i}>
+                     {i}
+                   </option>)
     }
     return options
   }
 
   createDropdown () {
-    if (this.props.stock > 0) {
+    if (this.props.stock > 0) { // eslint-disable-line
       return (
-        <div>
-          <select onChange={this.handleOptions.bind(this)}>
-            {this.generateOptions()}
-          </select>
-          <Button addToBasket={this.addToBasket.bind(this)} {...this.props} />
-        </div>
+      <div>
+        <select onChange={this.handleOptions.bind(this)}>
+          {this.generateOptions()}
+        </select>
+        <Button addToBasket={this.addToBasket.bind(this)} {...this.props} />
+      </div>
       )
     } else {
       return (
-        <p>Out of stock</p>
+      <p>
+        Out of stock
+      </p>
       )
     }
   }
 
   render () {
     return (
+    <div>
       <div>
-        <div>{this.createDropdown()}</div>
-        <p>{this.props.stock} items left</p>
+        {this.createDropdown()}
       </div>
+      <p>
+        {this.props.stock} items left
+      </p>
+    </div>
     )
   }
 }
