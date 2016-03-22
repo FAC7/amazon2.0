@@ -1,6 +1,6 @@
 'use strict'
 
-require('env2')('./config.env')
+require('env2')('./../config.env')
 const tape = require('tape')
 const stripe = require('stripe')(process.env.STRIPE_API_KEY)
 const server = require('../lib/server.js')

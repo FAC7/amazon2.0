@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+echo "Running pre-commit hook"
+
+RUN_TESTS=0
+RUN_LINTER=1
+
+if [ $RUN_TESTS -ne 0 ]; then
+  echo "Running tests before committing"
+  cd frontend && npm test
+
+  if [ $? -ne 0 ]; then
+    echo "Frontend tests failed, commit aborted"
+    exit 1
+  else
+    echo "Frontend tests passed, commit proceeding"
+  fi
+
+  cd ../backend/ && npm test
+
+  if [ $? -ne 0 ]; then
+    echo "Backend tests failed, commit aborted"
+    exit 1
+  else
+    echo "Backend tests passed, commit proceeding"
+  fi
+
+  cd ..
+fi
+
+if [ $RUN_LINTER -ne 0 ]; then
+  echo "Running standard.js linter before committing"
+  standard frontend/src/js/** frontend/tests/**.js backend/lib/**.js backend/tests/**.js
+
+  if [ $? -ne 0 ]; then
+    echo "Linter warnings exist, commit aborted"
+    exit 1
+  else
+    echo "No linter warnings exist, commit proceeding"
+  fi
+fi
