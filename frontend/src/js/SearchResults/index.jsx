@@ -1,15 +1,21 @@
 import React from 'react'
-import Item from './Item.jsx'
+import Item from './SearchItem.jsx'
 require('./SearchResults.css')
 
 class SearchResults extends React.Component {
+
   render () {
     return (
       <ul>
         {data.map((item) => {
           return (
             <li key={item.id} className='itemLi'>
-              <Item title={item.title} price={item.price} imgUrl={item.imageLink} />
+              <Item
+                title={item.title}
+                price={item.price}
+                imgUrl={item.imageLink}
+                itemUrl={'/item/' + item.id}
+                />
             </li>
           )
         })}
