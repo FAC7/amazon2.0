@@ -6,7 +6,7 @@ class Slider extends React.Component {
 
   constructor () {
     super()
-    this.state = {categoryArray: []}
+    this.state = {hairdryersArray: [], footballsArray: [], laptopsArray: []}
   }
 
   componentDidMount () {
@@ -20,7 +20,31 @@ class Slider extends React.Component {
           const imageLink = el['imageLink']
           const price = el['price']
           const id = el['id']
-          this.state.categoryArray.push({
+          this.state.hairdryersArray.push({
+            itemName: title,
+            price: price,
+            imageUrl: imageLink,
+            id: id
+          })
+        })
+        slicedArr[1].map((el) => {
+          const title = el['title']
+          const imageLink = el['imageLink']
+          const price = el['price']
+          const id = el['id']
+          this.state.footballsArray.push({
+            itemName: title,
+            price: price,
+            imageUrl: imageLink,
+            id: id
+          })
+        })
+        slicedArr[2].map((el) => {
+          const title = el['title']
+          const imageLink = el['imageLink']
+          const price = el['price']
+          const id = el['id']
+          this.state.laptopsArray.push({
             itemName: title,
             price: price,
             imageUrl: imageLink,
@@ -44,15 +68,36 @@ class Slider extends React.Component {
       slidesToShow: 5,
       slidesToScroll: 2
     }
-    let products = this.state.categoryArray.map((item) => {
+    let hairdryersProducts = this.state.hairdryersArray.map((item) => {
+      return (
+        <div> <Item itemName={item.itemName} price={'£ ' + item.price} imageUrl={item.imageUrl} itemID={item.id}/></div>
+      )
+    })
+    let footballsProducts = this.state.footballsArray.map((item) => {
+      return (
+        <div> <Item itemName={item.itemName} price={'£ ' + item.price} imageUrl={item.imageUrl} itemID={item.id}/></div>
+      )
+    })
+    let laptopsProducts = this.state.laptopsArray.map((item) => {
       return (
         <div> <Item itemName={item.itemName} price={'£ ' + item.price} imageUrl={item.imageUrl} itemID={item.id}/></div>
       )
     })
     return (
+      <div>
+        <h2>Hairdryers</h2>
       <Slick {...settings}>
-        {products}
+        {hairdryersProducts}
       </Slick>
+      <h2>Footballs</h2>
+      <Slick {...settings}>
+        {footballsProducts}
+      </Slick>
+      <h2>Laptops</h2>
+    <Slick {...settings}>
+      {laptopsProducts}
+    </Slick>
+      </div>
     )
   }
 }
