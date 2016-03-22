@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import modalItem from '../ProductPage/Button.jsx'
-console.log(modalItem)
+import BuyProduct from '../ProductPage/BuyProduct.jsx'
 
 class Item extends React.Component {
 
@@ -9,7 +8,7 @@ class Item extends React.Component {
     imgStyles.backgroundImage = 'url(' + this.props.imgUrl + ')'
     return (
       <div>
-        <table className='itemTable'>
+        <table className='itemTable' style={{width: '100%'}}>
           <tbody>
             <tr>
               <td>
@@ -26,7 +25,11 @@ class Item extends React.Component {
                 <p className='itemPrice'>{this.props.price}</p>
               </td>
               <td>
-                <button className='btn buy-btn'>Add to Basket</button>
+                <BuyProduct
+                  buttonType='button'
+                  buttonText='buy'
+                  stock='678'
+                   />
               </td>
             </tr>
           </tbody>
