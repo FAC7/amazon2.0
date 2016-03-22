@@ -19,7 +19,7 @@ class ProductPage extends React.Component {
         console.log(this.state)
       }
     }
-    xhr.open('GET', 'http://localhost:4000/getIndividualItem/73bc50ee-fa1b-efdd-c3c4-f8355aa13b77')
+    xhr.open('GET', `http://localhost:4000/getIndividualItem/${this.props.params.itemID}`)
     xhr.send()
   }
 
