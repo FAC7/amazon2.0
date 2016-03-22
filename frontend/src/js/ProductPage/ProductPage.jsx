@@ -4,12 +4,27 @@ import Description from './Description.jsx'
 require('../../css/grid.css')
 
 class ProductPage extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      product: {}
+    }
+  }
+
   getData () {
-    return fetch('/whatever', 'GET').then((response) => {
-      return response.json()
-    }).then((response) => {
-      console.log(response.body)
-    })
+    let xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = () => {
+      if (xhr.status === 200 && xhr.readyState === 4) {
+        this.setState({ product: JSON.parse(xhr.responseText) })
+        console.log(this.state)
+      }
+    }
+    xhr.open('GET', 'http://localhost:4000/getIndividualItem/73bc50ee-fa1b-efdd-c3c4-f8355aa13b77')
+    xhr.send()
+  }
+
+  componentDidMount () {
+    this.getData()
   }
 
   render () {
@@ -17,11 +32,11 @@ class ProductPage extends React.Component {
       <div>
         <div className='container'>
           <div className='img-scale column-third'>
-            <img src={this.props.imageLink} />
+            <img src={this.state.product.imageLink} />
           </div>
-          <InfoBox {...this.props} />
+          <InfoBox {...this.state.product} buttonText='buy' />
         </div>
-        <Description {...this.props} />
+        <Description {...this.state.product}  />
       </div>
     )
   }
