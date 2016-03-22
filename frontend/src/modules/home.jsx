@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 import Category from './../js/itemCategory/Category.jsx'
 import SearchBar from './../js/Header/index.jsx'
 // import searchbox from './../js/searchbar/searchbox.jsx'

@@ -6,15 +6,17 @@ class ReviewList extends React.Component {
     console.log('>>>>>', this.props.reviews)
     const reviews = this.props.reviews
     if (reviews) {
-      return reviews.map(item => {
-        return (
-          <div>
-            <h3>{item.author}</h3>
-            <FiveStars rating={item.rating} />
-            <p>{item.text}</p>
-          </div>
-          )
-      })
+      return (
+        reviews.map((item) => {
+          return (
+            <div>
+              <h3>{item.author}</h3>
+              <FiveStars rating={item.rating} />
+              <p>{item.text}</p>
+            </div>
+            )
+        })
+      )
     } else {
       return <p>reviews loading</p>
     }
@@ -25,6 +27,10 @@ class ReviewList extends React.Component {
       <div>{this.mapReviews()}</div>
     )
   }
+}
+
+ReviewList.propTypes = {
+  reviews: React.PropTypes.array
 }
 
 export default ReviewList
