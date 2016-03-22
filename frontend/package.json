@@ -30,7 +30,7 @@
     "style-loader": "^0.13.0",
     "tape": "^4.5.1",
     "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1",
+    "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.6.5",
