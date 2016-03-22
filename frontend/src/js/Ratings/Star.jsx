@@ -13,9 +13,14 @@ class Star extends React.Component {
 
   render () {
     return (
-    <i onClick={this.props.clickStars} className={this.highlightStar()}></i>
+      <i onClick={this.props.clickStars} className={this.highlightStar()}></i>
     )
   }
+}
+
+Star.propTypes = {
+  active: React.PropTypes.boolean,
+  clickStars: React.PropTypes.function
 }
 
 export default Star

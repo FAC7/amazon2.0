@@ -7,8 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "node ./lib/server.js",
-    "nodemon": "nodemon ./lib/server.js",
+    "start": "node ./lib/index.js",
+    "nodemon": "nodemon ./lib/index.js",
     "test": "tape tests/runner.js",
     "postinstall": "mkdir -p ../.git/hooks && cp ../hooks/pre-commit ../.git/hooks && chmod -R 755 ../.git/hooks"
   },
