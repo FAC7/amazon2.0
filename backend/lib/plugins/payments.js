@@ -18,8 +18,14 @@ exports.register = (server, options, next) => {
     path: '/pay',
     config: {
       handler: (request, reply) => {
-        console.log('WORKING')
-        const data = JSON.parse(request.payload)
+        var data = []
+        try {
+          data = JSON.parse(request.payload)
+        } catch (e) {
+          if (typeof data === 'object') data = request.payload
+          else throw e
+        }
+
         stripe.charges.create({
           amount: data.amount,
           currency: data.currency,
