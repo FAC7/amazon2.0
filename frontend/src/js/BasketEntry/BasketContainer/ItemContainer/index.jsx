@@ -12,24 +12,24 @@ class ItemContainer extends React.Component {
   render () {
     const item = this.props.itemInfo
     return (
-    <tr>
-      <td>
-        <Image url={item.url} imgURL={item.imgURL} />
-      </td>
-      <td>
-        <ItemName itemName={item.itemName} url={item.url} />
-        <AdditionalInfo stock={item.stock} />
-        <DeleteLink deleteFunction={this.props.deleteFunction} index={this.props.index} />
-      </td>
-      <td>
-        <Price cost={item.cost} currencySymbol={item.currencySymbol} />
-      </td>
-      <td>
-        <Button handleClick={this.props.addItem} index={this.props.index} buttonText='+' />
-        <Quantity counter={this.props.quantityFunction(this.props.index)} />
-        <Button handleClick={this.props.removeItem} index={this.props.index} buttonText='-' />
-      </td>
-    </tr>
+      <tr>
+        <td>
+          <Image url={item.url} imgURL={item.imgURL} />
+        </td>
+        <td>
+          <ItemName itemName={item.itemName} url={item.url} />
+          <AdditionalInfo stock={item.stock} />
+          <DeleteLink deleteFunction={this.props.deleteFunction} index={this.props.index} />
+        </td>
+        <td>
+          <Price cost={item.cost} currencySymbol={item.currencySymbol} />
+        </td>
+        <td>
+          <Button handleClick={this.props.addItem} index={this.props.index} buttonText='+' />
+          <Quantity counter={this.props.quantityFunction(this.props.index)} />
+          <Button handleClick={this.props.removeItem} index={this.props.index} buttonText='-' />
+        </td>
+      </tr>
     )
   }
 }

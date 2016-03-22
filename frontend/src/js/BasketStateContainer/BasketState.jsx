@@ -35,7 +35,7 @@ class BasketState extends React.Component {
 
   render () {
     return (
-    <span><ProductPage addToBasket={this.addToBasket} /></span>
+      <span><ProductPage addToBasket={this.addToBasket} /></span>
     )
   }
 }

@@ -17,7 +17,7 @@ class ProductPage extends React.Component {
   }
 
   getData () {
-    let xhr = new XMLHttpRequest()
+    let xhr = new XMLHttpRequest() // eslint-disable-line
     xhr.onreadystatechange = () => {
       if (xhr.status === 200 && xhr.readyState === 4) {
         let product = JSON.parse(xhr.responseText)
@@ -26,7 +26,7 @@ class ProductPage extends React.Component {
         console.log(this.state)
       }
     }
-    xhr.open('GET', `http://localhost:4000/getIndividualItem/${this.props.params.itemID}`)
+    xhr.open('GET', 'http://localhost:4000/getIndividualItem/${this.props.params.itemID}')
     xhr.send()
   }
 
@@ -39,8 +39,8 @@ class ProductPage extends React.Component {
     this.setState({
       reviewBool: false
     })
-
   }
+
   componentDidMount () {
     this.getData()
   }

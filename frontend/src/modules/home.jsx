@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 import Category from './../js/itemCategory/Category.jsx'
 import Header from './../js/Header/index.jsx'
 
