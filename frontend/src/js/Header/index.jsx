@@ -7,7 +7,7 @@ class Header extends React.Component {
     return (
       <header style={styles}>
         <SearchBar />
-        <Nav />
+        <Nav home={'/home'} browse={'/search'} checkout={'/payment'} basket={'/basket'}/>
       </header>
     )
   }
