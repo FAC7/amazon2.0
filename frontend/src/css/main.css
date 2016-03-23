@@ -134,13 +134,14 @@ body {
 
 .show {
   opacity: 1;
-  height: 53px;
-
+  height: 0;
+  transition: 0.3s ease;
 }
 
 .hide {
   opacity: 0;
   height: 0;
+  transition: 0.3s ease;
 }
 
 .success-message {
@@ -152,6 +153,11 @@ body {
   text-align: center;
   max-width: 170px;
   transition: 0.5s ease;
+  height: 53px;
+}
+
+.review-error-message {
+
 }
 
 .item-title {
