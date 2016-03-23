@@ -18,9 +18,9 @@ class Payment extends React.Component {
     return (
       <div className='mainDiv'>
         <div style={{textAlign: 'center'}}>
-          <div><h1>{headerMessage}</h1></div>
-          <div><h2>{filler}</h2></div>
-          <div><h2 style={display}>{'The amount of £' + payDeets.amount + ' has been charged to your card.'}</h2></div>
+          <h1>{headerMessage}</h1>
+          <h2>{filler}</h2>
+          <h2 style={display}>{'The amount of £' + payDeets.amount + ' has been charged to your card.'}</h2>
         </div>
         <table className='tableDiv'>
           <tbody>
