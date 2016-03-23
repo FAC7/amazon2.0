@@ -6,7 +6,6 @@ import querystring from 'querystring'
 import { browserHistory } from 'react-router'
 
 class SearchBar extends React.Component {
-
   constructor () {
     super()
     this.search = this.search.bind(this)
@@ -14,24 +13,18 @@ class SearchBar extends React.Component {
 
   search (cb, e) {
     e.preventDefault()
-    var obj1 = {}
-    obj1.category = document.getElementById('select').value
-    obj1.input = document.getElementById('inputBox').value
     var xhr = new XMLHttpRequest() // eslint-disable-line
-
     xhr.addEventListener('load', (response) => {
-      console.log('loaded!')
       cb(response.target.response)
-      // var obj = {}
-      // obj.q = this.props.input
-      // obj.categories = this.props.category
-      // this.context.router.transitionTo('/search')
-      // console.log('history-->', this.props)
-      browserHistory.push('/searchResults') // eslint-disable-line
-      // console.log('history-->', this.props.history)
+      browserHistory.push('/searchResults')
     })
-    console.log('URL BEING SENT ', querystring.stringify(obj1))
-    xhr.open('GET', '/searchrequest?' + querystring.stringify(obj1))
+
+    const qs = querystring.stringify({
+      category: document.getElementById('select').value,
+      input: document.getElementById('inputBox').value
+    })
+
+    xhr.open('GET', '/searchrequest?' + qs)
     xhr.send()
   }
 
