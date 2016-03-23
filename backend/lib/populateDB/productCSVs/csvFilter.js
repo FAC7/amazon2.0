@@ -2,7 +2,7 @@ const fs = require('fs')
 const Path = require('path')
 const generateReviewAndDesc = require('./processHelpers.js')
 
-const mapObj = {
+const mapObj = { // necessary because different CSVs have values at different indexes.
   laptops: {
     1: 'title',
     5: 'price',
@@ -47,6 +47,21 @@ const mapObj = {
     1: 'title',
     5: 'price',
     42: 'imageLink'
+  },
+  mensFragrance: {
+    1: 'title',
+    7: 'price',
+    41: 'imageLink'
+  },
+  womensFragrance: {
+    1: 'title',
+    6: 'price',
+    40: 'imageLink'
+  },
+  mobilePhones: {
+    1: 'title',
+    4: 'price',
+    41: 'imageLink'
   }
 }
 
@@ -62,7 +77,7 @@ const csvFilter = (fileName) => {
     .map((rowArray) => rowArray.filter((elem, index) => mapObj[fileName][index]))
     .map((rowArray) => {
       rowArray[0] = rowArray[0].replace(/\s*.\s*$/, '') // removes trailing '.'s and spaces
-      return rowArray.concat(generateReviewAndDesc(rowArray))
+      return rowArray.concat(generateReviewAndDesc(rowArray)) // adds reviews, descriptions, stock
     })
     .map((rowArray) => rowArray.join('\t'))
     .join('\n')
@@ -75,6 +90,7 @@ const csvFilter = (fileName) => {
 }
 
 const fileNameArray = ['laptops', 'footballs', 'gardenFurniture', 'hairdryers',
-'mensClothing', 'sportTech', 'televisions', 'womensClothing', 'tablets']
+'mensClothing', 'sportTech', 'televisions', 'womensClothing', 'tablets',
+'mensFragrance', 'womensFragrance', 'mobilePhones']
 
 fileNameArray.forEach((x) => csvFilter(x))
