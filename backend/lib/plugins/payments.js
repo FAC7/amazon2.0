@@ -7,8 +7,8 @@ exports.register = (server, options, next) => {
   server.state('am2_pay_data', {
     ttl: 1 * 24 * 60 * 60 * 1000,
     // isSecure: true, // should have isSecure, but don't have HTTPS
-    isHttpOnly: true,
-    encoding: 'base64json',
+    isHttpOnly: false,
+    encoding: 'none',
     clearInvalid: true,
     strictHeader: true
   })
