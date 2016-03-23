@@ -52,7 +52,6 @@ class ReviewBox extends React.Component {
     let xhr = new XMLHttpRequest() // eslint-disable-line
     xhr.onreadystatechange = () => {
       if (xhr.status === 200 && xhr.readyState === 4) {
-        console.log(xhr.responseText)
         this.props.closeReviewModal() // eslint-disable-line
       }
     }
@@ -81,6 +80,11 @@ class ReviewBox extends React.Component {
       </form>
     )
   }
+}
+
+ReviewBox.propTypes = {
+  id: React.PropTypes.string,
+  closeReviewModal: React.PropTypes.func
 }
 
 export default ReviewBox

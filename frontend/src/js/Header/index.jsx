@@ -9,12 +9,19 @@ class Header extends React.Component {
       <div>
         <Link to='/'><h1>Amazon 2.0 Home Page</h1></Link>
         <header style={styles}>
-          <SearchBar />
+          <SearchBar submitHandler={this.props.search} categorySelect={this.props.categorySelect} handleChange={this.props.handleChange} />
           <Nav home={'/home'} browse={'/search'} checkout={'/payment'} basket={'/basket'}/>
         </header>
       </div>
     )
   }
+}
+
+Header.propTypes = {
+  search: React.PropTypes.func,
+  handleChange: React.PropTypes.func,
+  categorySelect: React.PropTypes.func,
+  list: React.PropTypes.array
 }
 
 const styles = {

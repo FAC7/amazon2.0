@@ -8,7 +8,7 @@ class SearchResults extends React.Component {
   render () {
     return (
       <div>
-        <Header />
+        <Header search={this.props.route.search} categorySelect={this.props.route.categorySelect} handleChange={this.props.route.handleChange} />
         <ul style={listStyle}>
           {data.map((item) => {
             return (
@@ -25,6 +25,10 @@ class SearchResults extends React.Component {
       </div>
     )
   }
+}
+
+SearchResults.propTypes = {
+  route: React.PropTypes.object
 }
 
 const listStyle = {

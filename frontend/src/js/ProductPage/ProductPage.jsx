@@ -59,8 +59,7 @@ class ProductPage extends React.Component {
         </div>
         <Description {...this.state.product} />
         <button onClick={this.openReviewModal.bind(this)}> Write a review </button>
-        <Modal
-          isOpen={this.state.reviewBool} >
+        <Modal isOpen={this.state.reviewBool} >
           <ReviewBox id={this.state.product.id} closeReviewModal={this.closeReviewModal.bind(this)} />
         </Modal>
         <ReviewList reviews={this.state.product.reviews} />
