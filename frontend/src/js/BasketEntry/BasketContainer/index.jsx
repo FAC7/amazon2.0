@@ -11,14 +11,16 @@ class BasketContainer extends React.Component {
     return (
       <div>
         {items.length === 0
-           ? <h1>Shopping Basket is Empty</h1> : <table cellPadding='10'>
+           ? <h1>Shopping Basket is Empty</h1> : <table style={rowStyle} cellPadding='10'>
              <tbody>
-               <tr>
-                 <TableHeading headingName='' span='1' />
-                 <TableHeading headingName='Item' span='1' />
-                 <TableHeading headingName='Price' />
-                 <TableHeading headingName='Quantity' span='2' />
-               </tr>
+                <div className='container'>
+                   <tr className='column-half'>
+                     <TableHeading headingName='' span='1' />
+                     <TableHeading headingName='Item' span='1' />
+                     <TableHeading headingName='Price' />
+                     <TableHeading headingName='Quantity' span='2' />
+                   </tr>
+                </div>
                {items.map((item, index) => {
                  if (!item.deleted) {
                    return (
@@ -48,6 +50,11 @@ class BasketContainer extends React.Component {
       </div>
     )
   }
+}
+
+const rowStyle = {
+  borderCollapse: 'collapse',
+  borderBottom: '1px solid grey'
 }
 
 BasketContainer.propTypes = {

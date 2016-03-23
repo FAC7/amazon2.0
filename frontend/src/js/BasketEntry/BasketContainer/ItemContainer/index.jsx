@@ -9,9 +9,14 @@ import AdditionalInfo from './AdditionalInfo.jsx'
 const style = {
   fontSize: '20px',
   verticalAlign: 'top',
-  paddingTop: '0px',
-  marginTop: '0px'
+  padding: '40px',
+  marginTop: '0px',
+  borderTop: '1px solid grey',
+  borderCollapse: 'collapse',
+  color: '#EA0047'
 }
+
+
 class ItemContainer extends React.Component {
 
   render () {
@@ -19,7 +24,7 @@ class ItemContainer extends React.Component {
     const item = this.props.itemInfo
     return (
       <tr>
-        <td>
+        <td style={style}>
           <Image url={item.url} imgURL={item.imgURL} />
         </td>
         <td style={style}>
