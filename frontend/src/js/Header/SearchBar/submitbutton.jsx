@@ -6,7 +6,7 @@ class SubmitButton extends React.Component {
     styles.borderColor = this.props.buttonColor
     styles.display = (this.props.show) ? 'inline' : 'none'
     return (
-      <input type='submit' value='' style={styles} />
+      <input type='submit' value='' style={styles}/>
     )
   }
 }

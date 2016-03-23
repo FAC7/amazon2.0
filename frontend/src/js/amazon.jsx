@@ -46,8 +46,8 @@ class App extends React.Component {
       this.state.searchResults = response.target.response
       this.setState(this.state)
       obj = {}
-      obj.q = 'input'
-      obj.categories = 'categories'
+      obj.q = this.state.input
+      obj.categories = this.state.category
       browserHistory.push('/search?' + querystring.stringify(obj))
     })
     xhr.open('GET', '/searchrequest?' + querystring.stringify(obj))
@@ -55,7 +55,6 @@ class App extends React.Component {
   }
 
   render () {
-    console.log(this.state.searchResults, 'reustls in amazon')
     return (
       <Router>
         <Route path='/' component={Home}/>

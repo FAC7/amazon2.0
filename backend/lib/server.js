@@ -1,13 +1,8 @@
 'use strict'
-// node modules
+
 const Hapi = require('hapi')
-const Inert = require('inert')
 const Path = require('path')
 const querystring = require('querystring')
-// plugins
-const payPlugin = require('./payPlugin.js')
-
-// server config
 const server = new Hapi.Server()
 const port = 4000
 // local variables
@@ -20,8 +15,8 @@ server.connection({
 
 // Hapi plugins
 const plugins = [
-  Inert,
-  payPlugin
+  require('inert'),
+  require('./plugins/payments.js')
 ]
 
 server.register(plugins, (err) => {

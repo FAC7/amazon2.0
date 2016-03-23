@@ -6,20 +6,20 @@ class SearchBox extends React.Component {
     styles.borderRadius = (this.props.roundRight) ? '5px' : styles.borderRadius
     styles.width = (this.props.roundRight) ? '100%' : styles.width
     return (
-      <input onChange={this.props.onChange} type='text' placeholder={this.props.defaultValue} style={styles}/>
+      <input onChange={this.props.onChange} type='text' placeholder={this.props.placeholder} style={styles}/>
     )
   }
 }
 
 SearchBox.propTypes = {
-  defaultValue: React.PropTypes.string,
+  placeholder: React.PropTypes.string,
   inputColor: React.PropTypes.string,
   roundRight: React.PropTypes.bool,
   onChange: React.PropTypes.func
 }
 
 SearchBox.defaultProps = {
-  defaultValue: '',
+  placeholder: '',
   inputColor: '#EEE',
   roundRight: false
 }
