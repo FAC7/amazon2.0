@@ -5,6 +5,7 @@ import Description from './Description.jsx'
 import ReviewList from '../ReviewBox/ReviewList.jsx'
 import Header from '../Header/index.jsx'
 import ReviewBox from '../ReviewBox/ReviewBox.jsx'
+import BottomFooter from '../footer/footer.js'
 require('../../css/grid.css')
 
 class ProductPage extends React.Component {
@@ -63,6 +64,7 @@ class ProductPage extends React.Component {
           <ReviewBox id={this.state.product.id} closeReviewModal={this.closeReviewModal.bind(this)} />
         </Modal>
         <ReviewList reviews={this.state.product.reviews} />
+        <BottomFooter />
       </div>
     )
   }
@@ -92,7 +94,7 @@ ProductPage.defaultProps = {
   description: 'This is a description for our amazing product',
   stock: 12,
   categories: '["Clothes", "Health and Beauty"]', // (stringified array)
-  buttonText: 'Buy',
+  buttonText: 'Add to basket',
   buttonType: 'button'
 }
 
