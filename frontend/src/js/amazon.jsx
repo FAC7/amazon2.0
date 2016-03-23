@@ -26,6 +26,18 @@ const App = React.createClass({
     this.setState(change)
   },
 
+  setResultsState (results) {
+    this.setState({searchResults: results})
+  },
+
+  categorySelect (e) {
+    this.setState({category: e.target.value})
+  },
+
+  handleChange (e) {
+    this.setState({input: e.target.value})
+  },
+
   render () {
     const childWithProps = React.cloneElement(this.props.children, { // eslint-disable-line
       state: this.state,
