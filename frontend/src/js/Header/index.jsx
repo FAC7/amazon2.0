@@ -14,7 +14,7 @@ class Header extends React.Component {
             categorySelect={this.props.categorySelect}
             handleChange={this.props.handleChange}
             setResultsState={this.props.setResultsState} />
-          <Nav home={'/home'} browse={'/search'} checkout={'/payment'} basket={'/basket'}/>
+          <Nav home={'/home'} browse={'/search'} checkout={'/checkout'} basket={'/basket'}/>
         </header>
       </div>
     )
