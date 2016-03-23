@@ -1,16 +1,16 @@
 import React from 'react'
 import cookieParser from 'cookieparser'
+import utils from '../../../../backend/lib/utils.js'
 require('./PaymentStatus.css')
 
 class Payment extends React.Component {
   render () {
-    var payDeets = cookieParser.parse(document.cookie)
-    payDeets = payDeets.am2_pay_data.split(',').reduce((acc, curr) => {
-      const arr = curr.split('=')
-      acc[arr[0]] = arr[1]
-      return acc
-    }, {})
+    const payDeets = utils.fromCookieString(
+      cookieParser.parse(document.cookie).am2_pay_data
+    )
+
     const success = payDeets.success === 'true'
+
     const headerMessage = success ? 'Payment Confirmed' : 'Payment Failed'
     const filler = success ? 'Thankyou for shopping with Amazon 2.0!' : 'We\'re sorry, your payment has been refused.'
     const display = {display: success ? 'block' : 'none'}
