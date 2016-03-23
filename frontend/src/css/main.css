@@ -1,11 +1,11 @@
-/************************** Start Category Items Carousel Style ***********************/
-
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300);
 
 body {
   font-family: 'Lato', sans-serif;
-  margin: 0
+  margin: 0;
 }
+
+/************************** Start Category Items Carousel Style ***********************/
 
 .slick-prev:before, .slick-next:before {
   color: #FFBE63;
@@ -86,7 +86,6 @@ body {
 /************************** End Category Items Carousel Style ***********************/
 
 
-
 /*-----whole-page-styles-------*/
 
 .page-margin {
@@ -165,4 +164,32 @@ select {
   color: #FEBC5B;
   font-size: 2.1em;
   margin: 1em 1.3em 0 0;
+}
+
+.footer-top {
+  height: 220px;
+  width: 80%;
+  margin: auto;
+}
+
+footer {
+  background-color: #222e3e;
+  color: #fff;
+  padding-top: 15px;
+  padding-bottom: 25px;
+  margin-top: 70px;
+}
+
+footer a {
+  text-decoration: none;
+  color: #fff;
+  line-height: 1.5em;
+}
+
+footer h3 {
+  color: #FFBE63;
+}
+
+footer img {
+  width: 70px;
 }
