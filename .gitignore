@@ -6,3 +6,4 @@ dump.rdb
 npm-debug.log
 .jshintrc
 bower_components
+.jshintrc

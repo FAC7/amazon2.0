@@ -101,7 +101,7 @@ module.exports = (client) => {
       cb(this.filterProductsArrByKeyString(resultsByCat, keyString))
     })
     .catch((categoriesErr) => {
-      console.log(categoriesErr)
+      cb(categoriesErr)
     })
   }
   this.getReviewsByProductId = (id, cb) => {
