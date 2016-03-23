@@ -26,7 +26,7 @@ class ProductPage extends React.Component {
         console.log(this.state)
       }
     }
-    xhr.open('GET', `/getIndividualItem/${this.props.params.itemID}`) // eslint-disable-line
+    xhr.open('GET', `http://localhost:4000/getIndividualItem/${this.props.params.itemID}`) // eslint-disable-line
     xhr.send()
   }
 
@@ -39,6 +39,7 @@ class ProductPage extends React.Component {
     this.setState({
       reviewBool: false
     })
+    this.getData()
   }
 
   componentDidMount () {
