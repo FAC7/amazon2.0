@@ -10,13 +10,6 @@ import LinkToItem from '../../src/js/BasketEntry/BasketContainer/ItemContainer/I
 describe('testing ItemName n shopping basket', () => {
   it('page changes when link is clicked', () => {
 
-    // let callbacked = false
-
-    // const callback = () => {
-    //   callbacked = true
-    //   return
-    // }
-
     const linkyMcLinkFace = TestUtils.renderIntoDocument(
       <LinkToItem url='./basketlink.test.js' title='take me to google' />
     )
