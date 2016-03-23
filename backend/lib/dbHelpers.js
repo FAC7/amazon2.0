@@ -18,7 +18,6 @@ module.exports = (client) => {
           console.log('--> was not able to set property ', key, 'to value ', value)
           throw err
         }
-      // console.log('successfully set property ', key, 'to value ', value)
       })
     })
     const categoriesArr = JSON.parse(productObj.categories)
@@ -28,7 +27,6 @@ module.exports = (client) => {
           console.log('was not able to add product ', productId, ' to category ', category)
           throw err
         }
-        console.log('successfully added product ', productId, ' to category ', category)
       })
     })
     cb(null, productId)
@@ -40,9 +38,10 @@ module.exports = (client) => {
       if (err) {
         console.log(' --> was not able to retrieve info for product with id', id)
         throw err
+      } else {
+        console.log('successfully retrieved info for item with id ', id)
+        cb(null, reply)
       }
-      console.log('successfully retrieved info for item with id ', id)
-      cb(null, reply)
     })
   }
   this.getProductById = Bluebird.promisify(getProductById)
@@ -51,8 +50,9 @@ module.exports = (client) => {
     client.SINTER(...categoriesArr, (err, reply) => {
       if (err) {
         console.log(err)
+      } else {
+        cb(null, reply)
       }
-      cb(null, reply)
     })
   }
   this.getProductIdsByCategories = Bluebird.promisify(getProductIdsByCategories)
@@ -101,7 +101,7 @@ module.exports = (client) => {
       cb(this.filterProductsArrByKeyString(resultsByCat, keyString))
     })
     .catch((categoriesErr) => {
-      console.log(categoriesErr)
+      cb(categoriesErr)
     })
   }
   this.getReviewsByProductId = (id, cb) => {

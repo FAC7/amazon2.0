@@ -5,6 +5,7 @@ import Description from './Description.jsx'
 import ReviewList from '../ReviewBox/ReviewList.jsx'
 import Header from '../Header/index.jsx'
 import ReviewBox from '../ReviewBox/ReviewBox.jsx'
+import BottomFooter from '../footer/footer.js'
 require('../../css/grid.css')
 
 class ProductPage extends React.Component {
@@ -39,6 +40,7 @@ class ProductPage extends React.Component {
     this.setState({
       reviewBool: false
     })
+    this.getData()
   }
 
   componentDidMount () {
@@ -48,7 +50,7 @@ class ProductPage extends React.Component {
   render () {
     return (
       <div>
-        <Header />
+        <Header search={this.props.route.search} categorySelect={this.props.route.categorySelect} handleChange={this.props.route.handleChange} />
         <div className='container'>
           <div className='img-scale column-third'>
             <img src={this.state.product.imageLink} />
@@ -57,11 +59,11 @@ class ProductPage extends React.Component {
         </div>
         <Description {...this.state.product} />
         <button onClick={this.openReviewModal.bind(this)}> Write a review </button>
-        <Modal
-          isOpen={this.state.reviewBool} >
+        <Modal isOpen={this.state.reviewBool} >
           <ReviewBox id={this.state.product.id} closeReviewModal={this.closeReviewModal.bind(this)} />
         </Modal>
         <ReviewList reviews={this.state.product.reviews} />
+        <BottomFooter />
       </div>
     )
   }
@@ -78,7 +80,8 @@ ProductPage.propTypes = {
   stock: React.PropTypes.number.isRequired,
   categories: React.PropTypes.string.isRequired, // (stringified array)
   buttonText: React.PropTypes.string.isRequired,
-  buttonType: React.PropTypes.string
+  buttonType: React.PropTypes.string,
+  route: React.PropTypes.object
 }
 
 ProductPage.defaultProps = {
@@ -91,7 +94,7 @@ ProductPage.defaultProps = {
   description: 'This is a description for our amazing product',
   stock: 12,
   categories: '["Clothes", "Health and Beauty"]', // (stringified array)
-  buttonText: 'Buy',
+  buttonText: 'Add to basket',
   buttonType: 'button'
 }
 
