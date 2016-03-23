@@ -1,17 +1,11 @@
 import React from 'react'
 
-// TODO:
-// * Outline the whole list and each individual list item
-// * Fix first click not working bug
-// * Add tick next to the current selected one
-// * Default to the current selected one when you click off of the list
-
 class CategoryButton extends React.Component {
   render () {
     styles.backgroundColor = this.props.buttonColor
     styles.borderColor = this.props.buttonColor
     styles.display = (this.props.show) ? 'inline' : 'none'
-    var list = ['global'].concat(['technology', 'computers', 'global', 'sport',
+    var list = ['global'].concat(['technology', 'computers', 'sport',
     'garden', 'furniture', 'electric', 'clothing', 'men', 'women', 'television',
     'handhelds', 'perfumes'].sort())
     return (
