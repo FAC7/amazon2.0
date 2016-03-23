@@ -1,0 +1,19 @@
+.mainDiv {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.tableDiv {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.tdRight {
+  text-align: right;
+  padding: 6px;
+  padding-right: 20px;
+}
+
+.tdLeft {
+  padding: 6px;
+}

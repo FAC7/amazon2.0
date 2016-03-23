@@ -1,0 +1,8 @@
+.itemLi {
+  list-style: none;
+  padding: 0;
+}
+
+.itemTable td {
+  padding: 0 2em;
+}

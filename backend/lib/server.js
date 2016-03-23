@@ -1,12 +1,8 @@
 'use strict'
-// node modules
-const Hapi = require('hapi')
-const Inert = require('inert')
-const Path = require('path')
-// plugins
-const payPlugin = require('./payPlugin.js')
 
-// server config
+const Hapi = require('hapi')
+const Path = require('path')
+
 const server = new Hapi.Server()
 const port = 4000
 // local variables
@@ -19,8 +15,8 @@ server.connection({
 
 // Hapi plugins
 const plugins = [
-  Inert,
-  payPlugin
+  require('inert'),
+  require('./plugins/payments.js')
 ]
 
 server.register(plugins, (err) => {
@@ -84,6 +80,28 @@ server.register(plugins, (err) => {
         dbHelpers.getProductById(request.params.id, (err, response) => {
           if (err) throw Error
           else {
+            reply(response)
+          }
+        })
+      }
+    }, {
+      method: 'POST',
+      path: '/submitReview',
+      handler: (request, reply) => {
+        const client = require('./redis.js')
+        const dbHelpers = require('./dbHelpers.js')(client)
+        const reviewObj = JSON.parse(request.payload)
+        const formattedObj = {
+          author: reviewObj.author,
+          date: reviewObj.date,
+          rating: reviewObj.rating,
+          text: reviewObj.text
+        }
+        console.log(formattedObj)
+        dbHelpers.addReview(reviewObj.id, formattedObj, (err, response) => {
+          if (err) {
+            throw err
+          } else {
             reply(response)
           }
         })
