@@ -95,14 +95,9 @@ server.register(plugins, (err) => {
         const arr = []
         arr.push(load.category)
         console.log(load.input, 'LOADINPUT')
-        dbHelpers.getSearchResults(arr, load.input, (err, response) => {
-          console.log(err, 'ERR')
-          console.log(response, 'RESP!!!')
-          if (err) console.log('ERR: ', err)
-          else {
-            console.log(response, 'RESPONSE')
-            reply(response)
-          }
+        dbHelpers.getSearchResults(arr, load.input, (response) => {
+          console.log(response, 'RESPONSE')
+          reply(response)
         })
       }
     }, {
