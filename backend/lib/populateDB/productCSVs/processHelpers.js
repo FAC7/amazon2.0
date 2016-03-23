@@ -1,7 +1,5 @@
 'use strict'
 
-
-
 const authors = [ 'Marcella', 'Odessa', 'Lorenza', 'Ashton', 'Burma', 'Hsiu', 'Kitty', 'Marianela', 'Margret', 'Marine', 'Casie', 'Kymberly', 'Julieann', 'Bennie', 'Nelly', 'Dotty', 'Katelyn', 'Sasha', 'Stephenie', 'Rochell', 'Joette', 'Wan', 'Alpha', 'Nakita', 'Kathaleen', 'Stefanie', 'Althea', 'Emmett', 'Junita' ]
 
 
@@ -27,10 +25,11 @@ const generateSingleReview = (productName) => {
   "This is a good attempt at a difficult balance - small kids wrist, lots of learning opportunities - how do they fit so much in the space available?" ,
   'This ' + productName + ' was fantastic. I have never been so happy with a product before in my life as I was with the ' + productName
 ]
+  const author = authors[Math.floor(Math.random() * authors.length)]
   const rating = +(Math.random() * 4 + 1).toFixed(1)
   const review = reviews[Math.floor(Math.random() * reviews.length)]
   return {
-    author: 'nickname',
+    author: author,
     text: review,
     rating: rating,
     date: Date.now()
