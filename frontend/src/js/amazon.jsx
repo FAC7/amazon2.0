@@ -1,12 +1,14 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Home from './../modules/home.jsx'
-import PaymentStatus from './PaymentStatus/index.jsx'
-import SearchResults from './SearchResults/index.jsx'
-import ProductPage from './ProductPage/ProductPage.jsx'
-import Basket from './BasketEntry/index.jsx'
 import { browserHistory, Router, Route, IndexRoute } from 'react-router'
+import Header from './Header/index.jsx'
+import Footer from './footer/footer.js'
+import Category from './itemCategory/Category.jsx'
+import ProductPage from './ProductPage/ProductPage.jsx'
+import SearchResults from './SearchResults/index.jsx'
+import Basket from './BasketEntry/index.jsx'
 import Checkout from './Checkout/index.jsx'
+import PaymentStatus from './PaymentStatus/index.jsx'
 
 require('../css/main.css')
 
