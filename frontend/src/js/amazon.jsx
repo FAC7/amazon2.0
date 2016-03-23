@@ -6,7 +6,7 @@ import PaymentStatus from './PaymentStatus/index.jsx'
 import SearchResults from './SearchResults/index.jsx'
 import ProductPage from './ProductPage/ProductPage.jsx'
 import Basket from './BasketEntry/index.jsx'
-import { Router, Route } from 'react-router'
+import { Router, Route, browserHistory } from 'react-router'
 import Checkout from './Checkout/index.jsx'
 require('../css/main.css')
 
@@ -25,7 +25,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <Router>
+      <Router history={browserHistory}>
         <Route path='/' component={Home}/>
         <Route path='/home' component={Home}/>
         <Route path='/checkout' component={Checkout}/>
