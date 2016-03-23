@@ -1,10 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
 import Home from './../modules/home.jsx'
-import Payment from './../modules/payment.jsx'
+import PaymentStatus from './PaymentStatus/index.jsx'
 import SearchResults from './SearchResults/index.jsx'
 import ProductPage from './ProductPage/ProductPage.jsx'
 import Basket from './BasketEntry/index.jsx'
+import Checkout from './Checkout/index.jsx'
 import { Router, Route } from 'react-router'
 import querystring from 'querystring'
 import { browserHistory } from 'react-router'
@@ -58,7 +59,8 @@ class App extends React.Component {
       <Router history={browserHistory}>
         <Route path='/' component={Home} search={this.search} categorySelect={this.categorySelect} handleChange={this.handleChange} />
         <Route path='/basket' activeStyle={{ color: 'red' }} component={Basket} />
-        <Route path='/payment' activeStyle={{ color: 'red' }} component={Payment} />
+        <Route path='/checkout' activeStyle={{ color: 'red' }} component={Checkout} />
+        <Route path='/payment-status' activeStyle={{ color: 'red' }} component={PaymentStatus} />
         <Route path='/item/:itemID' component={ProductPage} search={this.search} categorySelect={this.categorySelect} handleChange={this.handleChange} />
         <Route path='/search?q=:searchString&categories=:categories' component={SearchResults} />
       </Router>
