@@ -1,6 +1,7 @@
 import React from 'react'
 import { browserHistory } from 'react-router'
 import Input from '../common/input.jsx'
+import cookieParser from 'cookieparser'
 
 class CheckoutForm extends React.Component {
   render () {
@@ -58,16 +59,13 @@ const clickHandler = (e) => {
   e.preventDefault()
   const paymentForm = document.getElementById('payment-form')
   const stripeResponseHandler = (status, response) => {
-    // TODO: delete next 2 lines when we join up with the basket
-    document.cookie = 'currency=GBP;'
-    document.cookie = 'price=123;'
+    const cookie = cookieParser.parse(document.cookie)
     let errors = document.getElementById('payment-errors')
+
     if (response.error) {
       errors.innerHTML = response.error.message
     } else {
       errors.innerHTML = ''
-      const token = response.id
-      const cookie = document.cookie
       const xhr = new XMLHttpRequest() // eslint-disable-line
       xhr.addEventListener('load', (response) => {
         if (response.err) console.log(response.err)
@@ -76,11 +74,11 @@ const clickHandler = (e) => {
       })
 
       const request = {
-        currency: cookie.split('currency=')[1].split(';')[0],
-        amount: cookie.split('price=')[1].split(';')[0],
-        source: token
+        currency: cookie.currency,
+        amount: cookie.price,
+        source: response.id
       }
-
+      console.log(request)
       xhr.open('POST', '/pay')
       xhr.send(JSON.stringify(request))
     }
