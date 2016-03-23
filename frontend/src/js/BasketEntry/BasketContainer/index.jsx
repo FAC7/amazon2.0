@@ -51,8 +51,10 @@ class BasketContainer extends React.Component {
              </tbody>
            </table>}
         {items.length > 0 ? <CheckoutContainer redirectClick={this.props.redirectClick} numItems={this.props.numItems} getPrice={this.props.getPrice} /> : <p></p>}
+         </div>
         <BottomFooter />
-      </div>
+     
+    </div>
     )
   }
 }
