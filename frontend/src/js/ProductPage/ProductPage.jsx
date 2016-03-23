@@ -50,7 +50,7 @@ class ProductPage extends React.Component {
   render () {
     return (
       <div>
-        <Header />
+        <Header search={this.props.route.search} categorySelect={this.props.route.categorySelect} handleChange={this.props.route.handleChange} />
         <div className='container'>
           <div className='img-scale column-third'>
             <img src={this.state.product.imageLink} />
@@ -80,7 +80,8 @@ ProductPage.propTypes = {
   stock: React.PropTypes.number.isRequired,
   categories: React.PropTypes.string.isRequired, // (stringified array)
   buttonText: React.PropTypes.string.isRequired,
-  buttonType: React.PropTypes.string
+  buttonType: React.PropTypes.string,
+  route: React.PropTypes.object
 }
 
 ProductPage.defaultProps = {

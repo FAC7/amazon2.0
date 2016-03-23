@@ -1,7 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
 import Home from './../modules/home.jsx'
-import Search from './SearchResults/index.jsx'
 import Payment from './../modules/payment.jsx'
 import SearchResults from './SearchResults/index.jsx'
 import ProductPage from './ProductPage/ProductPage.jsx'
@@ -57,12 +56,10 @@ class App extends React.Component {
   render () {
     return (
       <Router>
-        <Route path='/' component={Home}/>
-        <Route path='/home' component={Home}/>
+        <Route path='/' component={Home} search={this.search} categorySelect={this.categorySelect} handleChange={this.handleChange} />
         <Route path='/basket' activeStyle={{ color: 'red' }} component={Basket} />
-        <Route path='/search' activeStyle={{ color: 'red' }} component={Search} search={this.search} categorySelect={this.categorySelect} handleChange={this.handleChange} />
         <Route path='/payment' activeStyle={{ color: 'red' }} component={Payment} />
-        <Route path='/item/:itemID' component={ProductPage} />
+        <Route path='/item/:itemID' component={ProductPage} search={this.search} categorySelect={this.categorySelect} handleChange={this.handleChange} />
         <Route path='/search?q=:searchString&categories=:categories' component={SearchResults} />
       </Router>
     )
