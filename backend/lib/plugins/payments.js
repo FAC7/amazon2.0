@@ -7,8 +7,8 @@ exports.register = (server, options, next) => {
   server.state('am2_pay_data', {
     ttl: 1 * 24 * 60 * 60 * 1000,
     // isSecure: true, // should have isSecure, but don't have HTTPS
-    isHttpOnly: true,
-    encoding: 'base64json',
+    isHttpOnly: false,
+    encoding: 'none',
     clearInvalid: true,
     strictHeader: true
   })
@@ -32,14 +32,23 @@ exports.register = (server, options, next) => {
           source: data.source, // obtained with Stripe.js
           description: data.description
         }, (err, charge) => {
+          if (err) {
+            console.log(err)
+          }
+          const cookieString = {
+            success: !err,
+            amount: (!err) ? (charge.amount / 100) : '',
+            card_number: (!err) ? charge.source.last4 : '',
+            order_number: (!err) ? guid.raw() : '' // spoof an order number
+          }
+          const stringKeyVal = Object.keys(cookieString).map((el) => {
+            return el.toString() + '=' + cookieString[el].toString()
+          }).join('%2C')
+
           reply({
             success: !err,
             error: err
-          }).state('am2_pay_data', {
-            amount: (!err) ? '£' + (charge.amount / 100) : '',
-            card_number: (!err) ? charge.last4 : '',
-            order_number: (!err) ? guid.raw() : '' // spoof an order number
-          })
+          }).state('am2_pay_data', stringKeyVal)
         })
       }
     }
