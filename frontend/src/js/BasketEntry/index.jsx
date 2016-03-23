@@ -1,6 +1,5 @@
 import React from 'react'
 import BasketContainer from './BasketContainer/index.jsx'
-import { browserHistory } from 'react-router'
 
 class BasketEntry extends React.Component {
 
@@ -87,8 +86,7 @@ class BasketEntry extends React.Component {
 
   redirectClick () {
     document.cookie = ('currency=' + this.state.shoppingBasket.items[0].currency)
-    document.cookie = ('price=' + this.state.shoppingBasket.items[0].price)
-    browserHistory.push('/checkout')
+    this.props.history.push('/checkout') // eslint-disable-line
   }
 
   addItem (index) {
@@ -128,6 +126,7 @@ class BasketEntry extends React.Component {
       return prev + (curr.deleted === true ? 0 : (curr.price * curr.quantity))
     }, 0)
     let price = this.state.shoppingBasket.items[0].currencySymbol + ' ' + totalCost
+    document.cookie = 'price=' + price
     return price
   }
 
