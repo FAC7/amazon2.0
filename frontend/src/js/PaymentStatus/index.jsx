@@ -1,6 +1,6 @@
 import React from 'react'
 import cookieParser from 'cookieparser'
-require('./paymentsummary.css')
+require('./PaymentStatus.css')
 
 class Payment extends React.Component {
   render () {
