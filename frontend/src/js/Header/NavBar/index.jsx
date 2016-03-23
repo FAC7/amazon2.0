@@ -8,7 +8,9 @@ class Nav extends React.Component {
     return (
       <nav>
         <ul>
-          <li><Link to={this.props.basket}>Basket</Link></li>
+          <li><Link to={this.props.basket}>
+            <i className="fa fa-shopping-cart"></i>
+          </Link></li>
         </ul>
       </nav>
     )
