@@ -14,7 +14,7 @@ class FiveStars extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='five-stars'>
         {this.mapStars()}
       </div>
     )

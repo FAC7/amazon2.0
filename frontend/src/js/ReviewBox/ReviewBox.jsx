@@ -61,22 +61,24 @@ class ReviewBox extends React.Component {
 
   render () {
     return (
-      <form>
+      <form className='review-box'>
         <FiveStars {...this.props} clickStars={this.clickStars} rating={this.state.rating} />
         <input
+          className='review-author'
           onChange={this.handleAuthor}
           type='text'
           name='author'
           placeholder='your name'
           required></input>
         <br/>
-        <textarea onChange={this.handleReview} rows='4' columns='50'></textarea>
-        <button onClick={this.submitReview} type='button'>
+        <textarea className='review-text' onChange={this.handleReview} placeholder='your review here' required></textarea>
+        <button className='button-yellow' onClick={this.submitReview} type='button'>
           Submit Review
         </button>
-        <button onClick={
-            this.props.closeReviewModal.bind(this) // eslint-disable-line
-          }>Close</button>
+        <button
+          onClick={this.props.closeReviewModal.bind(this)}
+          className='button-yellow'
+          >Close</button>
       </form>
     )
   }
