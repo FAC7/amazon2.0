@@ -3,6 +3,7 @@ import React from 'react'
 class TopFooter extends React.Component {
   render () {
     styles.width = this.props.width
+    styles.marginRight = this.props.marginRight
     return (
       <div style={styles} >
         <h3>{this.props.heading}</h3>
@@ -17,8 +18,7 @@ class TopFooter extends React.Component {
 }
 
 var styles = {
-  verticalAlign: 'top',
-  display: 'table-cell'
+  float: 'left'
 }
 
 var ulStyles = {
