@@ -3,6 +3,7 @@ import Modal from 'react-modal'
 import InfoBox from './InfoBox.jsx'
 import Description from './Description.jsx'
 import ReviewList from '../ReviewBox/ReviewList.jsx'
+import Header from '../Header/index.jsx'
 import ReviewBox from '../ReviewBox/ReviewBox.jsx'
 require('../../css/grid.css')
 
@@ -16,7 +17,7 @@ class ProductPage extends React.Component {
   }
 
   getData () {
-    let xhr = new XMLHttpRequest()
+    let xhr = new XMLHttpRequest() // eslint-disable-line
     xhr.onreadystatechange = () => {
       if (xhr.status === 200 && xhr.readyState === 4) {
         let product = JSON.parse(xhr.responseText)
@@ -25,7 +26,7 @@ class ProductPage extends React.Component {
         console.log(this.state)
       }
     }
-    xhr.open('GET', `http://localhost:4000/getIndividualItem/${this.props.params.itemID}`)
+    xhr.open('GET', `/getIndividualItem/${this.props.params.itemID}`) // eslint-disable-line
     xhr.send()
   }
 
@@ -38,8 +39,8 @@ class ProductPage extends React.Component {
     this.setState({
       reviewBool: false
     })
-
   }
+
   componentDidMount () {
     this.getData()
   }
@@ -47,6 +48,7 @@ class ProductPage extends React.Component {
   render () {
     return (
       <div>
+        <Header />
         <div className='container'>
           <div className='img-scale column-third'>
             <img src={this.state.product.imageLink} />
@@ -55,10 +57,10 @@ class ProductPage extends React.Component {
         </div>
         <Description {...this.state.product} />
         <button onClick={this.openReviewModal.bind(this)}> Write a review </button>
-          <Modal
-            isOpen={this.state.reviewBool} >
-            <ReviewBox id={this.state.product.id} closeReviewModal={this.closeReviewModal.bind(this)} />
-          </Modal>
+        <Modal
+          isOpen={this.state.reviewBool} >
+          <ReviewBox id={this.state.product.id} closeReviewModal={this.closeReviewModal.bind(this)} />
+        </Modal>
         <ReviewList reviews={this.state.product.reviews} />
       </div>
     )

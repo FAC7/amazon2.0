@@ -19,7 +19,7 @@ test = tape({
   },
   teardown: (t) => {
     client.flushdb()
-    client.end()
+    client.end(true)
     t.end()
   }
 })
