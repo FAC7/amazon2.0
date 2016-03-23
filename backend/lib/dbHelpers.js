@@ -98,10 +98,10 @@ module.exports = (client) => {
   this.getSearchResults = (categoriesArr, keyString, cb) => {
     this.getArrayOfProdObjsByCategories(categoriesArr)
     .then((resultsByCat) => {
-      cb(null, this.filterProductsArrByKeyString(resultsByCat, keyString))
+      cb(this.filterProductsArrByKeyString(resultsByCat, keyString))
     })
     .catch((categoriesErr) => {
-      cb(categoriesErr, null)
+      cb(categoriesErr)
     })
   }
   this.getReviewsByProductId = (id, cb) => {
