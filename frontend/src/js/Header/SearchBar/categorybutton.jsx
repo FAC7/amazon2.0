@@ -11,7 +11,9 @@ class CategoryButton extends React.Component {
     styles.backgroundColor = this.props.buttonColor
     styles.borderColor = this.props.buttonColor
     styles.display = (this.props.show) ? 'inline' : 'none'
-    var list = ['global', 'technology', 'computers', 'global', 'sport', 'garden', 'furniture', 'electric', 'clothing', 'men', 'television', 'women']
+    var list = ['global', 'technology', 'computers', 'global', 'sport',
+    'garden', 'furniture', 'electric', 'clothing', 'men', 'television',
+    'women', 'mensFragrance', 'womensFragrance', 'tablets', 'mobilePhones']
     return (
       <select id='select' onChange={this.props.categorySelect} style={styles}>
         {list.map((item) => {
