@@ -21,7 +21,7 @@ class SearchBar extends React.Component {
 
     xhr.addEventListener('load', (response) => {
       console.log('loaded!')
-      cb({searchResults: response.target.response})
+      cb(response.target.response)
       // var obj = {}
       // obj.q = this.props.input
       // obj.categories = this.props.category

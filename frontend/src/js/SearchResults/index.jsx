@@ -5,7 +5,7 @@ require('./SearchResults.css')
 
 class SearchResults extends React.Component {
   render () {
-    const data = JSON.parse(this.props.state.searchResults.searchResults) // eslint-disable-line
+    const data = JSON.parse(this.props.state.searchResults) // eslint-disable-line
     return (
       <div>
         <Header search={this.props.route.search} categorySelect={this.props.route.categorySelect} handleChange={this.props.route.handleChange} />
