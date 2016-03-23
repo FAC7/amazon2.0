@@ -27,7 +27,7 @@ server.register(plugins, (err) => {
   server.route([
     {
       method: 'GET',
-      path: '/',
+      path: '/{params*}',
       handler: (request, reply) => {
         const path = Path.join(__dirname, '../../frontend/production/index.html')
         console.log(path)
@@ -38,7 +38,13 @@ server.register(plugins, (err) => {
       path: '/populateDB',
       handler: (request, reply) => {
         const client = require('./redis.js')
-        require('./populateDB/populateDB.js')(client)
+        client.SINTER('global', (err, reply) => {
+          if (err) {
+            console.log(err)
+          } else if (reply.length === 0) {
+            require('./populateDB/populateDB.js')(client)
+          }
+        })
         reply.redirect('/')
       }
     }, {

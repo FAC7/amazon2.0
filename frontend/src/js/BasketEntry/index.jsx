@@ -1,6 +1,5 @@
 import React from 'react'
 import BasketContainer from './BasketContainer/index.jsx'
-import { browserHistory } from 'react-router'
 
 class BasketEntry extends React.Component {
 
@@ -27,33 +26,6 @@ class BasketEntry extends React.Component {
     this.addItem = this.addItem.bind(this)
     this.removeItem = this.removeItem.bind(this)
   }
-
-  // componentWillMount () {
-  //   // this can be removed when we get localStorage from adding items
-  //   window.localStorage.setItem('shoppingBasket', JSON.stringify([{
-  //     id: '111',
-  //     itemName: 'Kärcher K4 Full Control Pressure Washer',
-  //     url: 'http://www.amazon.co.uk/gp/product/B0198VLMLC?ref_=gbps_tit_s-3_8407_d3ac7b06&smid=A3P5ROKL5A1OLE',
-  //     currency: 'GBP',
-  //     currencySymbol: '£',
-  //     cost: 118.99,
-  //     imgURL: 'http://ecx.images-amazon.com/images/I/81haNKekOoL._SL1500_.jpg',
-  //     quantity: 1,
-  //     stock: 10,
-  //     deleted: false
-  //   }, {
-  //     id: '222',
-  //     itemName: 'Anglepoise Type 75 Desk Lamp, Jet Black [Energy Class A]',
-  //     url: 'http://www.amazon.co.uk/gp/product/B001027J38?ref_=gbps_img_s-3_8407_eccd2ca2&smid=A3P5ROKL5A1OLE',
-  //     currency: 'GBP',
-  //     currencySymbol: '£',
-  //     cost: 59.99,
-  //     imgURL: 'http://ecx.images-amazon.com/images/I/51GYbTD1nxL._SL1296_.jpg',
-  //     quantity: 2,
-  //     stock: 11,
-  //     deleted: false
-  //   }]))
-  // }
 
   quantityFunction (index) {
     return this.state.shoppingBasket.items[index].quantity
@@ -87,8 +59,7 @@ class BasketEntry extends React.Component {
 
   redirectClick () {
     document.cookie = ('currency=' + this.state.shoppingBasket.items[0].currency)
-    document.cookie = ('price=' + this.state.shoppingBasket.items[0].price)
-    browserHistory.push('/checkout')
+    this.props.history.push('/checkout') // eslint-disable-line
   }
 
   addItem (index) {
@@ -127,7 +98,11 @@ class BasketEntry extends React.Component {
       }
       return prev + (curr.deleted === true ? 0 : (curr.price * curr.quantity))
     }, 0)
-    let price = this.state.shoppingBasket.items[0].currencySymbol + ' ' + totalCost
+    totalCost = Number(totalCost.toFixed(2))
+    document.cookie = 'price=' + totalCost * 100
+    totalCost = totalCost.toFixed(2).split('.')[1].length === 1
+    ? totalCost.toFixed(2) + '0' : totalCost.toFixed(2)
+    let price = '£' + ' ' + totalCost
     return price
   }
 
