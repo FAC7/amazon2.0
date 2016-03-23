@@ -23,8 +23,14 @@ exports.register = (server, options, next) => {
         try {
           data = JSON.parse(request.payload)
         } catch (e) {
-          if (typeof data === 'object') data = request.payload
-          else throw e
+          if (typeof data === 'object') {
+            data = request.payload
+          } else {
+            reply({
+              success: false,
+              error: e
+            }).state('am2_pay_data', '')
+          }
         }
 
         stripe.charges.create({
