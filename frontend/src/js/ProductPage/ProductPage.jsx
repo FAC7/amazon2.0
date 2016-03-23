@@ -24,8 +24,7 @@ class ProductPage extends React.Component {
       if (xhr.status === 200 && xhr.readyState === 4) {
         let product = JSON.parse(xhr.responseText)
         product.reviews = JSON.parse(product.reviews)
-        this.setState({ product: product })
-        console.log(this.state)
+        this.setState({ product })
       }
     }
     xhr.open('GET', `http://localhost:4000/getIndividualItem/${this.props.params.itemID}`) // eslint-disable-line
@@ -65,23 +64,28 @@ class ProductPage extends React.Component {
 
     return (
       <div>
-        <Header search={this.props.route.search} categorySelect={this.props.route.categorySelect} handleChange={this.props.route.handleChange} />
+        <Header
+          search={this.props.route.search}
+          categorySelect={this.props.route.categorySelect}
+          handleChange={this.props.route.handleChange} />
         <div className='page-margin'>
-        <div className='container'>
-          <div className='img-scale column-third'>
-            <img src={this.state.product.imageLink} />
+          <div className='container'>
+            <div className='img-scale column-third'><img src={this.state.product.imageLink} /></div>
+            <InfoBox {...this.state.product} buttonText='add to basket' />
           </div>
-          <InfoBox {...this.state.product} buttonText='add to basket' />
+          <Description {...this.state.product} />
+          <button className='button-yellow' onClick={this.openReviewModal.bind(this)}>
+            Write a review
+          </button>
+          <Modal
+            isOpen={this.state.reviewBool}
+            style={modalStyles}>
+            <ReviewBox
+              id={this.state.product.id}
+              closeReviewModal={this.closeReviewModal.bind(this)} />
+          </Modal>
+          <ReviewList reviews={this.state.product.reviews} />
         </div>
-        <Description {...this.state.product} />
-        <button className='button-yellow' onClick={this.openReviewModal.bind(this)}>
-          Write a review
-        </button>
-        <Modal isOpen={this.state.reviewBool} style={modalStyles}>
-          <ReviewBox id={this.state.product.id} closeReviewModal={this.closeReviewModal.bind(this)} />
-        </Modal>
-        <ReviewList reviews={this.state.product.reviews} />
-      </div>
       <BottomFooter />
     </div>
     )

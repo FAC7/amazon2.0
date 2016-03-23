@@ -69,6 +69,7 @@ body {
 
 .item {
   padding: 5px 15px;
+  min-height: 200px;
 }
 
 .item h4 {
@@ -81,6 +82,11 @@ body {
   -webkit-box-orient: vertical;
   max-height: 3.6em;
   display: -webkit-box;
+}
+
+.loading {
+  background-color: rgb(69, 89, 214);
+  min-height: 400px;
 }
 
 /************************** End Category Items Carousel Style ***********************/
@@ -125,6 +131,29 @@ body {
 
 
 /*-----misc---------*/
+
+.show {
+  opacity: 1;
+  height: 53px;
+
+}
+
+.hide {
+  opacity: 0;
+  height: 0;
+}
+
+.success-message {
+  background-color: rgb(28, 144, 251);
+  border-radius: 0.6em;
+  padding: 1px 0.6em;
+  margin: 1em 0;
+  color: #fff;
+  text-align: center;
+  max-width: 170px;
+  transition: 0.5s ease;
+}
+
 .item-title {
   border-top: 2px solid #D8D7D7;
   border-bottom: 2px solid #D8D7D7;
@@ -171,6 +200,9 @@ select {
   width: 80%;
   margin: auto;
 }
+
+
+/*-----foooter--------*/
 
 footer {
   background-color: #222e3e;
