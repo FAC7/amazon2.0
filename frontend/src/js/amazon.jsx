@@ -7,6 +7,7 @@ import SearchResults from './SearchResults/index.jsx'
 import ProductPage from './ProductPage/ProductPage.jsx'
 import Basket from './BasketEntry/index.jsx'
 import { Router, Route } from 'react-router'
+import Checkout from './Checkout/index.jsx'
 require('../css/main.css')
 
 class App extends React.Component {
@@ -27,6 +28,7 @@ class App extends React.Component {
       <Router>
         <Route path='/' component={Home}/>
         <Route path='/home' component={Home}/>
+        <Route path='/checkout' component={Checkout}/>
         <Route path='/basket' activeStyle={{ color: 'red' }} component={Basket} />
         <Route path='/search' activeStyle={{ color: 'red' }} component={Search} search={this.search} />
         <Route path='/payment' activeStyle={{ color: 'red' }} component={Payment} />
