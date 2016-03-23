@@ -8,7 +8,7 @@ class DeletedItemContainer extends React.Component {
     return (
       <tr>
         <td colSpan={this.props.span}>
-          <ItemName itemName={item.itemName} url={item.url} />
+          <ItemName title={item.title} url={item.url} />
         </td>
         <td>
           <Link callback={this.props.restoreFunction} index={this.props.index} linkName='Restore' />
