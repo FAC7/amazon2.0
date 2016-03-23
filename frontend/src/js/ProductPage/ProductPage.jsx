@@ -27,7 +27,7 @@ class ProductPage extends React.Component {
         console.log(this.state)
       }
     }
-    xhr.open('GET', 'http://localhost:4000/getIndividualItem/${this.props.params.itemID}')
+    xhr.open('GET', `http://localhost:4000/getIndividualItem/${this.props.params.itemID}`) // eslint-disable-line
     xhr.send()
   }
 
