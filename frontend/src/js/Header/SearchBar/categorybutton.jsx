@@ -8,18 +8,18 @@ import React from 'react'
 
 class CategoryButton extends React.Component {
   render () {
-    console.log('catbutton', this.props)
     styles.backgroundColor = this.props.buttonColor
     styles.borderColor = this.props.buttonColor
     styles.display = (this.props.show) ? 'inline' : 'none'
+    var list = ['global', 'technology', 'computers', 'global', 'sport', 'garden', 'furniture', 'electric', 'clothing', 'men', 'television', 'women']
     return (
-      <ul style={styles}>
-        {this.props.list.map((item, index) => {
+      <select id='select' onChange={this.props.categorySelect} style={styles}>
+        {list.map((item) => {
           return (
-            <li onClick={this.props.showArray.bind(this, item)}>{item}</li>
+            <option value={item}>{item}</option>
           )
         })}
-      </ul>
+      </select>
     )
   }
 }
@@ -27,8 +27,7 @@ class CategoryButton extends React.Component {
 CategoryButton.propTypes = {
   buttonColor: React.PropTypes.string,
   show: React.PropTypes.bool,
-  showArray: React.PropTypes.func,
-  list: React.PropTypes.array
+  categorySelect: React.PropTypes.func
 }
 
 CategoryButton.defaultProps = {

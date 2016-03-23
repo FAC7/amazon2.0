@@ -9,7 +9,7 @@ class SearchBar extends React.Component {
     styles.height = this.props.height
     return (
       <form formAction={this.props.submitURL} onSubmit={this.props.submitHandler} style={styles}>
-        <CategoryButton list={this.props.list} showArray={this.props.showArray} />
+        <CategoryButton categorySelect={this.props.categorySelect} />
         <SearchBox
           defaultValue='Type here...'
           onChange={this.props.handleChange}
@@ -30,7 +30,7 @@ SearchBar.propTypes = {
   buttonColor: React.PropTypes.string,
   inputColor: React.PropTypes.string,
   list: React.PropTypes.array,
-  showArray: React.PropTypes.func,
+  categorySelect: React.PropTypes.func,
   handleChange: React.PropTypes.func
 }
 

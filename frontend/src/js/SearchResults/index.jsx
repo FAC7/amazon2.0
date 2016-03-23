@@ -6,10 +6,9 @@ require('./SearchResults.css')
 class SearchResults extends React.Component {
 
   render () {
-    console.log('list in SearchResults', this.props.route.list)
     return (
       <div>
-        <Header search={this.props.route.search} showArray={this.props.route.showArray} handleChange={this.props.route.handleChange} list={this.props.route.list} />
+        <Header search={this.props.route.search} categorySelect={this.props.route.categorySelect} handleChange={this.props.route.handleChange} />
         <ul style={listStyle}>
           {data.map((item) => {
             return (

@@ -18,26 +18,15 @@ class App extends React.Component {
     this.state = {
       searchResults: [],
       input: '',
-      category: 'global',
-      list: ['global'],
-      listOpen: false
+      category: 'global'
     }
     this.search = this.search.bind(this)
-    this.showArray = this.showArray.bind(this)
+    this.categorySelect = this.categorySelect.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
-  showArray (item) {
-    const catArray = ['global', 'technology', 'computers', 'global', 'sport', 'garden', 'furniture', 'electric', 'clothing', 'men', 'television', 'women']
-    if (!this.state.listOpen) {
-      console.log('working')
-      this.state.list = []
-      catArray.map((i) => this.state.list.push(i))
-    } else {
-      this.state.category = item
-      this.state.list = [item]
-    }
-    this.state.listOpen = !this.state.listOpen
+  categorySelect (e) {
+    this.state.category = e.target.value
     this.setState(this.state)
   }
 
@@ -59,19 +48,20 @@ class App extends React.Component {
       obj = {}
       obj.q = 'input'
       obj.categories = 'categories'
-      browserHistory.push('/search' + querystring.stringify(obj))
+      browserHistory.push('/search?' + querystring.stringify(obj))
     })
     xhr.open('GET', '/searchrequest?' + querystring.stringify(obj))
     xhr.send()
   }
 
   render () {
+    console.log(this.state.searchResults, 'reustls in amazon')
     return (
       <Router>
         <Route path='/' component={Home}/>
         <Route path='/home' component={Home}/>
         <Route path='/basket' activeStyle={{ color: 'red' }} component={Basket} />
-        <Route path='/search' activeStyle={{ color: 'red' }} component={Search} search={this.search} showArray={this.showArray} handleChange={this.handleChange} list={this.state.list} />
+        <Route path='/search' activeStyle={{ color: 'red' }} component={Search} search={this.search} categorySelect={this.categorySelect} handleChange={this.handleChange} />
         <Route path='/payment' activeStyle={{ color: 'red' }} component={Payment} />
         <Route path='/item/:itemID' component={ProductPage} />
         <Route path='/search?q=:searchString&categories=:categories' component={SearchResults} />
