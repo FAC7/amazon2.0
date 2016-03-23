@@ -39,13 +39,28 @@ const App = React.createClass({
   },
 
   render () {
-    const childWithProps = React.cloneElement(this.props.children, { // eslint-disable-line
+    const ChildWithProps = React.cloneElement(
+      this.props.children, // eslint-disable-line
+      {
       state: this.state,
       changeState: this.changeState
-    })
-    return childWithProps
   }
+    )
 
+    return (
+      <div>
+        <Header
+          categorySelect={this.categorySelect}
+          handleChange={this.handleChange}
+          setResultsState={this.setResultsState}
+          />
+        <main>
+          {ChildWithProps}
+        </main>
+        <Footer />
+      </div>
+    )
+  }
 })
 
 render((
