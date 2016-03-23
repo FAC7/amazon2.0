@@ -126,7 +126,7 @@ class BasketEntry extends React.Component {
       return prev + (curr.deleted === true ? 0 : (curr.price * curr.quantity))
     }, 0)
     let price = this.state.shoppingBasket.items[0].currencySymbol + ' ' + totalCost
-    document.cookie = 'price=' + price
+    document.cookie = 'price=' + totalCost * 100
     return price
   }
 
