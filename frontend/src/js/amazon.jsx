@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import Home from './../modules/home.jsx'
 import Search from './SearchResults/index.jsx'
-import Payment from './../modules/payment.jsx'
+import PaymentStatus from './PaymentStatus/index.jsx'
 import SearchResults from './SearchResults/index.jsx'
 import ProductPage from './ProductPage/ProductPage.jsx'
 import Basket from './BasketEntry/index.jsx'
@@ -31,7 +31,7 @@ class App extends React.Component {
         <Route path='/checkout' component={Checkout}/>
         <Route path='/basket' activeStyle={{ color: 'red' }} component={Basket} />
         <Route path='/search' activeStyle={{ color: 'red' }} component={Search} search={this.search} />
-        <Route path='/payment' activeStyle={{ color: 'red' }} component={Payment} />
+        <Route path='/payment-status' activeStyle={{ color: 'red' }} component={PaymentStatus} />
         <Route path='/item/:itemID' component={ProductPage} />
         <Route path='/search?q=:searchString&categories=:categories' component={SearchResults} />
       </Router>
