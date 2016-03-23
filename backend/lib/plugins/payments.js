@@ -6,11 +6,11 @@ const utils = require('../utils.js')
 
 exports.register = (server, options, next) => {
   server.state('am2_pay_data', {
-    ttl: 1 * 24 * 60 * 60 * 1000,
+    ttl: 10 * 60 * 1000, // 10 minutes
     // isSecure: true, // should have isSecure, but don't have HTTPS
-    isHttpOnly: false,
-    encoding: 'none',
-    clearInvalid: true,
+    isHttpOnly: false, // accessible from both server-side and client-side
+    encoding: 'none', // plain-text cookie
+    clearInvalid: true, // instruct browser to clear cookie when invalid
     strictHeader: true
   })
 
