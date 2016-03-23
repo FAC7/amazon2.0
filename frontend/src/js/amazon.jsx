@@ -55,7 +55,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <Router>
+      <Router history={browserHistory}>
         <Route path='/' component={Home} search={this.search} categorySelect={this.categorySelect} handleChange={this.handleChange} />
         <Route path='/basket' activeStyle={{ color: 'red' }} component={Basket} />
         <Route path='/payment' activeStyle={{ color: 'red' }} component={Payment} />

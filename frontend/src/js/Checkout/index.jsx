@@ -1,14 +1,47 @@
 import React from 'react'
-import { browserHistory } from 'react-router'
 import Input from '../common/input.jsx'
+import cookieParser from 'cookieparser'
 
 class CheckoutForm extends React.Component {
+  constructor () {
+    super()
+    this.clickHandler = this.clickHandler.bind(this)
+  }
+
+  clickHandler (e) {
+    e.preventDefault()
+    const paymentForm = document.getElementById('payment-form')
+    const stripeResponseHandler = (status, response) => {
+      const cookie = cookieParser.parse(document.cookie)
+      let errors = document.getElementById('payment-errors')
+      if (response.error) {
+        errors.innerHTML = response.error.message
+      } else {
+        errors.innerHTML = ''
+        const xhr = new XMLHttpRequest() // eslint-disable-line
+        xhr.addEventListener('load', (response) => {
+          if (response.err) console.log(response.err)
+          document.cookie = 'status=' + response.success
+          this.props.history.push('/payment-status')
+        })
+        const request = {
+          currency: cookie.currency,
+          amount: parseInt(cookie.price, 10),
+          source: response.id
+        }
+        console.log(request)
+        xhr.open('POST', '/pay')
+        xhr.send(JSON.stringify(request))
+      }
+    }
+    Stripe.card.createToken(paymentForm, stripeResponseHandler) // eslint-disable-line
+  }
   render () {
     return (
       <div>
         <h2>Checkout</h2>
         <h4>Please enter your card details</h4>
-        <form id='payment-form' method='POST' onSubmit={clickHandler} formAction='' style={formStyles}>
+        <form id='payment-form' method='POST' onSubmit={this.clickHandler} formAction='' style={formStyles}>
           <div style={divStyles}>
             <label htmlFor='card-number'>Card Number*:</label>
             <Input
@@ -52,40 +85,6 @@ class CheckoutForm extends React.Component {
       </div>
     )
   }
-}
-
-const clickHandler = (e) => {
-  e.preventDefault()
-  const paymentForm = document.getElementById('payment-form')
-  const stripeResponseHandler = (status, response) => {
-    // TODO: delete next 2 lines when we join up with the basket
-    document.cookie = 'currency=GBP;'
-    document.cookie = 'price=123;'
-    let errors = document.getElementById('payment-errors')
-    if (response.error) {
-      errors.innerHTML = response.error.message
-    } else {
-      errors.innerHTML = ''
-      const token = response.id
-      const cookie = document.cookie
-      const xhr = new XMLHttpRequest() // eslint-disable-line
-      xhr.addEventListener('load', (response) => {
-        if (response.err) console.log(response.err)
-        document.cookie = 'status=' + response.success
-        browserHistory.push('/payment-status')
-      })
-
-      const request = {
-        currency: cookie.split('currency=')[1].split(';')[0],
-        amount: cookie.split('price=')[1].split(';')[0],
-        source: token
-      }
-
-      xhr.open('POST', '/pay')
-      xhr.send(JSON.stringify(request))
-    }
-  }
-  Stripe.card.createToken(paymentForm, stripeResponseHandler) // eslint-disable-line
 }
 
 const formStyles = {

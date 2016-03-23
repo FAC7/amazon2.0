@@ -27,7 +27,7 @@ server.register(plugins, (err) => {
   server.route([
     {
       method: 'GET',
-      path: '/',
+      path: '/{params*}',
       handler: (request, reply) => {
         const path = Path.join(__dirname, '../../frontend/production/index.html')
         console.log(path)
