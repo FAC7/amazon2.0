@@ -6,6 +6,12 @@ import Subtotal from './ItemCount.jsx'
 
 import TotalPrice from './TotalPrice.jsx'
 
+const style = {
+  paddingLeft: '60px',
+  paddingTop: '25px',
+  position: 'fixed'
+}
+
 class CheckoutContainer extends React.Component {
 
   shouldComponentUpdate (nextProps) {
@@ -14,7 +20,7 @@ class CheckoutContainer extends React.Component {
 
   render () {
     return (
-      <div>
+      <div style={style}>
         <Subtotal subTotal='Subtotal ' numItems={this.props.numItems} />
         <TotalPrice getPrice={this.props.getPrice} />
         <Button handleClick={this.props.redirectClick} buttonText='Proceed to Checkout' />

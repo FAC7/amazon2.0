@@ -17,6 +17,9 @@ const style = {
   color: '#EA0047'
 }
 
+const buttonStyle = {
+  display: '-webkit-inline-box'
+}
 
 class ItemContainer extends React.Component {
 
@@ -37,9 +40,11 @@ class ItemContainer extends React.Component {
           <Price price={item.price} currencySymbol={item.currencySymbol} />
         </td>
         <td>
-          <Button handleClick={this.props.addItem} index={this.props.index} buttonText='+' />
-          <Quantity counter={this.props.quantityFunction(this.props.index)} />
-          <Button handleClick={this.props.removeItem} index={this.props.index} buttonText='-' />
+          <div style={buttonStyle}>
+            <Button handleClick={this.props.removeItem} index={this.props.index} buttonText='-' />
+            <Quantity counter={this.props.quantityFunction(this.props.index)} />
+            <Button handleClick={this.props.addItem} index={this.props.index} buttonText='+' />
+          </div>
         </td>
       </tr>
     )
