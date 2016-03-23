@@ -4,18 +4,23 @@ require('./PaymentStatus.css')
 
 class Payment extends React.Component {
   render () {
-    const payDeets = cookieParser.parse(document.cookie)
-    const status = payDeets.status === 'true'
-    const success = status ? 'Payment Confirmed' : 'Payment Failed'
-    const filler = status ? 'Thankyou for shopping with Amazon 2.0!' : 'We\'re sorry, your payment has been refused.'
-    const display = {display: status ? 'block' : 'none'}
+    var payDeets = cookieParser.parse(document.cookie)
+    payDeets = payDeets.am2_pay_data.split(',').reduce((acc, curr) => {
+      const arr = curr.split('=')
+      acc[arr[0]] = arr[1]
+      return acc
+    }, {})
+    const success = payDeets.success === 'true'
+    const headerMessage = success ? 'Payment Confirmed' : 'Payment Failed'
+    const filler = success ? 'Thankyou for shopping with Amazon 2.0!' : 'We\'re sorry, your payment has been refused.'
+    const display = {display: success ? 'block' : 'none'}
 
     return (
       <div className='mainDiv'>
         <div style={{textAlign: 'center'}}>
-          <div><h1>{success}</h1></div>
+          <div><h1>{headerMessage}</h1></div>
           <div><h2>{filler}</h2></div>
-          <div><h2 style={display}>{'The amount of ' + payDeets.amount + ' has been charged to your card.'}</h2></div>
+          <div><h2 style={display}>{'The amount of £' + payDeets.amount + ' has been charged to your card.'}</h2></div>
         </div>
         <table className='tableDiv'>
           <tbody>
