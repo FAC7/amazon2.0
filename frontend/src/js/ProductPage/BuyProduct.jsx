@@ -69,9 +69,7 @@ class BuyProduct extends React.Component {
     let stock = this.props.stock // eslint-disable-line
     let options = []
     for (let i = 1; i <= stock; i++) {
-      options.push(<option value={i}>
-                     {i}
-                   </option>)
+      options.push(<option value={i}>{i}</option>)
     }
     return options
   }
@@ -79,34 +77,38 @@ class BuyProduct extends React.Component {
   createDropdown () {
     if (this.props.stock > 0) { // eslint-disable-line
       return (
-      <div>
-        <select onChange={this.handleOptions.bind(this)}>
-          {this.generateOptions()}
-        </select>
-        <Button addToBasket={this.addToBasket.bind(this)} {...this.props} />
-      </div>
+        <div>
+          <select onChange={this.handleOptions.bind(this)}>
+            {this.generateOptions()}
+          </select>
+          <Button addToBasket={this.addToBasket.bind(this)} {...this.props} />
+        </div>
       )
     } else {
       return (
-      <p>
-        Out of stock
-      </p>
+        <p>
+          Out of stock
+        </p>
       )
     }
   }
 
   render () {
     return (
-    <div>
       <div>
-        {this.createDropdown()}
+        <div>
+          {this.createDropdown()}
+        </div>
+        <p>
+          {this.props.stock} items left
+        </p>
       </div>
-      <p>
-        {this.props.stock} items left
-      </p>
-    </div>
     )
   }
+}
+
+BuyProduct.propTypes = {
+  stock: React.PropTypes.string
 }
 
 export default BuyProduct

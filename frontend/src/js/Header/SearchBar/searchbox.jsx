@@ -15,7 +15,7 @@ SearchBox.propTypes = {
   defaultValue: React.PropTypes.string,
   inputColor: React.PropTypes.string,
   roundRight: React.PropTypes.bool,
-  onChange: React.PropTypes.func.isRequired
+  onChange: React.PropTypes.func
 }
 
 SearchBox.defaultProps = {

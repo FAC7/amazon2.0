@@ -8,12 +8,13 @@ import React from 'react'
 
 class CategoryButton extends React.Component {
   render () {
+    console.log('catbutton', this.props)
     styles.backgroundColor = this.props.buttonColor
     styles.borderColor = this.props.buttonColor
     styles.display = (this.props.show) ? 'inline' : 'none'
     return (
       <ul style={styles}>
-        {this.props.array.map((item, index) => {
+        {this.props.list.map((item, index) => {
           return (
             <li onClick={this.props.showArray.bind(this, item)}>{item}</li>
           )
@@ -26,8 +27,8 @@ class CategoryButton extends React.Component {
 CategoryButton.propTypes = {
   buttonColor: React.PropTypes.string,
   show: React.PropTypes.bool,
-  showArray: React.PropTypes.func.isRequired,
-  array: React.PropTypes.array
+  showArray: React.PropTypes.func,
+  list: React.PropTypes.array
 }
 
 CategoryButton.defaultProps = {

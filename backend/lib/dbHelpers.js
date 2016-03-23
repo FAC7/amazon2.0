@@ -116,7 +116,7 @@ module.exports = (client) => {
   this.addReview = (productId, reviewObj, cb) => {
     this.getReviewsByProductId(productId, (err, reviews) => {
       if (err) return cb(err)
-      reviews.push(reviewObj)
+      reviews.unshift(reviewObj)
       var avgRating = reviews.reduce((accum, review) => {
         return accum + Number(review.rating)
       }, 0) / reviews.length

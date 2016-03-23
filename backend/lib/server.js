@@ -92,7 +92,7 @@ server.register(plugins, (err) => {
     },
     {
       method: 'GET',
-      path: '/searchrequest/{params*}',
+      path: '/searchrequest',
       handler: (request, reply) => {
         const client = require('./redis.js')
         const dbHelpers = require('./dbHelpers.js')(client)
@@ -106,6 +106,28 @@ server.register(plugins, (err) => {
           if (err) console.log('ERR: ', err)
           else {
             console.log(response, 'RESPONSE')
+            reply(response)
+          }
+        })
+      }
+    }, {
+      method: 'POST',
+      path: '/submitReview',
+      handler: (request, reply) => {
+        const client = require('./redis.js')
+        const dbHelpers = require('./dbHelpers.js')(client)
+        const reviewObj = JSON.parse(request.payload)
+        const formattedObj = {
+          author: reviewObj.author,
+          date: reviewObj.date,
+          rating: reviewObj.rating,
+          text: reviewObj.text
+        }
+        console.log(formattedObj)
+        dbHelpers.addReview(reviewObj.id, formattedObj, (err, response) => {
+          if (err) {
+            throw err
+          } else {
             reply(response)
           }
         })
