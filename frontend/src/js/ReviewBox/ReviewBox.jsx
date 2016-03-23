@@ -52,7 +52,7 @@ class ReviewBox extends React.Component {
         console.log(xhr.responseText)
       }
     }
-    xhr.open('POST', 'http://localhost:4000/submitReview')
+    xhr.open('POST', '/submitReview')
     xhr.send(JSON.stringify({ author, text, rating, date, id }))
   }
 
