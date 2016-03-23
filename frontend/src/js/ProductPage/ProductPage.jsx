@@ -40,6 +40,7 @@ class ProductPage extends React.Component {
     this.setState({
       reviewBool: false
     })
+    this.getData()
   }
 
   componentDidMount () {
@@ -93,7 +94,7 @@ ProductPage.defaultProps = {
   description: 'This is a description for our amazing product',
   stock: 12,
   categories: '["Clothes", "Health and Beauty"]', // (stringified array)
-  buttonText: 'Buy',
+  buttonText: 'Add to basket',
   buttonType: 'button'
 }
 
