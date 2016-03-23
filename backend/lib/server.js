@@ -38,7 +38,13 @@ server.register(plugins, (err) => {
       path: '/populateDB',
       handler: (request, reply) => {
         const client = require('./redis.js')
-        require('./populateDB/populateDB.js')(client)
+        client.SINTER('global', (err, reply) => {
+          if (err) {
+            console.log(err)
+          } else if (reply.length === 0) {
+            require('./populateDB/populateDB.js')(client)
+          }
+        })
         reply.redirect('/')
       }
     }, {
