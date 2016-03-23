@@ -10,7 +10,7 @@ class Header extends React.Component {
         <Link to='/'><h1>Amazon 2.0 Home Page</h1></Link>
         <header style={styles}>
           <SearchBar />
-          <Nav home={'/home'} browse={'/search'} checkout={'/payment'} basket={'/basket'}/>
+          <Nav home={'/home'} browse={'/search'} checkout={'/checkout'} basket={'/basket'}/>
         </header>
       </div>
     )
