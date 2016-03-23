@@ -18,7 +18,8 @@ const style = {
 }
 
 const buttonStyle = {
-  display: '-webkit-inline-box'
+  display: '-webkit-inline-box',
+  paddingBottom: '60px'
 }
 
 class ItemContainer extends React.Component {
@@ -39,7 +40,7 @@ class ItemContainer extends React.Component {
         <td style={style}>
           <Price price={item.price} currencySymbol={item.currencySymbol} />
         </td>
-        <td>
+        <td style={{borderTop: '1px solid grey', borderCollapse: 'collapse'}}>
           <div style={buttonStyle}>
             <Button handleClick={this.props.removeItem} index={this.props.index} buttonText='-' />
             <Quantity counter={this.props.quantityFunction(this.props.index)} />
