@@ -7,13 +7,13 @@ class Footer extends React.Component {
     return (
       <footer>
         <div style={styles}>
-        <div className='footer-top'>
-          <TopFooter heading='Contact' data={contactContent} width='50%' marginRight='24%' />
-          <TopFooter heading='About' data={aboutContent} width='22%' />
-        </div>
-        <div className='footer-bottom'>
-          <BottomFooter />
-        </div>
+          <div className='footer-top'>
+            <TopFooter heading='Contact' data={contactContent} width='50%' marginRight='24%' />
+            <TopFooter heading='About' data={aboutContent} width='22%' />
+          </div>
+          <div className='footer-bottom'>
+            <BottomFooter />
+          </div>
         </div>
       </footer>
     )
