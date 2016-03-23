@@ -8,7 +8,7 @@ class ReviewList extends React.Component {
       return (
         reviews.map((item) => {
           return (
-            <div>
+            <div className='review'>
               <h3>{item.author}</h3>
               <FiveStars rating={item.rating} />
               <h5>{item.date}</h5>
@@ -24,7 +24,7 @@ class ReviewList extends React.Component {
 
   render () {
     return (
-      <div>{this.mapReviews()}</div>
+      <div className='review-list'>{this.mapReviews()}</div>
     )
   }
 }

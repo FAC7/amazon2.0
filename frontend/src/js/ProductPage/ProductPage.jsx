@@ -7,6 +7,7 @@ import Header from '../Header/index.jsx'
 import ReviewBox from '../ReviewBox/ReviewBox.jsx'
 import BottomFooter from '../footer/footer.js'
 require('../../css/grid.css')
+require('../../css/review-box.css')
 
 class ProductPage extends React.Component {
   constructor () {
@@ -48,23 +49,41 @@ class ProductPage extends React.Component {
   }
 
   render () {
+    const modalStyles = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        transform: 'translate(-50%, -50%)',
+        padding: '0'
+      },
+      overlay: {
+        backgroundColor: 'rgba(0, 0, 0, 0.75)',
+      }
+    }
+
     return (
       <div>
         <Header search={this.props.route.search} categorySelect={this.props.route.categorySelect} handleChange={this.props.route.handleChange} />
+        <div className='page-margin'>
         <div className='container'>
           <div className='img-scale column-third'>
             <img src={this.state.product.imageLink} />
           </div>
-          <InfoBox {...this.state.product} buttonText='buy' />
+          <InfoBox {...this.state.product} buttonText='add to basket' />
         </div>
         <Description {...this.state.product} />
-        <button onClick={this.openReviewModal.bind(this)}> Write a review </button>
-        <Modal isOpen={this.state.reviewBool} >
+        <button className='button-yellow' onClick={this.openReviewModal.bind(this)}>
+          Write a review
+        </button>
+        <Modal isOpen={this.state.reviewBool} style={modalStyles}>
           <ReviewBox id={this.state.product.id} closeReviewModal={this.closeReviewModal.bind(this)} />
         </Modal>
         <ReviewList reviews={this.state.product.reviews} />
-        <BottomFooter />
       </div>
+      <BottomFooter />
+    </div>
     )
   }
 }
@@ -95,7 +114,7 @@ ProductPage.defaultProps = {
   stock: 12,
   categories: '["Clothes", "Health and Beauty"]', // (stringified array)
   buttonText: 'Add to basket',
-  buttonType: 'button'
+  buttonType: 'button-yellow'
 }
 
 export default ProductPage
