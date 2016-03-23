@@ -1,30 +1,21 @@
 import React from 'react'
 import SearchBox from './searchbox.jsx'
 import SubmitButton from './submitbutton.jsx'
+import CategoryButton from './categorybutton.jsx'
 
 class SearchBar extends React.Component {
-  constructor () {
-    super()
-    this.handleChange = this.handleChange.bind(this)
-  }
-
-  handleChange () {
-    // TODO Setup autocomplete
-  }
-
   render () {
     styles.width = this.props.width
     styles.height = this.props.height
     return (
       <form formAction={this.props.submitURL} onSubmit={this.props.submitHandler} style={styles}>
+        <CategoryButton categorySelect={this.props.categorySelect} />
         <SearchBox
           placeholder='Type here...'
-          onChange={this.handleChange}
+          onChange={this.props.handleChange}
           inputColor={this.props.inputColor}
-          roundRight={!this.props.showSubmit}/>
-        <SubmitButton
-          show={this.props.showSubmit}
-          buttonColor={this.props.buttonColor}/>
+          roundRight={!this.props.showSubmit} />
+        <SubmitButton show={this.props.showSubmit} buttonColor={this.props.buttonColor}/>
       </form>
     )
   }
@@ -37,7 +28,10 @@ SearchBar.propTypes = {
   width: React.PropTypes.string,
   height: React.PropTypes.string,
   buttonColor: React.PropTypes.string,
-  inputColor: React.PropTypes.string
+  inputColor: React.PropTypes.string,
+  list: React.PropTypes.array,
+  categorySelect: React.PropTypes.func,
+  handleChange: React.PropTypes.func
 }
 
 SearchBar.defaultProps = {

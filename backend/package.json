@@ -10,7 +10,8 @@
     "start": "node ./lib/index.js",
     "nodemon": "nodemon ./lib/index.js",
     "test": "tape tests/runner.js",
-    "postinstall": "mkdir -p ../.git/hooks && cp ../hooks/pre-commit ../.git/hooks && chmod -R 755 ../.git/hooks"
+    "postinstall": "mkdir -p ../.git/hooks && cp ../hooks/pre-commit ../.git/hooks && chmod -R 755 ../.git/hooks",
+    "coverage": "node ./node_modules/.bin/istanbul cover tests/runner.js"
   },
   "keywords": [],
   "author": "FAC7",
