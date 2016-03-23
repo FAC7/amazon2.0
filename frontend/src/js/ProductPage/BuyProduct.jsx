@@ -20,10 +20,10 @@ class BuyProduct extends React.Component {
     return {
       id: item.id,
       title: item.title,
-      url: 'localhost://8080/product' + item.id,
+      url: '/item/' + item.id,
       currency: 'GBP',
       currencySymbol: '£',
-      price: item.price,
+      price: +(item.price),
       imageLink: item.imageLink,
       stock: item.stock,
       quantity: this.state.quantity,
