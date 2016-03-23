@@ -42,6 +42,11 @@ const mapObj = {
     1: 'title',
     4: 'price',
     38: 'imageLink'
+  },
+  tablets: {
+    1: 'title',
+    5: 'price',
+    42: 'imageLink'
   }
 }
 
@@ -56,7 +61,7 @@ const csvFilter = (fileName) => {
     .map((rowString) => rowString.split(','))
     .map((rowArray) => rowArray.filter((elem, index) => mapObj[fileName][index]))
     .map((rowArray) => {
-      rowArray[0] = rowArray[0].slice(0, rowArray[0].length - 1) // removes unwanted '.'s
+      rowArray[0] = rowArray[0].replace(/\s*.\s*$/, '') // removes trailing '.'s and spaces
       return rowArray.concat(generateReviewAndDesc(rowArray))
     })
     .map((rowArray) => rowArray.join('\t'))
@@ -70,6 +75,6 @@ const csvFilter = (fileName) => {
 }
 
 const fileNameArray = ['laptops', 'footballs', 'gardenFurniture', 'hairdryers',
-'mensClothing', 'sportTech', 'televisions', 'womensClothing']
+'mensClothing', 'sportTech', 'televisions', 'womensClothing', 'tablets']
 
 fileNameArray.forEach((x) => csvFilter(x))
