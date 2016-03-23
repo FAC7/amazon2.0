@@ -1,4 +1,5 @@
 const fs = require('fs')
+const Path = require('path')
 const generateReviewAndDesc = require('./processHelpers.js')
 
 const mapObj = {
@@ -48,7 +49,7 @@ const csvFilter = (fileName) => {
   // Grab file; split into rows; slice off first row (header); split into
   // columns; filter for values according to mapObj; add reviews, description
   // and stock; join all back into string; save in new location as csv.
-  const processedCSV = fs.readFileSync('original/' + fileName + '.csv', 'utf8')
+  const processedCSV = fs.readFileSync(Path.join(__dirname, 'original', fileName + '.csv'), 'utf8')
     .replace(/"/g, '')
     .split('\n')
     .slice(1)
@@ -61,7 +62,7 @@ const csvFilter = (fileName) => {
     .map((rowArray) => rowArray.join('\t'))
     .join('\n')
 
-  fs.writeFile('filtered/' + fileName + '.csv', processedCSV, (err) => {
+  fs.writeFile(Path.join(__dirname, 'filtered', fileName + '.csv'), processedCSV, (err) => {
     if (err) {
       return console.error(err)
     }

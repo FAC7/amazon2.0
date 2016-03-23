@@ -8,11 +8,11 @@ const style = {
 }
 
 const Price = (props) => {
-  return <p style={style}>{props.currencySymbol}{props.cost}</p>
+  return <p style={style}>{props.currencySymbol}{props.price}</p>
 }
 
 Price.propTypes = {
-  cost: React.PropTypes.number.isRequired,
+  price: React.PropTypes.number.isRequired,
   currencySymbol: React.PropTypes.string.isRequired
 }
 

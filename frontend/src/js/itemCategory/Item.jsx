@@ -8,7 +8,9 @@ class Item extends React.Component {
     const imageUrl = this.props.imageUrl
     return (
       <div className='item'>
-        <Link to={`/item/${this.props.itemID}`}>
+        <Link to={
+            `/item/${this.props.itemID}` // eslint-disable-line
+          }>
           <h4>{itemName}</h4>
           <div className='img-box'>
             <p className='priceBox'>
