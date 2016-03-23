@@ -205,7 +205,8 @@ test('testing dbHelper getSearchResults', (t) => {
       const results = dbHelpers.filterProductsArrByKeyString(resultsByCat, 'expensive')
       t.ok(results instanceof Array, 'returns an array')
       t.deepEqual(results[0], testProductObj2, 'search result gives correct item in tech category with "expensive" keyword')
-    }).catch((categoriesErr) => {
+    })
+    .catch((categoriesErr) => {
       console.log(categoriesErr)
     })
     dbHelpers.getSearchResults(['cars'], 'superfast 400km/h', (searchResults) => {

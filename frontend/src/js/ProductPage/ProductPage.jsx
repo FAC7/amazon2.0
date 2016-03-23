@@ -50,7 +50,7 @@ class ProductPage extends React.Component {
   render () {
     return (
       <div>
-        <Header />
+        <Header search={this.props.route.search} categorySelect={this.props.route.categorySelect} handleChange={this.props.route.handleChange} />
         <div className='container'>
           <div className='img-scale column-third'>
             <img src={this.state.product.imageLink} />
@@ -59,8 +59,7 @@ class ProductPage extends React.Component {
         </div>
         <Description {...this.state.product} />
         <button onClick={this.openReviewModal.bind(this)}> Write a review </button>
-        <Modal
-          isOpen={this.state.reviewBool} >
+        <Modal isOpen={this.state.reviewBool} >
           <ReviewBox id={this.state.product.id} closeReviewModal={this.closeReviewModal.bind(this)} />
         </Modal>
         <ReviewList reviews={this.state.product.reviews} />
@@ -81,7 +80,8 @@ ProductPage.propTypes = {
   stock: React.PropTypes.number.isRequired,
   categories: React.PropTypes.string.isRequired, // (stringified array)
   buttonText: React.PropTypes.string.isRequired,
-  buttonType: React.PropTypes.string
+  buttonType: React.PropTypes.string,
+  route: React.PropTypes.object
 }
 
 ProductPage.defaultProps = {
