@@ -55,10 +55,12 @@ class ProductPage extends React.Component {
         right: 'auto',
         bottom: 'auto',
         transform: 'translate(-50%, -50%)',
-        padding: '0'
+        padding: '0',
+        transition: '0.3s ease'
       },
       overlay: {
         backgroundColor: 'rgba(0, 0, 0, 0.75)',
+        transition: '0.3s ease'
       }
     }
 
