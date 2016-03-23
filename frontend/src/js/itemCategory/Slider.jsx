@@ -42,8 +42,47 @@ class Slider extends React.Component {
       arrows: true,
       speed: 500,
       slidesToShow: 5,
-      slidesToScroll: 2
+      slidesToScroll: 2,
+      responsive: [
+        {
+          breakpoint: 700,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            dots: false
+          }
+        },
+        {
+          breakpoint: 900,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 860,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            dots: false
+          }
+        },
+        {
+          breakpoint: 1100,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 1300,
+          settings: {
+            slidesToShow: 4
+          }
+        }
+      ]
     }
+
     const returnItemJSX = (item) => {
       return (
         <div>

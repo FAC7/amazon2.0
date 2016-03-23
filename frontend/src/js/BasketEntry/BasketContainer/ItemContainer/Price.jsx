@@ -1,11 +1,11 @@
 import React from 'react'
 
 const Price = (props) => {
-  return <p>{props.currencySymbol}{props.cost}</p>
+  return <p>{props.currencySymbol}{props.price}</p>
 }
 
 Price.propTypes = {
-  cost: React.PropTypes.number.isRequired,
+  price: React.PropTypes.number.isRequired,
   currencySymbol: React.PropTypes.string.isRequired
 }
 

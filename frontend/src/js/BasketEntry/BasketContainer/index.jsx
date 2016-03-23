@@ -4,6 +4,7 @@ import DeletedItemContainer from './ItemContainer/DeletedItemContainer.jsx'
 import TableHeading from './TableHeaders/index.jsx'
 import CheckoutContainer from './CheckoutContainer/index.jsx'
 import Header from '../../Header/index.jsx'
+import BottomFooter from '../../footer/footer.js'
 
 class BasketContainer extends React.Component {
 
@@ -31,7 +32,9 @@ class BasketContainer extends React.Component {
                       itemInfo={item}
                       deleteFunction={this.props.deleteFunction}
                       quantityFunction={this.props.quantityFunction}
-                      quantityValidation={this.props.quantityValidation} />
+                      quantityValidation={this.props.quantityValidation}
+                      addItem={this.props.addItem}
+                      removeItem={this.props.removeItem} />
                     )
                 } else {
                   return (
@@ -48,6 +51,7 @@ class BasketContainer extends React.Component {
             </tbody>
           </table>}
         {items.length > 0 ? <CheckoutContainer redirectClick={this.props.redirectClick} numItems={this.props.numItems} getPrice={this.props.getPrice} /> : <p></p>}
+        <BottomFooter />
       </div>
     )
   }
