@@ -5,8 +5,6 @@ const Path = require('path')
 const querystring = require('querystring')
 const server = new Hapi.Server()
 const port = 4000
-// local variables
-require('env2')('./../config.env')
 
 server.connection({
   routes: {cors: true},
