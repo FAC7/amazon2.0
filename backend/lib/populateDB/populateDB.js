@@ -7,7 +7,8 @@ module.exports = (client) => {
 
   // make array of all CSV files to be imported
   const fileNameArray = ['laptops', 'footballs', 'gardenFurniture', 'hairdryers',
-  'mensClothing', 'sportTech', 'televisions', 'womensClothing']
+  'mensClothing', 'sportTech', 'televisions', 'womensClothing', 'tablets',
+  'mensFragrance', 'womensFragrance', 'mobilePhones']
 
   // grab files, split by newline (into rows) and split again by comma (into
   // columns). Results in one huge 4D array containing the info from all CSVs
@@ -28,6 +29,10 @@ module.exports = (client) => {
   const sportTech = fourDArray[5]
   const televisions = fourDArray[6]
   const womensClothing = fourDArray[7]
+  const tablets = fourDArray[8]
+  const mensFragrance = fourDArray[9]
+  const womensFragrance = fourDArray[10]
+  const mobilePhones = fourDArray[11]
 
 // add each member of an array to the database using dbHelper
   const addArrayOfProducts = (array, categories) => {
@@ -54,4 +59,8 @@ module.exports = (client) => {
   addArrayOfProducts(sportTech, ['technology', 'sport', 'clothing', 'global'])
   addArrayOfProducts(televisions, ['technology', 'television', 'global'])
   addArrayOfProducts(womensClothing, ['clothing', 'women', 'global'])
+  addArrayOfProducts(tablets, ['technology', 'handhelds', 'global'])
+  addArrayOfProducts(mensFragrance, ['perfume', 'men', 'global'])
+  addArrayOfProducts(womensFragrance, ['perfume', 'women', 'global'])
+  addArrayOfProducts(mobilePhones, ['technology', 'handhelds', 'global'])
 }
