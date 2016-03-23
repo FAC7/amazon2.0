@@ -42,9 +42,9 @@ const App = React.createClass({
     const ChildWithProps = React.cloneElement(
       this.props.children, // eslint-disable-line
       {
-      state: this.state,
-      changeState: this.changeState
-  }
+        state: this.state,
+        changeState: this.changeState
+      }
     )
 
     return (
@@ -66,12 +66,12 @@ const App = React.createClass({
 render((
   <Router history={browserHistory}>
     <Route path='/' component={App}>
-      <IndexRoute component={Home} />
-      <Route path='basket' activeStyle={{ color: 'red' }} component={Basket} />
-      <Route path='/checkout' activeStyle={{ color: 'red' }} component={Checkout} />
-      <Route path='/payment-status' activeStyle={{ color: 'red' }} component={PaymentStatus} />
-      <Route path='/item/:itemID' component={ProductPage} />
-      <Route path='/searchResults' component={SearchResults} />
+      <IndexRoute component={Category} />
+      <Route path='basket' component={Basket} />
+      <Route path='checkout' component={Checkout} />
+      <Route path='payment-status' component={PaymentStatus} />
+      <Route path='item/:itemID' component={ProductPage} />
+      <Route path='searchResults' component={SearchResults} />
     </Route>
   </Router>
-  ), document.getElementById('amazon'))
+), document.getElementById('amazon'))
