@@ -6,11 +6,11 @@ class BasketEntry extends React.Component {
 
   constructor () {
     super()
-    let storage = window.localStorage
+    // let storage = window.localStorage
     let shoppingBasket = { items: [] }
-    if (storage.length > 0 && storage.getItem('shoppingBasket')) {
-      shoppingBasket = {items: JSON.parse(storage.getItem('shoppingBasket'))}
-    }
+    // if (storage.length > 0 && storage.getItem('shoppingBasket')) {
+    //   shoppingBasket = {items: JSON.parse(storage.getItem('shoppingBasket'))}
+    // }
 
     this.state = {
       shoppingBasket: shoppingBasket

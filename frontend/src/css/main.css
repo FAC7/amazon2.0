@@ -82,3 +82,31 @@ body {
 }
 
 /************************** End Category Items Carousel Style ***********************/
+
+
+/************************** Start Category NavBar Style ***********************/
+
+nav {
+  font-family: Lato, sans-serif;
+}
+
+nav ul {
+  list-style: none;
+  color: #FFF;
+}
+
+nav li {
+  display: inline;
+  margin-left: 1em;
+}
+
+nav li a {
+  letter-spacing: 2px;
+  color: #FFFFFF;
+}
+
+nav li:first-child {
+  margin-left: 0;
+}
+
+/************************** End Category NavBar Style ***********************/

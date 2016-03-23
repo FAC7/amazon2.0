@@ -1,7 +1,9 @@
 import React from 'react'
 
-const Price = (props) => {
-  return <p>{props.currencySymbol}{props.price}</p>
+class Price extends React.Component {
+  render () {
+    return <p>{this.props.currencySymbol}{this.props.price}</p>
+  }
 }
 
 Price.propTypes = {
