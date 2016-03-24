@@ -22,12 +22,30 @@ server.register(plugins, (err) => {
     throw err
   }
 
+  // Do not change the resource routing!
+  // Need to always serve index unless a data endpoint is requested,
+  // or the amazon.js script or the shamazon-logo.png
   server.route([
     {
       method: 'GET',
+      path: '/amazon.js',
+      handler: (request, reply) => {
+        console.log('amazon.js')
+        reply.file(Path.join(__dirname, '..', '..', 'frontend', 'production', 'amazon.js'))
+      }
+    }, {
+      method: 'GET',
+      path: '/shamazon-logo.png',
+      handler: (request, reply) => {
+        console.log('shamazon-logo.png')
+        reply.file(Path.join(__dirname, '..', '..', 'frontend', 'production', 'shamazon-logo.png'))
+      }
+    }, {
+      method: 'GET',
       path: '/{param*}',
-      handler: {
-        directory: { path: Path.join(__dirname, '/../../frontend/production') }
+      handler: (request, reply) => {
+        console.log('all')
+        reply.file(Path.join(__dirname, '..', '..', 'frontend', 'production', 'index.html'))
       }
     }, {
       method: 'GET',
