@@ -5,6 +5,7 @@ import Description from './Description.jsx'
 import ReviewList from '../ReviewBox/ReviewList.jsx'
 import ReviewBox from '../ReviewBox/ReviewBox.jsx'
 require('../../css/grid.css')
+require('../../css/review-box.css')
 
 class ProductPage extends React.Component {
   constructor () {
@@ -24,11 +25,10 @@ class ProductPage extends React.Component {
       if (xhr.status === 200 && xhr.readyState === 4) {
         let product = JSON.parse(xhr.responseText)
         product.reviews = JSON.parse(product.reviews)
-        this.setState({ product: product })
-        console.log(this.state)
+        this.setState({ product })
       }
     }
-    xhr.open('GET', `http://localhost:4000/getIndividualItem/${this.props.params.itemID}`) // eslint-disable-line
+    xhr.open('GET', `/getIndividualItem/${this.props.params.itemID}`) // eslint-disable-line
     xhr.send()
   }
 
@@ -61,18 +61,40 @@ class ProductPage extends React.Component {
   }
 
   render () {
+    const modalStyles = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        transform: 'translate(-50%, -50%)',
+        padding: '0',
+        transition: '0.3s ease'
+      },
+      overlay: {
+        backgroundColor: 'rgba(0, 0, 0, 0.75)',
+        transition: '0.3s ease'
+      }
+    }
+
     return (
-      <div>
+      <div className='page-margin'>
         <div className='container'>
           <div className='img-scale column-third'>
             <img src={this.state.product.imageLink} />
           </div>
-          <InfoBox {...this.state.product} buttonText='buy' />
+          <InfoBox {...this.state.product} buttonText='add to basket' />
         </div>
         <Description {...this.state.product} />
-        <button onClick={this.openReviewModal.bind(this)}> Write a review </button>
-        <Modal isOpen={this.state.reviewBool} >
-          <ReviewBox id={this.state.product.id} closeReviewModal={this.closeReviewModal.bind(this)} />
+        <button className='button-yellow' onClick={this.openReviewModal.bind(this)}>
+          write a review
+        </button>
+        <Modal
+          isOpen={this.state.reviewBool}
+          style={modalStyles}>
+          <ReviewBox
+            id={this.state.product.id}
+            closeReviewModal={this.closeReviewModal.bind(this)} />
         </Modal>
         <ReviewList reviews={this.state.product.reviews} />
       </div>
@@ -106,7 +128,7 @@ ProductPage.defaultProps = {
   stock: 12,
   categories: '["Clothes", "Health and Beauty"]', // (stringified array)
   buttonText: 'Add to basket',
-  buttonType: 'button'
+  buttonType: 'button-yellow'
 }
 
 export default ProductPage

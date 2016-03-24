@@ -112,7 +112,6 @@ module.exports = (client) => {
       cb(null, JSON.parse(reply))
     })
   }
-
   this.addReview = (productId, reviewObj, cb) => {
     this.getReviewsByProductId(productId, (err, reviews) => {
       if (err) return cb(err)

@@ -8,9 +8,9 @@
   },
   "scripts": {
     "dev": "webpack-dev-server --hot --inline --config devwebpack.config.js",
-    "build": "webpack --progress --config productionwebpack.config.js",
+    "build": "webpack --progress --config productionwebpack.config.js && cp ./public/img/shamazon-logo.png ./production/shamazon-logo.png",
+    "watch": "mkdir production && cp ./public/img/shamazon-logo.png ./production/shamazon-logo.png && webpack --progress --config productionwebpack.config.js --watch",
     "test": "jest",
-    "watch": "webpack --progress --config productionwebpack.config.js --watch",
     "postinstall": "mkdir -p ../.git/hooks && cp ../hooks/pre-commit ../.git/hooks && chmod -R 755 ../.git/hooks"
   },
   "jest": {

@@ -1,11 +1,13 @@
 import React from 'react'
 import Button from './Button.jsx'
+import cx from 'classnames'
 
 class BuyProduct extends React.Component {
   constructor () {
     super()
     this.state = {
-      quantity: 1
+      quantity: 1,
+      success: false
     }
   }
 
@@ -61,8 +63,14 @@ class BuyProduct extends React.Component {
     } else {
       this.addToLocal([formatted])
     }
-    console.log('shoppingbasketitem---', localStorage.getItem('shoppingBasket')) // eslint-disable-line
+
+    this.showSuccessMessage()
+    // console.log('shoppingbasketitem---', localStorage.getItem('shoppingBasket')) // eslint-disable-line
   // localStorage.removeItem('shoppingBasket')
+  }
+
+  showSuccessMessage () {
+    this.setState({ success: true })
   }
 
   generateOptions () {
@@ -75,20 +83,26 @@ class BuyProduct extends React.Component {
   }
 
   createDropdown () {
+    let successClasses = cx({
+      'success-message': true,
+      'show': this.state.success,
+      'hide': !this.state.success
+    })
     if (this.props.stock > 0) { // eslint-disable-line
       return (
         <div>
-          <select onChange={this.handleOptions.bind(this)}>
+          <select className='select-product' onChange={this.handleOptions.bind(this)}>
             {this.generateOptions()}
           </select>
           <Button addToBasket={this.addToBasket.bind(this)} {...this.props} />
+          <div className={successClasses}>
+            <p>added to basket!</p>
+          </div>
         </div>
       )
     } else {
       return (
-        <p>
-          Out of stock
-        </p>
+        <p>Out of stock</p>
       )
     }
   }
@@ -96,12 +110,8 @@ class BuyProduct extends React.Component {
   render () {
     return (
       <div>
-        <div>
-          {this.createDropdown()}
-        </div>
-        <p>
-          {this.props.stock} items left
-        </p>
+        <div>{this.createDropdown()}</div>
+        <p>{this.props.stock} items left</p>
       </div>
     )
   }
