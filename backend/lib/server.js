@@ -2,7 +2,7 @@
 
 const Hapi = require('hapi')
 const Path = require('path')
-const querystring = require('querystring')
+
 const server = new Hapi.Server()
 const port = 4000
 
@@ -97,12 +97,8 @@ server.register(plugins, (err) => {
       handler: (request, reply) => {
         const client = require('./redis.js')
         const dbHelpers = require('./dbHelpers.js')(client)
-        const load = querystring.parse(request.url.search.split('?')[1])
-        const arr = []
-        arr.push(load.category)
-        console.log(load.input, 'LOADINPUT')
-        dbHelpers.getSearchResults(arr, load.input, (response) => {
-          console.log(response, 'RESPONSE')
+        const arr = [request.query.category]
+        dbHelpers.getSearchResults(arr, request.query.input, (response) => {
           reply(response)
         })
       }
