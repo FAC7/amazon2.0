@@ -94,6 +94,7 @@ class BuyProduct extends React.Component {
           <select className='select-product' onChange={this.handleOptions.bind(this)}>
             {this.generateOptions()}
           </select>
+          <p>{this.props.stock} items left</p>
           <Button addToBasket={this.addToBasket.bind(this)} {...this.props} />
           <div className={successClasses}>
             <p>added to basket!</p>
@@ -111,7 +112,6 @@ class BuyProduct extends React.Component {
     return (
       <div>
         <div>{this.createDropdown()}</div>
-        <p>{this.props.stock} items left</p>
       </div>
     )
   }
