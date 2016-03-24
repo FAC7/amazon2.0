@@ -5,10 +5,8 @@ require('./PaymentStatus.css')
 
 class Payment extends React.Component {
   render () {
-    const payDeets = utils.fromCookieString(
-      cookieParser.parse(document.cookie).am2_pay_data
-    )
-
+    const cookie = cookieParser.parse(document.cookie)
+    const payDeets = utils.fromCookieString(cookie.am2_pay_data, ',')
     const success = payDeets.success === 'true'
 
     const headerMessage = success ? 'Payment Confirmed' : 'Payment Failed'
