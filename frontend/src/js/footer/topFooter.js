@@ -9,7 +9,7 @@ class TopFooter extends React.Component {
         <h3>{this.props.heading}</h3>
         <ul style={ulStyles}>
           {this.props.data.map((item) => {
-            return <li key={item.id} ><a href={item.link}>{item.content}</a></li>
+            return <li><a target='_blank' href={item.link}>{item.content}</a></li>
           })}
         </ul>
       </div>
@@ -29,7 +29,8 @@ var ulStyles = {
 TopFooter.propTypes = {
   heading: React.PropTypes.string.isRequired,
   data: React.PropTypes.arrayOf(React.PropTypes.objectOf(React.PropTypes.string)).isRequired,
-  width: React.PropTypes.string
+  width: React.PropTypes.string,
+  marginRight: React.PropTypes.string
 }
 
 export default TopFooter
