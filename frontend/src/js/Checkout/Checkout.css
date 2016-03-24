@@ -1,0 +1,19 @@
+.inputGroup {
+  margin-bottom: 1em;
+  display: block;
+}
+
+#payment-form {
+  text-align: left;
+  border: 3px solid #222E3E;
+  border-radius: 5px;
+  padding: 0.7em;
+  width: 50%;
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wrapper {
+  text-align: center;
+}
