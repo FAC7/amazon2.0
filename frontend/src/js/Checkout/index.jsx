@@ -38,7 +38,7 @@ class CheckoutForm extends React.Component {
   }
   render () {
     return (
-      <div>
+      <div className='container'>
         <h2>Checkout</h2>
         <h4>Please enter your card details</h4>
         <form id='payment-form' method='POST' onSubmit={this.clickHandler} formAction='' style={formStyles}>
