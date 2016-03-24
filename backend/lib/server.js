@@ -2,11 +2,9 @@
 
 const Hapi = require('hapi')
 const Path = require('path')
-const querystring = require('querystring')
+
 const server = new Hapi.Server()
 const port = 4000
-// local variables
-require('env2')('./../config.env')
 
 server.connection({
   routes: {cors: true},
@@ -60,21 +58,23 @@ server.register(plugins, (err) => {
       handler: (request, reply) => {
         const client = require('./redis.js')
         const dbHelpers = require('./dbHelpers.js')(client)
+
+        var results = []
+
         dbHelpers.getArrayOfProdObjsByCategories(['appliances', 'electric', 'global'])
         .then((hairdryers) => {
-          dbHelpers.getArrayOfProdObjsByCategories(['sport', 'garden', 'global'])
-          .then((footballs) => {
-            dbHelpers.getArrayOfProdObjsByCategories(['technology', 'computers', 'global'])
-            .then((laptops) => {
-              return reply(JSON.stringify([hairdryers, footballs, laptops]))
-            }).catch((err1) => {
-              console.log(err1)
-            })
-          }).catch((err2) => {
-            console.log(err2)
-          })
-        }).catch((err3) => {
-          console.log(err3)
+          results.push(hairdryers)
+          return dbHelpers.getArrayOfProdObjsByCategories(['sport', 'garden', 'global'])
+        })
+        .then((footballs) => {
+          results.push(footballs)
+          return dbHelpers.getArrayOfProdObjsByCategories(['technology', 'computers', 'global'])
+        })
+        .then((laptops) => {
+          results.push(laptops)
+          return reply(JSON.stringify(results))
+        }).catch((err) => {
+          console.log(err)
         })
       }
     }, {
@@ -84,8 +84,10 @@ server.register(plugins, (err) => {
         const client = require('./redis.js')
         const dbHelpers = require('./dbHelpers.js')(client)
         dbHelpers.getProductById(request.params.id, (err, response) => {
-          if (err) throw Error
-          else {
+          if (err) {
+            console.log('Database error: ', err)
+            reply({success: false, error: err})
+          } else {
             reply(response)
           }
         })
@@ -97,18 +99,9 @@ server.register(plugins, (err) => {
       handler: (request, reply) => {
         const client = require('./redis.js')
         const dbHelpers = require('./dbHelpers.js')(client)
-        const load = querystring.parse(request.url.search.split('?')[1])
-        const arr = []
-        arr.push(load.category)
-        console.log(load.input, 'LOADINPUT')
-        dbHelpers.getSearchResults(arr, load.input, (err, response) => {
-          console.log(err, 'ERR')
-          console.log(response, 'RESP!!!')
-          if (err) console.log('ERR: ', err)
-          else {
-            console.log(response, 'RESPONSE')
-            reply(response)
-          }
+        const arr = [request.query.category]
+        dbHelpers.getSearchResults(arr, request.query.input, (response) => {
+          reply(response)
         })
       }
     }, {
@@ -127,7 +120,8 @@ server.register(plugins, (err) => {
         console.log(formattedObj)
         dbHelpers.addReview(reviewObj.id, formattedObj, (err, response) => {
           if (err) {
-            throw err
+            console.log('Database error: ', err)
+            reply({success: false, error: err})
           } else {
             reply(response)
           }

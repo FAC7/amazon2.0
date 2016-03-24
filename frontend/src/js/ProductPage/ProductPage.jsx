@@ -3,9 +3,7 @@ import Modal from 'react-modal'
 import InfoBox from './InfoBox.jsx'
 import Description from './Description.jsx'
 import ReviewList from '../ReviewBox/ReviewList.jsx'
-import Header from '../Header/index.jsx'
 import ReviewBox from '../ReviewBox/ReviewBox.jsx'
-import BottomFooter from '../footer/footer.js'
 require('../../css/grid.css')
 require('../../css/review-box.css')
 
@@ -16,6 +14,9 @@ class ProductPage extends React.Component {
       product: {},
       reviewBool: false
     }
+    this.setResultsState = this.setResultsState.bind(this)
+    this.categorySelect = this.categorySelect.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   getData () {
@@ -43,6 +44,18 @@ class ProductPage extends React.Component {
     this.getData()
   }
 
+  setResultsState (results) {
+    this.props.changeState({ // eslint-disable-line
+      searchResults: results
+    })
+  }
+  categorySelect (e) {
+    this.props.changeState({category: e.target.value }) // eslint-disable-line
+  }
+  handleChange (e) {
+   this.props.changeState({input: e.target.value }) // eslint-disable-line
+  }
+
   componentDidMount () {
     this.getData()
   }
@@ -66,14 +79,9 @@ class ProductPage extends React.Component {
 
     return (
       <div>
-        <Header
-          search={this.props.route.search}
-          categorySelect={this.props.route.categorySelect}
-          handleChange={this.props.route.handleChange} />
-        <div className='page-margin'>
-          <div className='container'>
-            <div className='img-scale column-third'><img src={this.state.product.imageLink} /></div>
-            <InfoBox {...this.state.product} buttonText='add to basket' />
+        <div className='container'>
+          <div className='img-scale column-third'>
+            <img src={this.state.product.imageLink} />
           </div>
           <Description {...this.state.product} />
           <button className='button-yellow' onClick={this.openReviewModal.bind(this)}>

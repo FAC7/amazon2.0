@@ -1,74 +1,77 @@
 import React from 'react'
 import { render } from 'react-dom'
-import Home from './../modules/home.jsx'
-import PaymentStatus from './PaymentStatus/index.jsx'
-import SearchResults from './SearchResults/index.jsx'
+import { browserHistory, Router, Route, IndexRoute } from 'react-router'
+import Header from './Header/index.jsx'
+import Footer from './footer/footer.js'
+import Category from './itemCategory/Category.jsx'
 import ProductPage from './ProductPage/ProductPage.jsx'
+import SearchResults from './SearchResults/index.jsx'
 import Basket from './BasketEntry/index.jsx'
 import Checkout from './Checkout/index.jsx'
-import { Router, Route } from 'react-router'
-import querystring from 'querystring'
-import { browserHistory } from 'react-router'
+import PaymentStatus from './PaymentStatus/index.jsx'
 
 require('../css/main.css')
 
-class App extends React.Component {
-  constructor () {
-    super()
-    this.state = {
+const App = React.createClass({
+  getInitialState () {
+    return {
       searchResults: [],
       input: '',
-      category: 'global'
+      category: 'global',
+      history: []
     }
-    this.search = this.search.bind(this)
-    this.categorySelect = this.categorySelect.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-  }
+  },
+
+  changeState (change) {
+    this.setState(change)
+  },
+
+  setResultsState (results) {
+    this.setState({searchResults: results})
+  },
 
   categorySelect (e) {
-    this.state.category = e.target.value
-    this.setState(this.state)
-  }
+    this.setState({category: e.target.value})
+  },
 
   handleChange (e) {
-    this.state.input = e.target.value
-    this.setState(this.state)
-    // TODO Setup autocomplete
-  }
-
-  search (e) {
-    e.preventDefault()
-    var obj = {}
-    obj.category = this.state.category
-    obj.input = this.state.input
-    var xhr = new XMLHttpRequest() // eslint-disable-line
-    xhr.addEventListener('load', (response) => {
-      this.state.searchResults = response.target.response
-      this.setState(this.state)
-      obj = {}
-      obj.q = this.state.input
-      obj.categories = this.state.category
-      browserHistory.push('/search?' + querystring.stringify(obj))
-    })
-    xhr.open('GET', '/searchrequest?' + querystring.stringify(obj))
-    xhr.send()
-  }
+    this.setState({input: e.target.value})
+  },
 
   render () {
+    const ChildWithProps = React.cloneElement(
+      this.props.children, // eslint-disable-line
+      {
+        state: this.state,
+        changeState: this.changeState
+      }
+    )
+
     return (
-      <Router history={browserHistory}>
-        <Route path='/' component={Home} search={this.search} categorySelect={this.categorySelect} handleChange={this.handleChange} />
-        <Route path='/basket' activeStyle={{ color: 'red' }} component={Basket} />
-        <Route path='/checkout' activeStyle={{ color: 'red' }} component={Checkout} />
-        <Route path='/payment-status' activeStyle={{ color: 'red' }} component={PaymentStatus} />
-        <Route path='/item/:itemID' component={ProductPage} search={this.search} categorySelect={this.categorySelect} handleChange={this.handleChange} />
-        <Route path='/search?q=:searchString&categories=:categories' component={SearchResults} />
-      </Router>
+      <div>
+        <Header
+          categorySelect={this.categorySelect}
+          handleChange={this.handleChange}
+          setResultsState={this.setResultsState}
+          />
+        <main>
+          {ChildWithProps}
+        </main>
+        <Footer />
+      </div>
     )
   }
-
-}
+})
 
 render((
-  <App/>
-  ), document.getElementById('amazon'))
+  <Router history={browserHistory}>
+    <Route path='/' component={App}>
+      <IndexRoute component={Category} />
+      <Route path='basket' component={Basket} />
+      <Route path='checkout' component={Checkout} />
+      <Route path='payment-status' component={PaymentStatus} />
+      <Route path='item/:itemID' component={ProductPage} />
+      <Route path='searchResults' component={SearchResults} />
+    </Route>
+  </Router>
+), document.getElementById('amazon'))

@@ -1,6 +1,12 @@
 import React from 'react'
 
-const Quantity = (props) => <p>{props.counter}</p>
+const styleQuantity = {
+  marginTop: '3px', 
+  paddingLeft: '5px', 
+  paddingRight: '5px'
+}
+
+const Quantity = (props) => <p style={styleQuantity}>{props.counter}</p>
 
 Quantity.propTypes = {
   counter: React.PropTypes.number

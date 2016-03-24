@@ -13,6 +13,20 @@ module.exports = {
       keywordString = keywordString.replace(re, '').trim()
     })
     return keywordString.replace(/\s{2,}/g, ' ')
+  },
+
+  toCookieString (obj, sep) {
+    return Object.keys(obj).map((key) => {
+      return key.toString() + '=' + obj[key].toString()
+    }).join(sep)
+  },
+
+  fromCookieString (str, sep) {
+    return str.split(sep).reduce((acc, curr) => {
+      const arr = curr.split('=')
+      acc[arr[0]] = arr[1]
+      return acc
+    }, {})
   }
 
 }
