@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "webpack-dev-server --hot --inline --config devwebpack.config.js",
     "build": "webpack --progress --config productionwebpack.config.js && cp ./public/img/shamazon-logo.png ./production/shamazon-logo.png",
-    "watch": "mkdir production && cp ./public/img/shamazon-logo.png ./production/shamazon-logo.png && webpack --progress --config productionwebpack.config.js --watch",
+    "watch": "mkdir -p production && cp ./public/img/shamazon-logo.png ./production/shamazon-logo.png && webpack --progress --config productionwebpack.config.js --watch",
     "test": "tape tests/runner.js",
     "postinstall": "mkdir -p ../.git/hooks && cp ../hooks/pre-commit ../.git/hooks && chmod -R 755 ../.git/hooks"
   },
