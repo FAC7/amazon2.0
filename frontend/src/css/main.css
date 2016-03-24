@@ -90,6 +90,10 @@ body {
   margin: auto;
 }
 
+.footer-top ul:nth-child(1) li:nth-child(2), .footer-top ul li:nth-child(5), .footer-top div:nth-child(2) ul li:nth-child(1), .footer-top ul:nth-child(2) li:nth-child(2) {
+  text-decoration: underline;
+}
+
 footer {
   background-color: #222e3e;
   color: #fff;
