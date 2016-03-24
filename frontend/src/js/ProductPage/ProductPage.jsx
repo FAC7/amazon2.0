@@ -78,26 +78,26 @@ class ProductPage extends React.Component {
     }
 
     return (
-      <div>
+      <div className='page-margin'>
         <div className='container'>
           <div className='img-scale column-third'>
             <img src={this.state.product.imageLink} />
           </div>
-          <Description {...this.state.product} />
-          <button className='button-yellow' onClick={this.openReviewModal.bind(this)}>
-            write a review
-          </button>
-          <Modal
-            isOpen={this.state.reviewBool}
-            style={modalStyles}>
-            <ReviewBox
-              id={this.state.product.id}
-              closeReviewModal={this.closeReviewModal.bind(this)} />
-          </Modal>
-          <ReviewList reviews={this.state.product.reviews} />
+          <InfoBox {...this.state.product} buttonText='add to basket' />
         </div>
-      <BottomFooter />
-    </div>
+        <Description {...this.state.product} />
+        <button className='button-yellow' onClick={this.openReviewModal.bind(this)}>
+          write a review
+        </button>
+        <Modal
+          isOpen={this.state.reviewBool}
+          style={modalStyles}>
+          <ReviewBox
+            id={this.state.product.id}
+            closeReviewModal={this.closeReviewModal.bind(this)} />
+        </Modal>
+        <ReviewList reviews={this.state.product.reviews} />
+      </div>
     )
   }
 }

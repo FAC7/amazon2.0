@@ -6,8 +6,8 @@ import { Link } from 'react-router'
 class Header extends React.Component {
   render () {
     return (
-      <div className='container'>
-        <header style={styles}>
+      <div>
+        <header className='container' style={styles}>
           <Link to='/'>
             <div className='logo-container'>
               <img src='/shamazon-logo.png'></img>
