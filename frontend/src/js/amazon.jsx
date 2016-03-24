@@ -28,18 +28,6 @@ const App = React.createClass({
     this.setState(change)
   },
 
-  setResultsState (results) {
-    this.setState({searchResults: results})
-  },
-
-  categorySelect (e) {
-    this.setState({category: e.target.value})
-  },
-
-  handleChange (e) {
-    this.setState({input: e.target.value})
-  },
-
   render () {
     const ChildWithProps = React.cloneElement(
       this.props.children, // eslint-disable-line
@@ -51,11 +39,7 @@ const App = React.createClass({
 
     return (
       <div>
-        <Header
-          categorySelect={this.categorySelect}
-          handleChange={this.handleChange}
-          setResultsState={this.setResultsState}
-          />
+        <Header changeState={this.changeState} />
         <main>
           {ChildWithProps}
         </main>

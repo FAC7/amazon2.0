@@ -9,7 +9,7 @@ class CategoryButton extends React.Component {
     'garden', 'furniture', 'electric', 'clothing', 'men', 'women', 'television',
     'handhelds', 'perfumes'].sort())
     return (
-      <select id='select' onChange={this.props.categorySelect} style={styles}>
+      <select id='select' style={styles}>
         {list.map((item) => {
           return (
             <option value={item}>{item}</option>
