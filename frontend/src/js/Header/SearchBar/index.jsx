@@ -2,13 +2,40 @@ import React from 'react'
 import SearchBox from './searchbox.jsx'
 import SubmitButton from './submitbutton.jsx'
 import CategoryButton from './categorybutton.jsx'
+import querystring from 'querystring'
+import { browserHistory } from 'react-router'
 
 class SearchBar extends React.Component {
+  constructor () {
+    super()
+    this.search = this.search.bind(this)
+  }
+
+  search (cb, e) {
+    e.preventDefault()
+    var xhr = new XMLHttpRequest() // eslint-disable-line
+    xhr.addEventListener('load', (response) => {
+      cb(response.target.response)
+      browserHistory.push('/searchResults')
+    })
+
+    const qs = querystring.stringify({
+      category: document.getElementById('select').value,
+      input: document.getElementById('inputBox').value
+    })
+
+    xhr.open('GET', '/searchrequest?' + qs)
+    xhr.send()
+  }
+
   render () {
     styles.width = this.props.width
     styles.height = this.props.height
     return (
-      <form formAction={this.props.submitURL} onSubmit={this.props.submitHandler} style={styles}>
+      <form
+        formAction={this.props.submitURL}
+        onSubmit={this.search.bind(this, this.props.setResultsState)}
+        style={styles}>
         <CategoryButton categorySelect={this.props.categorySelect} />
         <SearchBox
           placeholder='Type here...'
@@ -31,12 +58,14 @@ SearchBar.propTypes = {
   inputColor: React.PropTypes.string,
   list: React.PropTypes.array,
   categorySelect: React.PropTypes.func,
-  handleChange: React.PropTypes.func
+  handleChange: React.PropTypes.func,
+  onSubmit: React.PropTypes.func,
+  setResultsState: React.PropTypes.func
 }
 
 SearchBar.defaultProps = {
   submitURL: '/',
-  submitHandler: function () {},
+  submitHandler: () => {},
   showSubmit: true,
   width: '90%',
   height: '2em',

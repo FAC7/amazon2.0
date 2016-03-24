@@ -9,7 +9,11 @@ class Header extends React.Component {
       <div>
         <Link to='/'><h1>Amazon 2.0 Home Page</h1></Link>
         <header style={styles}>
-          <SearchBar submitHandler={this.props.search} categorySelect={this.props.categorySelect} handleChange={this.props.handleChange} />
+          <SearchBar
+            submitHandler={this.props.search}
+            categorySelect={this.props.categorySelect}
+            handleChange={this.props.handleChange}
+            setResultsState={this.props.setResultsState} />
           <Nav home={'/home'} browse={'/search'} checkout={'/checkout'} basket={'/basket'}/>
         </header>
       </div>
@@ -20,8 +24,10 @@ class Header extends React.Component {
 Header.propTypes = {
   search: React.PropTypes.func,
   handleChange: React.PropTypes.func,
+  list: React.PropTypes.array,
+  submitHandler: React.PropTypes.func,
   categorySelect: React.PropTypes.func,
-  list: React.PropTypes.array
+  setResultsState: React.PropTypes.func
 }
 
 const styles = {
