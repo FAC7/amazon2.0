@@ -25,11 +25,9 @@ server.register(plugins, (err) => {
   server.route([
     {
       method: 'GET',
-      path: '/{params*}',
-      handler: (request, reply) => {
-        const path = Path.join(__dirname, '../../frontend/production/index.html')
-        console.log(path)
-        reply.file(path)
+      path: '/{param*}',
+      handler: {
+        directory: { path: '../../frontend/production' }
       }
     }, {
       method: 'GET',
@@ -44,13 +42,6 @@ server.register(plugins, (err) => {
           }
         })
         reply.redirect('/')
-      }
-    }, {
-      method: 'GET',
-      path: '/amazon.js',
-      handler: (request, reply) => {
-        const path = Path.join(__dirname, './../../frontend/production/amazon.js')
-        reply.file(path)
       }
     }, {
       method: 'GET',
