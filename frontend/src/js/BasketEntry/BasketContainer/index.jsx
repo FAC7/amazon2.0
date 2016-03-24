@@ -3,8 +3,6 @@ import ItemContainer from './ItemContainer/index.jsx'
 import DeletedItemContainer from './ItemContainer/DeletedItemContainer.jsx'
 import TableHeading from './TableHeaders/index.jsx'
 import CheckoutContainer from './CheckoutContainer/index.jsx'
-import Header from '../../Header/index.jsx'
-import BottomFooter from '../../footer/footer.js'
 
 class BasketContainer extends React.Component {
 
