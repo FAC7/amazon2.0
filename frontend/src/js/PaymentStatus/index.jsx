@@ -13,6 +13,9 @@ class Payment extends React.Component {
     const filler = success ? 'Thankyou for shopping with Amazon 2.0!' : 'We\'re sorry, your payment has been refused.'
     const display = {display: success ? 'block' : 'none'}
 
+    if (success) {
+      window.localStorage.clear()
+    }
     return (
       <div className='mainDiv'>
         <div style={{textAlign: 'center'}}>

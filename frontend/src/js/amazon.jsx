@@ -18,11 +18,13 @@ const App = React.createClass({
       searchResults: [],
       input: '',
       category: 'global',
-      history: []
+      history: [],
+      sort: 'price-asc'
     }
   },
 
   changeState (change) {
+    console.log('CHANGING STATE: ', change)
     this.setState(change)
   },
 
