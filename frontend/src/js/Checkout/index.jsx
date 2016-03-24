@@ -1,6 +1,7 @@
 import React from 'react'
 import Input from '../common/input.jsx'
 import cookieParser from 'cookieparser'
+require('./Checkout.css')
 
 class CheckoutForm extends React.Component {
   constructor () {
@@ -22,7 +23,7 @@ class CheckoutForm extends React.Component {
         xhr.addEventListener('load', (response) => {
           if (response.err) console.log(response.err)
           document.cookie = 'status=' + response.success
-          this.props.history.push('/payment-status')
+          this.props.history.push('/payment-status') // eslint-disable-line
         })
         const request = {
           currency: cookie.currency,
@@ -38,11 +39,17 @@ class CheckoutForm extends React.Component {
   }
   render () {
     return (
-      <div className='container'>
-        <h2>Checkout</h2>
-        <h4>Please enter your card details</h4>
-        <form id='payment-form' method='POST' onSubmit={this.clickHandler} formAction='' style={formStyles}>
-          <div style={divStyles}>
+      <div className='wrapper'>
+        <h2>
+          Checkout
+        </h2>
+
+        <h4>
+          Please enter your card details
+        </h4>
+
+        <form id='payment-form' method='POST' onSubmit={this.clickHandler} formAction=''>
+          <div className='inputGroup'>
             <label htmlFor='card-number'>Card Number*:</label>
             <Input
               data-stripe='number'
@@ -51,7 +58,7 @@ class CheckoutForm extends React.Component {
               width='15em' />
           </div>
 
-          <div style={divStyles}>
+          <div className='inputGroup'>
             <label>Expiry Date*:
               <Input
                 type='text'
@@ -66,7 +73,7 @@ class CheckoutForm extends React.Component {
             </label>
           </div>
 
-          <div style={divStyles}>
+          <div className='inputGroup'>
             <label>CVC* (<a href='#'>What is this?</a>):</label>
             <Input
               type='text'
@@ -85,16 +92,6 @@ class CheckoutForm extends React.Component {
       </div>
     )
   }
-}
-
-const formStyles = {
-  border: '3px solid #222E3E',
-  borderRadius: '5px',
-  padding: '0.7em'
-}
-
-const divStyles = {
-  marginBottom: '1em'
 }
 
 export default CheckoutForm
