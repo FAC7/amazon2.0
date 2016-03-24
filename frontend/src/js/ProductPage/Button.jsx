@@ -4,7 +4,7 @@ class Button extends React.Component {
 
   render () {
     return (
-      <button onClick={this.props.addToBasket.bind(this, this.props)} className={this.props.buttonType}>
+      <button onClick={this.props.addToBasket.bind(this, this.props)} className='button-blue'>
         {this.props.buttonText}
       </button>
     )

@@ -12,7 +12,8 @@ body {
   font-size: 40px;
 }
 .category {
-  width: 72%;
+  margin-top: 2em;
+  width: 85%;
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 45px;
@@ -83,6 +84,87 @@ body {
 }
 
 /************************** End Category Items Carousel Style ***********************/
+
+
+/*-----whole-page-styles-------*/
+
+.page-margin {
+  margin: 2em;
+}
+
+.logo-container {
+  width: 6.8em;
+  padding: 1em 3em;
+}
+
+.logo-container img {
+  width: 100%;
+}
+
+/*----buttons------*/
+
+.button-yellow {
+  padding: 0.8em;
+  background-color: #FEBC5B;
+  color: #222E3F;
+  outline: none;
+  border: none;
+  border-radius: 0.5em;
+  margin: 1em 1em 0 0;
+}
+
+.button-blue {
+  padding: 0.8em;
+  background-color: #222E3F;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 0.5em;
+  margin: 1em 1em 0 0;
+}
+
+
+/*-----misc---------*/
+.item-title {
+  border-top: 2px solid #D8D7D7;
+  border-bottom: 2px solid #D8D7D7;
+  padding: 0.5em 0;
+}
+
+.img-scale img {
+  width: 50%;
+  margin: 2em auto;
+  display: block;
+}
+
+select {
+  margin: 0px;
+  padding: 5px 0;
+  height: inherit;
+  width: 8em;
+  border: 5px solid;
+  border-radius: 5px 0px 0px 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-grow: 1;
+  outline: none;
+  list-style: none;
+  background-color: #CCC;
+  border-color: #CCC;
+  display: inline;
+}
+
+.select-product {
+  margin: 0em 1em 0 0;
+  height: 2.7em;
+}
+
+.fa-shopping-cart {
+  color: #FEBC5B;
+  font-size: 2.1em;
+  margin: 1em 1.3em 0 0;
+}
 
 .footer-top {
   height: 220px;

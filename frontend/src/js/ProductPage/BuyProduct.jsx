@@ -78,7 +78,7 @@ class BuyProduct extends React.Component {
     if (this.props.stock > 0) { // eslint-disable-line
       return (
         <div>
-          <select onChange={this.handleOptions.bind(this)}>
+          <select className='select-product' onChange={this.handleOptions.bind(this)}>
             {this.generateOptions()}
           </select>
           <Button addToBasket={this.addToBasket.bind(this)} {...this.props} />
