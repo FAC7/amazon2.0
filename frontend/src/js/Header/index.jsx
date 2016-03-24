@@ -10,7 +10,7 @@ class Header extends React.Component {
         <header className='container' style={styles}>
           <Link to='/'>
             <div className='logo-container'>
-              <img src='../../../public/img/shamazon-logo.png'></img>
+              <img src='/shamazon-logo.png'></img>
             </div>
           </Link>
           <SearchBar submitHandler={this.props.search} categorySelect={this.props.categorySelect} handleChange={this.props.handleChange} />

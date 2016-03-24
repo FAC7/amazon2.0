@@ -55,7 +55,7 @@ class ReviewBox extends React.Component {
           this.props.closeReviewModal()
         }
       }
-      xhr.open('POST', 'http://localhost:4000/submitReview')
+      xhr.open('POST', '/submitReview')
       xhr.send(JSON.stringify({ author, text, rating, date, id }))
     } else {
       this.setState({ reviewError: true })

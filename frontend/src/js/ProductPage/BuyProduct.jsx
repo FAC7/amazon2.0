@@ -96,7 +96,7 @@ class BuyProduct extends React.Component {
           </select>
           <Button addToBasket={this.addToBasket.bind(this)} {...this.props} />
           <div className={successClasses}>
-            <p>Added to basket!</p>
+            <p>added to basket!</p>
           </div>
         </div>
       )

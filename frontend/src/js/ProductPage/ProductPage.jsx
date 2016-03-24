@@ -27,7 +27,7 @@ class ProductPage extends React.Component {
         this.setState({ product })
       }
     }
-    xhr.open('GET', `http://localhost:4000/getIndividualItem/${this.props.params.itemID}`) // eslint-disable-line
+    xhr.open('GET', `/getIndividualItem/${this.props.params.itemID}`) // eslint-disable-line
     xhr.send()
   }
 
@@ -77,7 +77,7 @@ class ProductPage extends React.Component {
           </div>
           <Description {...this.state.product} />
           <button className='button-yellow' onClick={this.openReviewModal.bind(this)}>
-            Write a review
+            write a review
           </button>
           <Modal
             isOpen={this.state.reviewBool}
