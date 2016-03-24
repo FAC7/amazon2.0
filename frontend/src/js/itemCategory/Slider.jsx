@@ -30,7 +30,7 @@ class Slider extends React.Component {
         this.setState(this.state)
       }
     }
-    xhr.open('GET', 'http://localhost:4000/getItemsForCarousel')
+    xhr.open('GET', '/getItemsForCarousel')
     xhr.send()
   }
 
