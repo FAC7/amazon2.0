@@ -1,6 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
-require('../../css/Ratings/star.css')
+require('../../css/star.css')
 
 class Star extends React.Component {
   highlightStar () {
