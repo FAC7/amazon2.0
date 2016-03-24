@@ -25,10 +25,9 @@ const buttonStyle = {
 class ItemContainer extends React.Component {
 
   render () {
-
     const item = this.props.itemInfo
     return (
-      <tr>   
+      <tr>
         <td style={style}>
           <Image url={item.url} imageLink={item.imageLink} />
         </td>

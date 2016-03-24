@@ -10,46 +10,46 @@ class BasketContainer extends React.Component {
     const items = this.props.shoppingBasket.items
     return (
       <div>
-          <div className='container'>
-        {items.length === 0
-           ? <h1>Shopping Basket is Empty</h1> : <table className='column-fifth' style={rowStyle} cellPadding='10'>
-             <tbody>
-                   <tr>
-                     <TableHeading headingName='' span='1' />
-                     <TableHeading headingName='Item' span='1' />
-                     <TableHeading headingName='Price' />
-                     <TableHeading headingName='Quantity' span='2' />
-                   </tr>
-               {items.map((item, index) => {
-                 if (!item.deleted) {
-                   return (
+        <div className='container'>
+          {items.length === 0
+            ? <h1>Shopping Basket is Empty</h1> : <table className='column-fifth' style={rowStyle} cellPadding='10'>
+              <tbody>
+                <tr>
+                  <TableHeading headingName='' span='1' />
+                  <TableHeading headingName='Item' span='1' />
+                  <TableHeading headingName='Price' />
+                  <TableHeading headingName='Quantity' span='2' />
+                </tr>
+                {items.map((item, index) => {
+                  if (!item.deleted) {
+                    return (
                       <ItemContainer
-                      index={index}
-                      key={index}
-                      itemInfo={item}
-                      deleteFunction={this.props.deleteFunction}
-                      quantityFunction={this.props.quantityFunction}
-                      quantityValidation={this.props.quantityValidation}
-                      addItem={this.props.addItem}
-                      removeItem={this.props.removeItem} />
-                   )
-                 } else {
-                   return (
-                     <DeletedItemContainer
-                       span='3'
-                       index={index}
-                       key={index}
-                       itemInfo={item}
-                       removeFunction={this.props.removeFunction}
-                       restoreFunction={this.props.restoreFunction} />
-                   )
-                 }
-               })}
-             </tbody>
-           </table>}
-        {items.length > 0 ? <CheckoutContainer redirectClick={this.props.redirectClick} numItems={this.props.numItems} getPrice={this.props.getPrice} /> : <p></p>}
-         </div>
-    </div>
+                        index={index}
+                        key={index}
+                        itemInfo={item}
+                        deleteFunction={this.props.deleteFunction}
+                        quantityFunction={this.props.quantityFunction}
+                        quantityValidation={this.props.quantityValidation}
+                        addItem={this.props.addItem}
+                        removeItem={this.props.removeItem} />
+                    )
+                  } else {
+                    return (
+                      <DeletedItemContainer
+                        span='3'
+                        index={index}
+                        key={index}
+                        itemInfo={item}
+                        removeFunction={this.props.removeFunction}
+                        restoreFunction={this.props.restoreFunction} />
+                     )
+                  }
+                })}
+              </tbody>
+            </table>}
+          {items.length > 0 ? <CheckoutContainer redirectClick={this.props.redirectClick} numItems={this.props.numItems} getPrice={this.props.getPrice} /> : <p></p>}
+        </div>
+      </div>
     )
   }
 }

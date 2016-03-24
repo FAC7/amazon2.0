@@ -20,19 +20,18 @@ class CheckoutContainer extends React.Component {
 
   componentDidMount () {
     window.onscroll = function () {
-    if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
-        document.getElementById("test").style['position'] = 'fixed'
-        document.getElementById("test").style.top = '0'
-    } else {
-      document.getElementById("test").style['position'] = 'relative'
+      if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+        document.getElementById('positionId').style['position'] = 'fixed'
+        document.getElementById('positionId').style.top = '0'
+      } else {
+        document.getElementById('positionId').style['position'] = 'relative'
+      }
     }
-
-}
   }
 
   render () {
     return (
-      <div id="test" style={style}>
+      <div id='positionId' style={style}>
         <Subtotal subTotal='Subtotal ' numItems={this.props.numItems} />
         <TotalPrice getPrice={this.props.getPrice} />
         <Button handleClick={this.props.redirectClick} buttonText='Proceed to Checkout' />

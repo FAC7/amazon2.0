@@ -1,8 +1,8 @@
 import React from 'react'
 
 const styleQuantity = {
-  marginTop: '3px', 
-  paddingLeft: '5px', 
+  marginTop: '3px',
+  paddingLeft: '5px',
   paddingRight: '5px'
 }
 
