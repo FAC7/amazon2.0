@@ -10,7 +10,6 @@ class BasketContainer extends React.Component {
     const items = this.props.shoppingBasket.items
     return (
       <div>
-        <Header />
           <div className='container'>
         {items.length === 0
            ? <h1>Shopping Basket is Empty</h1> : <table className='column-fifth' style={rowStyle} cellPadding='10'>
@@ -50,8 +49,6 @@ class BasketContainer extends React.Component {
            </table>}
         {items.length > 0 ? <CheckoutContainer redirectClick={this.props.redirectClick} numItems={this.props.numItems} getPrice={this.props.getPrice} /> : <p></p>}
          </div>
-        <BottomFooter />
-     
     </div>
     )
   }
