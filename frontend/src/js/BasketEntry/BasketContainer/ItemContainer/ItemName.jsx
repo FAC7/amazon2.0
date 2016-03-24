@@ -1,8 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router'
+import { Link } from 'react-router'
 
-const ItemName = (props) => {
-  return <Link to={props.url}>{props.title}</Link>
+class ItemName extends React.Component {
+  render () {
+    return <Link to={this.props.url}>{this.props.title}</Link>
+  }
 }
 
 ItemName.propTypes = {

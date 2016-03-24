@@ -1,14 +1,15 @@
 import React from 'react'
 
-const style = {
-  fontSize: '20px',
-  verticalAlign: 'top',
-  paddingTop: '0px',
-  marginTop: '0px'
-}
-
-const Price = (props) => {
-  return <p style={style}>{props.currencySymbol}{props.price}</p>
+class Price extends React.Component {
+  render () {
+    const style = {
+      fontSize: '20px',
+      verticalAlign: 'top',
+      paddingTop: '0px',
+      marginTop: '0px'
+    }
+    return <p style={style}>{this.props.currencySymbol}{this.props.price}</p>
+  }
 }
 
 Price.propTypes = {

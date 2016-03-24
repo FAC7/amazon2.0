@@ -1,7 +1,9 @@
 import React from 'react'
 
-const Link = (props) => {
-  return <button onClick={props.callback.bind(null, props.index)}>{props.linkName}</button>
+class Link extends React.Component {
+  render () {
+    return <button onClick={this.props.callback.bind(null, this.props.index)}>{this.props.linkName}</button>
+  }
 }
 
 Link.propTypes = {

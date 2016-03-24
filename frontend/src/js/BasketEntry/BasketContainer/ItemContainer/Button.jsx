@@ -1,6 +1,12 @@
 import React from 'react'
 
-const Button = (props) => <button onClick={props.handleClick.bind(null, props.index)}>{props.buttonText}</button>
+class Button extends React.Component {
+  render () {
+    return (
+      <button onClick={this.props.handleClick.bind(null, this.props.index)}>{this.props.buttonText}</button>
+    )
+  }
+}
 
 Button.propTypes = {
   handleClick: React.PropTypes.func,
