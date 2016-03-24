@@ -30,21 +30,18 @@ server.register(plugins, (err) => {
       method: 'GET',
       path: '/amazon.js',
       handler: (request, reply) => {
-        console.log('amazon.js')
         reply.file(Path.join(__dirname, '..', '..', 'frontend', 'production', 'amazon.js'))
       }
     }, {
       method: 'GET',
       path: '/shamazon-logo.png',
       handler: (request, reply) => {
-        console.log('shamazon-logo.png')
         reply.file(Path.join(__dirname, '..', '..', 'frontend', 'production', 'shamazon-logo.png'))
       }
     }, {
       method: 'GET',
       path: '/{param*}',
       handler: (request, reply) => {
-        console.log('all')
         reply.file(Path.join(__dirname, '..', '..', 'frontend', 'production', 'index.html'))
       }
     }, {
