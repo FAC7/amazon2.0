@@ -27,7 +27,7 @@ server.register(plugins, (err) => {
       method: 'GET',
       path: '/{param*}',
       handler: {
-        directory: { path: '../../frontend/production' }
+        directory: { path: Path.join(__dirname, '/../../frontend/production') }
       }
     }, {
       method: 'GET',
