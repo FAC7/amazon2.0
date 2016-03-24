@@ -1,13 +1,13 @@
 import React from 'react'
 
 const styleStock = {
-	color: 'green',
-	fontSize: '12px'
+  color: 'green',
+  fontSize: '12px'
 }
 
 const styleOut = {
-	color: 'red',
-	fontSize: '12px'
+  color: 'red',
+  fontSize: '12px'
 }
 
 class AdditionalInfo extends React.Component {
