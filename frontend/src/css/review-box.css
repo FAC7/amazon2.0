@@ -1,0 +1,30 @@
+.review {
+  padding: 3em 0;
+  border-top: 2px solid #D8D7D7;
+}
+
+.review-list {
+  margin: 2em 0 0 0;
+}
+
+/*-----modal------*/
+
+.review-box {
+  padding: 2em;
+}
+
+.review-author {
+  margin: 2em 0;
+  outline: none;
+  border-radius: 0.3em;
+  border: 2px solid rgb(215, 215, 215);
+}
+
+.review-text {
+  width: 95%;
+  outline: none;
+  border-radius: 0.3em;
+  min-height: 100px;
+  border: 2px solid rgb(215, 215, 215);
+  resize: none;
+}

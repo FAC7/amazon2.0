@@ -12,7 +12,8 @@ body {
   font-size: 40px;
 }
 .category {
-  width: 72%;
+  margin-top: 2em;
+  width: 85%;
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 45px;
@@ -68,6 +69,7 @@ body {
 
 .item {
   padding: 5px 15px;
+  min-height: 200px;
 }
 
 .item h4 {
@@ -82,13 +84,131 @@ body {
   display: -webkit-box;
 }
 
+.loading {
+  background-color: rgb(69, 89, 214);
+  min-height: 400px;
+}
+
 /************************** End Category Items Carousel Style ***********************/
+
+
+/*-----whole-page-styles-------*/
+
+.page-margin {
+  margin: 2em;
+}
+
+.logo-container {
+  width: 6.8em;
+  padding: 1em 3em;
+}
+
+.logo-container img {
+  width: 100%;
+}
+
+/*----buttons------*/
+
+.button-yellow {
+  padding: 0.8em;
+  background-color: #FEBC5B;
+  color: #222E3F;
+  outline: none;
+  border: none;
+  border-radius: 0.5em;
+  margin: 1em 1em 0 0;
+}
+
+.button-blue {
+  padding: 0.8em;
+  background-color: #222E3F;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 0.5em;
+  margin: 1em 1em 0 0;
+}
+
+
+/*-----misc---------*/
+
+.show {
+  opacity: 1;
+  height: 0;
+  transition: 0.3s ease;
+}
+
+.hide {
+  opacity: 0;
+  height: 0;
+  transition: 0.3s ease;
+}
+
+.success-message {
+  background-color: rgb(28, 144, 251);
+  border-radius: 0.6em;
+  padding: 1px 0.6em;
+  margin: 1em 0;
+  color: #fff;
+  text-align: center;
+  max-width: 170px;
+  transition: 0.5s ease;
+  height: 53px;
+}
+
+.review-error-message {
+
+}
+
+.item-title {
+  border-top: 2px solid #D8D7D7;
+  border-bottom: 2px solid #D8D7D7;
+  padding: 0.5em 0;
+}
+
+.img-scale img {
+  width: 50%;
+  margin: 2em auto;
+  display: block;
+}
+
+select {
+  margin: 0px;
+  padding: 5px 0;
+  height: inherit;
+  width: 8em;
+  border: 5px solid;
+  border-radius: 5px 0px 0px 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-grow: 1;
+  outline: none;
+  list-style: none;
+  background-color: #CCC;
+  border-color: #CCC;
+  display: inline;
+}
+
+.select-product {
+  margin: 0em 1em 0 0;
+  height: 2.7em;
+}
+
+.fa-shopping-cart {
+  color: #FEBC5B;
+  font-size: 2.1em;
+  margin: 1em 1.3em 0 0;
+}
 
 .footer-top {
   height: 220px;
   width: 80%;
   margin: auto;
 }
+
+
+/*-----foooter--------*/
 
 footer {
   background-color: #222e3e;

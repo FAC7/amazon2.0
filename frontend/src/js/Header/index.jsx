@@ -7,13 +7,18 @@ class Header extends React.Component {
   render () {
     return (
       <div>
-        <Link to='/'><h1>Amazon 2.0 Home Page</h1></Link>
-        <header style={styles}>
+        <header className='container' style={styles}>
+          <Link to='/'>
+            <div className='logo-container'>
+              <img src='/shamazon-logo.png'></img>
+            </div>
+          </Link>
           <SearchBar
             submitHandler={this.props.search}
             categorySelect={this.props.categorySelect}
             handleChange={this.props.handleChange}
             setResultsState={this.props.setResultsState} />
+
           <Nav home={'/home'} browse={'/search'} checkout={'/checkout'} basket={'/basket'}/>
         </header>
       </div>
