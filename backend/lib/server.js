@@ -58,21 +58,23 @@ server.register(plugins, (err) => {
       handler: (request, reply) => {
         const client = require('./redis.js')
         const dbHelpers = require('./dbHelpers.js')(client)
+
+        var results = []
+
         dbHelpers.getArrayOfProdObjsByCategories(['appliances', 'electric', 'global'])
         .then((hairdryers) => {
-          dbHelpers.getArrayOfProdObjsByCategories(['sport', 'garden', 'global'])
-          .then((footballs) => {
-            dbHelpers.getArrayOfProdObjsByCategories(['technology', 'computers', 'global'])
-            .then((laptops) => {
-              return reply(JSON.stringify([hairdryers, footballs, laptops]))
-            }).catch((err1) => {
-              console.log(err1)
+          results.push(hairdryers)
+          return dbHelpers.getArrayOfProdObjsByCategories(['sport', 'garden', 'global'])
             })
-          }).catch((err2) => {
-            console.log(err2)
+        .then((footballs) => {
+          results.push(footballs)
+          return dbHelpers.getArrayOfProdObjsByCategories(['technology', 'computers', 'global'])
           })
-        }).catch((err3) => {
-          console.log(err3)
+        .then((laptops) => {
+          results.push(laptops)
+          return reply(JSON.stringify(results))
+        }).catch((err) => {
+          console.log(err)
         })
       }
     }, {
