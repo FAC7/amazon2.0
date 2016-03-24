@@ -14,11 +14,7 @@ class Header extends React.Component {
             </div>
           </Link>
           <SearchBar
-            submitHandler={this.props.search}
-            categorySelect={this.props.categorySelect}
-            handleChange={this.props.handleChange}
-            setResultsState={this.props.setResultsState} />
-
+            changeState={this.props.changeState} />
           <Nav home={'/home'} browse={'/search'} checkout={'/checkout'} basket={'/basket'}/>
         </header>
       </div>
@@ -28,11 +24,9 @@ class Header extends React.Component {
 
 Header.propTypes = {
   search: React.PropTypes.func,
-  handleChange: React.PropTypes.func,
   list: React.PropTypes.array,
   submitHandler: React.PropTypes.func,
-  categorySelect: React.PropTypes.func,
-  setResultsState: React.PropTypes.func
+  changeState: React.PropTypes.func
 }
 
 const styles = {

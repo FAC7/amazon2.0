@@ -15,7 +15,7 @@ class SearchBar extends React.Component {
     e.preventDefault()
     var xhr = new XMLHttpRequest() // eslint-disable-line
     xhr.addEventListener('load', (response) => {
-      cb(response.target.response)
+      cb({searchResults: response.target.response})
       browserHistory.push('/searchResults')
     })
 
@@ -34,12 +34,11 @@ class SearchBar extends React.Component {
     return (
       <form
         formAction={this.props.submitURL}
-        onSubmit={this.search.bind(this, this.props.setResultsState)}
+        onSubmit={this.search.bind(this, this.props.changeState)}
         style={styles}>
-        <CategoryButton categorySelect={this.props.categorySelect} />
+        <CategoryButton />
         <SearchBox
           placeholder='Type here...'
-          onChange={this.props.handleChange}
           inputColor={this.props.inputColor}
           roundRight={!this.props.showSubmit} />
         <SubmitButton show={this.props.showSubmit} buttonColor={this.props.buttonColor}/>
@@ -50,17 +49,13 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   submitURL: React.PropTypes.string,
-  submitHandler: React.PropTypes.func,
   showSubmit: React.PropTypes.bool,
   width: React.PropTypes.string,
   height: React.PropTypes.string,
   buttonColor: React.PropTypes.string,
   inputColor: React.PropTypes.string,
   list: React.PropTypes.array,
-  categorySelect: React.PropTypes.func,
-  handleChange: React.PropTypes.func,
-  onSubmit: React.PropTypes.func,
-  setResultsState: React.PropTypes.func
+  onSubmit: React.PropTypes.func
 }
 
 SearchBar.defaultProps = {

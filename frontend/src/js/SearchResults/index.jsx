@@ -9,25 +9,21 @@ class SearchResults extends React.Component {
   }
 
   render () {
-    console.log(this.props)
     const data = JSON.parse(this.props.state.searchResults).sort((a, b) => {
-      console.log('SORTING DATA')
-      if (this.props.state.sort === 'price-desc') {
-        return b.price - a.price
-      } else if (this.props.state.sort === 'price-asc') {
-        return a.price - b.price
-      } else if (this.props.state.sort === 'rating') {
-        return b.rating - a.rating
-      }
-    }) // eslint-disable-line
+      return {
+        'price-desc': b.price - a.price,
+        'price-asc': a.price - b.price,
+        'rating': b.rating - a.rating
+      }[this.props.state.sort]
+    })
     if (data.length === 0) {
       return <h1>Sorry, your search has produced no results!</h1>
     } else {
       return (
         <div>
           <select id='sorting' onChange={this.sortBy.bind(null, this.props.changeState)} style={selectStyles}>
-            <option value='price-desc'>Price: £££-->£</option>
             <option value='price-asc'>Price: £-->£££</option>
+            <option value='price-desc'>Price: £££-->£</option>
             <option value='rating'>Rating: high-low</option>
           </select>
           <ul style={listStyle}>
@@ -38,7 +34,8 @@ class SearchResults extends React.Component {
                     title={item.title}
                     price={item.price}
                     imgUrl={item.imageLink}
-                    itemUrl={'/item/' + item.id} />
+                    itemUrl={'/item/' + item.id}
+                    stock={item.stock} />
                 </li>
               )
             })}
@@ -54,11 +51,10 @@ SearchResults.propTypes = {
 }
 
 const selectStyles = {
-  margin: '0',
-  padding: '5px 0',
-  height: 'inherit',
-  width: '10em',
-  border: '5px solid',
+  margin: '20px 0 0 20px',
+  height: '2em',
+  width: '20em',
+  border: '1px solid',
   borderRadius: '5px 0px 0px 5px',
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',

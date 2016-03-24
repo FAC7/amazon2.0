@@ -22,14 +22,14 @@ class Item extends React.Component {
                 </Link>
               </td>
               <td>
-                <p className='itemPrice'>{this.props.price}</p>
+                <p className='itemPrice'>£{this.props.price}</p>
               </td>
               <td>
                 <BuyProduct
                   buttonType='button'
                   buttonText='buy'
-                  stock='678'
-                   />
+                  stock={this.props.stock}
+                />
               </td>
             </tr>
           </tbody>
@@ -43,7 +43,8 @@ Item.propTypes = {
   title: React.PropTypes.string.isRequired,
   price: React.PropTypes.string.isRequired,
   imgUrl: React.PropTypes.string.isRequired,
-  itemUrl: React.PropTypes.string
+  itemUrl: React.PropTypes.string,
+  stock: React.PropTypes.number
 }
 
 const imgStyles = {
