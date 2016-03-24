@@ -1,11 +1,11 @@
 import React from 'react'
 
 const style = {
-	border: '0px',
-	padding: '0px',
-	color: '#0066C0',
-	background: 'none',
-	fontSize: '12px'
+  border: '0px',
+  padding: '0px',
+  color: '#0066C0',
+  background: 'none',
+  fontSize: '12px'
 }
 
 const DeleteLink = (props) => {

@@ -1,7 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router'
 
-const ItemName = (props) => {
-  return <a href={props.url}>{props.title}</a>
+class ItemName extends React.Component {
+  render () {
+    return <Link to={this.props.url}>{this.props.title}</Link>
+  }
 }
 
 ItemName.propTypes = {
