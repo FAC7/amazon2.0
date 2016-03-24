@@ -65,11 +65,11 @@ server.register(plugins, (err) => {
         .then((hairdryers) => {
           results.push(hairdryers)
           return dbHelpers.getArrayOfProdObjsByCategories(['sport', 'garden', 'global'])
-            })
+        })
         .then((footballs) => {
           results.push(footballs)
           return dbHelpers.getArrayOfProdObjsByCategories(['technology', 'computers', 'global'])
-          })
+        })
         .then((laptops) => {
           results.push(laptops)
           return reply(JSON.stringify(results))
@@ -84,8 +84,10 @@ server.register(plugins, (err) => {
         const client = require('./redis.js')
         const dbHelpers = require('./dbHelpers.js')(client)
         dbHelpers.getProductById(request.params.id, (err, response) => {
-          if (err) throw Error
-          else {
+          if (err) {
+            console.log('Database error: ', err)
+            reply({success: false, error: err})
+          } else {
             reply(response)
           }
         })
@@ -118,7 +120,8 @@ server.register(plugins, (err) => {
         console.log(formattedObj)
         dbHelpers.addReview(reviewObj.id, formattedObj, (err, response) => {
           if (err) {
-            throw err
+            console.log('Database error: ', err)
+            reply({success: false, error: err})
           } else {
             reply(response)
           }
